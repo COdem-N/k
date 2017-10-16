@@ -30,6 +30,7 @@ div.wrapper {
     width: 204px;
     overflow: hidden;
     position:absolute;
+    font-size: 12pt;
     left:455px;
     top:180px;
 }
@@ -39,7 +40,7 @@ div.minutes {
   width: 100px;
   height: 100px;
   text-align:center;
-  font-size: 12px;
+  font-size: 12pt;
 }
 div.updates {
   float: left;
@@ -47,7 +48,7 @@ div.updates {
   width: 100px;
   height: 100px;
   text-align:center;
-  font-size: 12px;
+  font-size: 12pt;
 }
 
 
