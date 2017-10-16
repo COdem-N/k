@@ -1,5 +1,3 @@
-# k
-hello
+# This is the website for our team.
 
-*Karan Here
-test
+Accessible at https://tehpwner.github.io/k/
