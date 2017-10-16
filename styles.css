@@ -73,7 +73,7 @@ div.lastupdate {
 }
 body {
   background-image: url("2.jpg");
-  background-repeat: no-repeat;
+  /*background-repeat: no-repeat;*/
   background-attachment: fixed;
   margin-left:auto;
   margin-right:auto;
