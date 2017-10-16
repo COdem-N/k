@@ -1,3 +1,8 @@
+button {
+  position:absolute;
+  left:100px;
+}
+
 div.title {
     margin: auto;
     width: 200px;
