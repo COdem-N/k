@@ -21,6 +21,7 @@ public class Main {
 			peter();
 			carter();
 			logan();
+			alex();
 		}
 		scanner.close();
 	}
@@ -61,5 +62,11 @@ public class Main {
 		System.out.println("				Logan Stafford WICKA WOCKA WICKETY WOO.");
 		count++;
 		return "Logan Stafford";
+	}
+	
+	public static String alex() {
+		System.out.prinln("						alex");
+		count++;
+		return "Alex Merk";
 	}
 }

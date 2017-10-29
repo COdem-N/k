@@ -46,6 +46,13 @@ public class MainTest {
 	}
 	
 	@Test
+	public void testAlex() {
+		String name = main.alex();
+		asserEquals(name, "Alex Merk");
+		assertEquals(1, main.getCount());
+	}
+	
+	@Test
 	public void testCount() {
 		assertEquals(0,main.getCount());
 	}
