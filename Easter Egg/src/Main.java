@@ -20,6 +20,7 @@ public class Main {
 			karan();
 			peter();
 			carter();
+			logan();
 		}
 		scanner.close();
 	}
@@ -45,14 +46,20 @@ public class Main {
 	}
 	
 	public static String peter() {
-		System.out.println("PETER PETER PETER.");
+		System.out.println("		PETER PETER PETER.");
 		count++;
 		return "Peter Bae";
 	}
 
 		public static String carter() {
-		System.out.println("Carter Oh damn");
+		System.out.println("			Carter Oh damn");
 		count++;
 		return "Carter Oh damn";
+	}
+		
+	public static String logan() {
+		System.out.println("				Logan Stafford WICKA WOCKA WICKETY WOO.");
+		count++;
+		return "Logan Stafford";
 	}
 }

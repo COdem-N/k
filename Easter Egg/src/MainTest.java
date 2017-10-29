@@ -32,6 +32,13 @@ public class MainTest {
 	}
 	
 	@Test
+	public void testLogan() {
+		String name = main.logan();
+		assertEquals(name, "Logan Stafford");
+		assertEquals(1 , main.getCount());
+	}
+	
+	@Test
 	public void testCount() {
 		assertEquals(0,main.getCount());
 	}
