@@ -19,6 +19,7 @@ public class Main {
 			System.out.println("We are Team K and comprises of");
 			karan();
 			peter();
+			carter();
 		}
 		scanner.close();
 	}
@@ -47,5 +48,11 @@ public class Main {
 		System.out.println("PETER PETER PETER.");
 		count++;
 		return "Peter Bae";
+	}
+
+		public static String carter() {
+		System.out.println("Carter Oh damn");
+		count++;
+		return "Carter Oh damn";
 	}
 }
