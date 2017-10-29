@@ -18,6 +18,7 @@ public class Main {
 		if(num == 1) {
 			System.out.println("We are Team K and comprises of");
 			karan();
+			peter();
 		}
 		scanner.close();
 	}
@@ -40,5 +41,11 @@ public class Main {
 		System.out.println("Karan Singla who codes for passion.");
 		count++;
 		return "Karan Singla";
+	}
+	
+	public static String peter() {
+		System.out.println("PETER PETER PETER.");
+		count++;
+		return "Peter Bae";
 	}
 }
