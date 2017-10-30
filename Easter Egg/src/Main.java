@@ -46,24 +46,44 @@ public class Main {
 		return "Karan Singla";
 	}
 	
+	/**
+	 * author: Peter Bae
+	 * Prints my name.
+	 * @return string containing my full name.
+	 */
 	public static String peter() {
 		System.out.println("		PETER PETER PETER.");
 		count++;
 		return "Peter Bae";
 	}
 
+	/**
+	 * author: Carter Odem
+	 * Prints my name.
+	 * @return string containing my full name.
+	 */
 		public static String carter() {
 		System.out.println("			Carter Oh damn");
 		count++;
 		return "Carter Oh damn";
 	}
-		
+	
+	/**
+	 * author: Logan Stafford
+	 * Prints my name.
+	 * @return string containing my full name.
+	 */	
 	public static String logan() {
 		System.out.println("				Logan Stafford WICKA WOCKA WICKETY WOO.");
 		count++;
 		return "Logan Stafford";
 	}
 	
+	/**
+	 * author: Alex Merk
+	 * Prints my name.
+	 * @return string containing my full name.
+	 */
 	public static String alex() {
 		System.out.println("						alex");
 		count++;
