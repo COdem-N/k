@@ -48,7 +48,7 @@ public class MainTest {
 	@Test
 	public void testAlex() {
 		String name = main.alex();
-		asserEquals(name, "Alex Merk");
+		assertEquals(name, "Alex Merk");
 		assertEquals(1, main.getCount());
 	}
 	

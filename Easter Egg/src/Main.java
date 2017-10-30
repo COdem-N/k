@@ -65,7 +65,7 @@ public class Main {
 	}
 	
 	public static String alex() {
-		System.out.prinln("						alex");
+		System.out.println("						alex");
 		count++;
 		return "Alex Merk";
 	}
