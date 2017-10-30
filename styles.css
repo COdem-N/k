@@ -62,8 +62,6 @@ div.updates {
   text-align:center;
   font-size: 11pt;
 }
-
-
 div.otherlinks {
   margin: auto;
   width: 170px;
@@ -86,6 +84,7 @@ body {
   margin-right:auto;
   color:white;
 }
+
 .gitlink a:link { color: #70DB93; }
 .gitlink a:visited { color: #70DB93; }
 .gitlink a:hover { color: #70DB93; }

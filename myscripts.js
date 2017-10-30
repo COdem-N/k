@@ -8,8 +8,6 @@ function Asteroids() {
 			startedPlaying: (new Date()).getTime()
 		};
 
-	//var BASEPATH = 'http://kickassapp.com/';
-
 	/*
 		Classes
 	*/
@@ -438,7 +436,6 @@ function Asteroids() {
 			vec.x = 0;
 		else if ( vec.x < 0 )
 			vec.x = w;
-
 		if ( vec.y > h )
 			vec.y = 0;
 		else if ( vec.y < 0 )
