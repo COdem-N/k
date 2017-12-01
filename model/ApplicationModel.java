@@ -6,16 +6,35 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class to aggregate and manage ProjectModel objects.
+ * @author Peter Bae
+ * @version 0.2
+ */
 @SuppressWarnings("serial")
 public class ApplicationModel implements Serializable {
+	/**
+	 * List of ProjectModels.
+	 */
 	private List<ProjectModel> myProjectList;
+	
+	/**
+	 * Map of Tags/Occurrences pulled from the ProjectModels.
+	 */
 	private Map<String, Integer> myTagMap;
 	
+	/**
+	 * Constructor to initialize the fields.
+	 */
 	public ApplicationModel() {
 		myProjectList = new ArrayList<ProjectModel>();
 		myTagMap = new HashMap<String, Integer>();
 	}
 	
+	/**
+	 * Adds the passed in ProjectModel to the project list.
+	 * @param theProject The ProjectModel to be added in.
+	 */
 	public void addProject(ProjectModel theProject) {
 		for (int i = 0; i < theProject.getTags().size(); i++) {
 			String key = theProject.getTags().get(i);
@@ -28,10 +47,19 @@ public class ApplicationModel implements Serializable {
 		myProjectList.add(theProject);
 	}
 	
+	/**
+	 * Returns the entire project list.
+	 * @return the entire project list.
+	 */
 	public List<ProjectModel> getProjects() {
 		return myProjectList;
 	}
 	
+	/**
+	 * Returns a list of projects containing the passed in tag.
+	 * @param theTag The tag to test for.
+	 * @return A list of projects containing the passed in tag.
+	 */
 	public List<ProjectModel> getProjects(String theTag) {
 		List<ProjectModel> projects = new ArrayList<ProjectModel>();
 		
@@ -44,6 +72,12 @@ public class ApplicationModel implements Serializable {
 		return projects;
 	}
 	
+	/**
+	 * Returns the list of tags occurring in the projects in the project list
+	 * in descending order of occurrences.
+	 * @return List of tags occurring in the projects in the project list
+	 * in descending order of occurrences.
+	 */
 	public List<String> getTags() {
 		Map<String, Integer> map = new HashMap<String, Integer>(myTagMap);
 		List<String> returnList = new ArrayList<String>();
@@ -65,10 +99,22 @@ public class ApplicationModel implements Serializable {
 		return returnList;
 	}
 	
+	/**
+	 * Returns the tags/occurrences map according to how many
+	 * times the tag has appeared in the projects in the
+	 * project list.
+	 * @return Tags/occurrences map according to how many
+	 * times the tag has appeared in the projects in the
+	 * project list.
+	 */
 	public Map<String, Integer> getTagMap() {
 		return myTagMap;
 	}
 	
+	/**
+	 * Returns the string representation of the the ApplicationModel.
+	 * @return String representation of the the ApplicationModel.
+	 */
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		
