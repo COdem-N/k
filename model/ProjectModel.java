@@ -9,15 +9,17 @@ public class ProjectModel implements Serializable{
 	private final List<String> myImageLinks;
 	private final String myMaterials;
 	private final int myDifficulty;
-	private final float myCost;
+	private final int myCost;
 	private final String myBody;
 	private final List<String> myTags;
+	private static int myID = 0;
+	private int myRunningID;
 	
 	public ProjectModel(String theName,
 						List<String> theImageLinks,
 						String theMaterials,
 						int theDifficulty,
-						float theCost,
+						int theCost,
 						String theBody,
 						List<String> theTags) {
 		myName = theName;
@@ -27,6 +29,8 @@ public class ProjectModel implements Serializable{
 		myCost = theCost;
 		myBody = theBody;
 		myTags = theTags;
+		myID= myRunningID;
+		myRunningID++;
 	}
 	
 	public String getName() {
