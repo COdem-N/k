@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ApplicationModel{
+@SuppressWarnings("serial")
+public class ApplicationModel implements Serializable {
 	private List<ProjectModel> myProjectList;
 	private Map<String, Integer> myTagMap;
 	
@@ -28,6 +30,18 @@ public class ApplicationModel{
 	
 	public List<ProjectModel> getProjects() {
 		return myProjectList;
+	}
+	
+	public List<ProjectModel> getProjects(String theTag) {
+		List<ProjectModel> projects = new ArrayList<ProjectModel>();
+		
+		for (int i = 0; i < myProjectList.size(); i++) {
+			ProjectModel project = myProjectList.get(i);
+			if (project.getTags().contains(theTag))
+				projects.add(project);
+		}
+		
+		return projects;
 	}
 	
 	public List<String> getTags() {
@@ -53,5 +67,19 @@ public class ApplicationModel{
 	
 	public Map<String, Integer> getTagMap() {
 		return myTagMap;
+	}
+	
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		
+		for (ProjectModel pm : myProjectList) {
+			str.append(pm);
+		}
+		
+		if (myProjectList.size() == 0) {
+			str.append("Empty");
+		}
+		
+		return str.toString();
 	}
 }

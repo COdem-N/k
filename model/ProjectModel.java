@@ -3,8 +3,10 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 
-public class ProjectModel implements Serializable{
-	private static final long serialVersionUID = -5249021995124520760L;
+@SuppressWarnings("serial")
+public class ProjectModel implements Serializable {
+	private static int myRunningID = 0;
+	private final int myID;
 	private final String myName;
 	private final List<String> myImageLinks;
 	private final String myMaterials;
@@ -12,8 +14,6 @@ public class ProjectModel implements Serializable{
 	private final int myCost;
 	private final String myBody;
 	private final List<String> myTags;
-	private static int myID = 0;
-	private int myRunningID;
 	
 	public ProjectModel(String theName,
 						List<String> theImageLinks,
@@ -22,6 +22,8 @@ public class ProjectModel implements Serializable{
 						int theCost,
 						String theBody,
 						List<String> theTags) {
+		myID= myRunningID;
+		myRunningID++;
 		myName = theName;
 		myImageLinks = theImageLinks;
 		myMaterials = theMaterials;
@@ -29,8 +31,18 @@ public class ProjectModel implements Serializable{
 		myCost = theCost;
 		myBody = theBody;
 		myTags = theTags;
-		myID= myRunningID;
-		myRunningID++;
+	}
+	
+	public static void onLoad(int theRunningID) {
+		myRunningID = theRunningID;
+	}
+	
+	public static int getRunningID() {
+		return myRunningID;
+	}
+	
+	public int getID() {
+		return myID;
 	}
 	
 	public String getName() {
@@ -60,5 +72,21 @@ public class ProjectModel implements Serializable{
 	public List<String> getTags() {
 		return myTags;
 	}
-
+	
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append(myRunningID + "," + myID + "\n");
+		str.append(myName + "\n");
+		for (String s : myImageLinks) {
+			str.append(s + ", ");
+		}
+		str.append("\n" + myMaterials + "\n");
+		str.append(myDifficulty + "," + myCost + "\n");
+		str.append(myBody + "\n");
+		for (String s : myTags) {
+			str.append(s + ", ");
+		}
+		
+		return str.toString();
+	}
 }
