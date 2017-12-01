@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 import model.ApplicationModel;
 
+@SuppressWarnings("serial")
 public class MainGUI extends JFrame {
 	private static final Toolkit KIT = Toolkit.getDefaultToolkit();
 	private static final Dimension SCREENSIZE = KIT.getScreenSize();
