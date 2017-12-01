@@ -33,6 +33,7 @@ public class MainGUI extends JFrame {
 		setLocation(SCREENSIZE.width / 2 - getWidth() / 2, 
 					SCREENSIZE.height / 2 - getHeight() / 2);
 		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void load() {
