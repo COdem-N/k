@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import model.ApplicationModel;
+
 @SuppressWarnings("serial")
 public class ProjectPanel extends JPanel {
 	
@@ -18,7 +20,7 @@ public class ProjectPanel extends JPanel {
      */
     private static final Color PROJECT_PANEL_BG_COLOR = new Color(60, 141, 13);
     
-	public ProjectPanel() {
+	public ProjectPanel(ApplicationModel am, CategoryPanel cp) {
 			super();
 			
 	        /* Setting some properties of the panel. */

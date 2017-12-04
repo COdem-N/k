@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import model.ApplicationModel;
+
 @SuppressWarnings("serial")
 public class SubmitPanel extends JPanel {
 
@@ -18,7 +20,7 @@ public class SubmitPanel extends JPanel {
      */
     private static final Color SUBMIT_PANEL_BG_COLOR = new Color(60, 141, 13);
     
-	public SubmitPanel() {
+	public SubmitPanel(ApplicationModel am, CategoryPanel cp) {
 			super();
 			
 	        /* Setting some properties of the panel. */

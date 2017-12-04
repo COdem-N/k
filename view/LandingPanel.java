@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import model.ApplicationModel;
+
 @SuppressWarnings("serial")
 public class LandingPanel extends JPanel {
 	
@@ -18,7 +20,7 @@ public class LandingPanel extends JPanel {
      */
     private static final Color LANDING_PANEL_BG_COLOR = new Color(60, 141, 13);
     
-	public LandingPanel() {
+	public LandingPanel(ApplicationModel am, CategoryPanel cp) {
 			super();
 			
 	        /* Setting some properties of the panel. */
