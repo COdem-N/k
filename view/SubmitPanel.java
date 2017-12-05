@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import model.ApplicationModel;
 
@@ -167,6 +168,9 @@ public class SubmitPanel extends JPanel {
         textDirections.setLineWrap(true);
         
         /* Adding text boxes to the panel. */
+        final JScrollPane scrollMaterials = new JScrollPane(textMaterials);
+        final JScrollPane scrollDirections = new JScrollPane(textDirections);
+        
         constraints.gridx = 1;
         constraints.gridy = 0;
         this.add(textTitle, constraints);
@@ -175,9 +179,9 @@ public class SubmitPanel extends JPanel {
         constraints.gridy = 3;
         this.add(textCost, constraints);
         constraints.gridy = 4;
-        this.add(textMaterials, constraints);
+        this.add(scrollMaterials, constraints);
         constraints.gridy = 5;
-        this.add(textDirections, constraints);
+        this.add(scrollDirections, constraints);
             
         /* Adding buttons. */        
         constraints.gridx = 2;
