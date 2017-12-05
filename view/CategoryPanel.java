@@ -28,7 +28,11 @@ public class CategoryPanel extends JPanel {
     /**
      * 
      */
-    private CategoryPanel myCategoryPanel;
+    private LandingPanel myLandingPanel;
+    
+    private ProjectPanel myProjectPanel;
+    
+    private SubmitPanel mySubmitPanel;
     
 	public CategoryPanel() {
 			super();
@@ -38,8 +42,11 @@ public class CategoryPanel extends JPanel {
 	        setBackground(CATEGORY_PANEL_BG_COLOR);
 	}
 	
-	public void passIn(ApplicationModel theApp, CategoryPanel theCat) {
+	public void passIn(ApplicationModel theApp, LandingPanel theLand, 
+					   SubmitPanel theSub, ProjectPanel thePro) {
 		myApplcationModel = theApp;
-		myCategoryPanel = theCat;
+		myLandingPanel = theLand;
+		myProjectPanel = thePro;
+		mySubmitPanel = theSub;
 	}
 }

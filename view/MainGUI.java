@@ -46,6 +46,7 @@ public class MainGUI extends JFrame implements WindowListener {
 	}
 	
 	private void setup() {
+		myLandingPanel.passIn(myApplicationModel, myCategoryPanel);
 		setTitle("K");
 		setSize(800, 600);
 		setLocation(SCREENSIZE.width / 2 - getWidth() / 2, 
