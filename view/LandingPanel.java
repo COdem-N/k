@@ -42,5 +42,4 @@ public class LandingPanel extends JPanel {
 		myApplcationModel = theApp;
 		myCategoryPanel = theCat;
 	}
-	
 }
