@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import model.ApplicationModel;
+
 @SuppressWarnings("serial")
 public class CategoryPanel extends JPanel {
 	
@@ -18,6 +20,16 @@ public class CategoryPanel extends JPanel {
      */
     private static final Color CATEGORY_PANEL_BG_COLOR = new Color(60, 141, 13);
     
+    /**
+     * 
+     */
+    private ApplicationModel myApplcationModel;
+    
+    /**
+     * 
+     */
+    private CategoryPanel myCategoryPanel;
+    
 	public CategoryPanel() {
 			super();
 			
@@ -26,4 +38,8 @@ public class CategoryPanel extends JPanel {
 	        setBackground(CATEGORY_PANEL_BG_COLOR);
 	}
 	
+	public void passIn(ApplicationModel theApp, CategoryPanel theCat) {
+		myApplcationModel = theApp;
+		myCategoryPanel = theCat;
+	}
 }

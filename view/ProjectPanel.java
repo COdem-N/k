@@ -20,12 +20,26 @@ public class ProjectPanel extends JPanel {
      */
     private static final Color PROJECT_PANEL_BG_COLOR = new Color(60, 141, 13);
     
-	public ProjectPanel(ApplicationModel am, CategoryPanel cp) {
+    /**
+     * 
+     */
+    private ApplicationModel myApplcationModel;
+    
+    /**
+     * 
+     */
+    private CategoryPanel myCategoryPanel;
+    
+	public ProjectPanel() {
 			super();
 			
 	        /* Setting some properties of the panel. */
 	        setPreferredSize(PROJECT_PANEL_SIZE);
 	        setBackground(PROJECT_PANEL_BG_COLOR);
 	}
-	
+
+	public void passIn(ApplicationModel theApp, CategoryPanel theCat) {
+		myApplcationModel = theApp;
+		myCategoryPanel = theCat;
+	}	
 }

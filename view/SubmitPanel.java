@@ -20,7 +20,17 @@ public class SubmitPanel extends JPanel {
      */
     private static final Color SUBMIT_PANEL_BG_COLOR = new Color(60, 141, 13);
     
-	public SubmitPanel(ApplicationModel am, CategoryPanel cp) {
+    /**
+     * 
+     */
+    private ApplicationModel myApplcationModel;
+    
+    /**
+     * 
+     */
+    private CategoryPanel myCategoryPanel;
+    
+	public SubmitPanel() {
 			super();
 			
 	        /* Setting some properties of the panel. */
@@ -28,4 +38,8 @@ public class SubmitPanel extends JPanel {
 	        setBackground(SUBMIT_PANEL_BG_COLOR);
 	}
 	
+	public void passIn(ApplicationModel theApp, CategoryPanel theCat) {
+		myApplcationModel = theApp;
+		myCategoryPanel = theCat;
+	}
 }

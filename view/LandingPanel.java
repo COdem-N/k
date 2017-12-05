@@ -20,12 +20,27 @@ public class LandingPanel extends JPanel {
      */
     private static final Color LANDING_PANEL_BG_COLOR = new Color(60, 141, 13);
     
-	public LandingPanel(ApplicationModel am, CategoryPanel cp) {
+    /**
+     * 
+     */
+    private ApplicationModel myApplcationModel;
+    
+    /**
+     * 
+     */
+    private CategoryPanel myCategoryPanel;
+    
+	public LandingPanel() {
 			super();
 			
 	        /* Setting some properties of the panel. */
 	        setPreferredSize(LANDING_PANEL_SIZE);
 	        setBackground(LANDING_PANEL_BG_COLOR);
+	}
+	
+	public void passIn(ApplicationModel theApp, CategoryPanel theCat) {
+		myApplcationModel = theApp;
+		myCategoryPanel = theCat;
 	}
 	
 }

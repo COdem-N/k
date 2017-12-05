@@ -21,7 +21,6 @@ import model.ProjectModel;
 public class MainGUI extends JFrame implements WindowListener {
 	private static final Toolkit KIT = Toolkit.getDefaultToolkit();
 	private static final Dimension SCREENSIZE = KIT.getScreenSize();
-	private SplashPanel mySplashPanel;
 	private LandingPanel myLandingPanel;
 	private CategoryPanel myCategoryPanel;
 	private ProjectPanel myProjectPanel;
@@ -29,7 +28,6 @@ public class MainGUI extends JFrame implements WindowListener {
 	private ApplicationModel myApplicationModel;
 	
 	public MainGUI() {
-		mySplashPanel = new SplashPanel();
 		myLandingPanel = new LandingPanel();
 		myCategoryPanel = new CategoryPanel();
 		myProjectPanel = new ProjectPanel();
