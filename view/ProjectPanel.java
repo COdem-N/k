@@ -133,9 +133,9 @@ public class ProjectPanel extends JPanel {
 	public static void main(String[] args) {
 		final JFrame frame = new JFrame("Project Panel");
 
-		ProjectPanel landingPage = new ProjectPanel();
+		ProjectPanel projectPanel = new ProjectPanel();
 
-		frame.add(landingPage);
+		frame.add(projectPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(PROJECT_PANEL_SIZE);
 		frame.setResizable(false);
