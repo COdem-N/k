@@ -1,7 +1,6 @@
 package view;
 import java.awt.Dimension;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import model.ProjectModel;

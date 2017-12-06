@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import model.ApplicationModel;
 
@@ -146,6 +148,31 @@ public class SubmitPanel extends JPanel {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;
         constraints.insets = new Insets(5, 5, 5, 5);
+        
+        /* Creating a slider for selecting project difficulty. */
+        JSlider diffSlider = new JSlider(JSlider.HORIZONTAL, 1, 3, 2);
+        diffSlider.setMajorTickSpacing(1);
+        diffSlider.setPaintTicks(true);
+        diffSlider.setPaintLabels(true);
+        
+        Hashtable<Integer, JLabel> diffLabelTable = new Hashtable<Integer, JLabel>();
+        diffLabelTable.put(new Integer(1), new JLabel("Easy"));
+        diffLabelTable.put(new Integer(2), new JLabel("Med"));
+        diffLabelTable.put(new Integer(3), new JLabel("Hard"));
+        diffSlider.setLabelTable(diffLabelTable);
+        
+        /* Creating a slider for selecting project cost. */
+        JSlider costSlider = new JSlider(JSlider.HORIZONTAL, 1, 4, 2);
+        costSlider.setMajorTickSpacing(1);
+        costSlider.setPaintTicks(true);
+        costSlider.setPaintLabels(true);
+        
+        Hashtable<Integer, JLabel> costLabelTable = new Hashtable<Integer, JLabel>();
+        costLabelTable.put(new Integer(1), new JLabel("$"));
+        costLabelTable.put(new Integer(2), new JLabel("$$"));
+        costLabelTable.put(new Integer(3), new JLabel("$$$"));
+        costLabelTable.put(new Integer(4), new JLabel("$$$$"));
+        costSlider.setLabelTable(costLabelTable);
          
         /* Adding text box labels to the panel. */
         constraints.gridx = 0;
@@ -175,9 +202,9 @@ public class SubmitPanel extends JPanel {
         constraints.gridy = 0;
         this.add(textTitle, constraints);
         constraints.gridy = 2;
-        this.add(textDiff, constraints);
+        this.add(diffSlider, constraints);
         constraints.gridy = 3;
-        this.add(textCost, constraints);
+        this.add(costSlider, constraints);
         constraints.gridy = 4;
         this.add(scrollMaterials, constraints);
         constraints.gridy = 5;
