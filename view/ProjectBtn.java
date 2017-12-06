@@ -6,7 +6,10 @@ import javax.swing.JButton;
 import model.ProjectModel;
 
 
-
+/*
+ * projects buttons to be used in the landing panel and catagory panel
+ * Author:Carter Odem
+ */
 public class ProjectBtn extends JButton {
 	
 	/**
