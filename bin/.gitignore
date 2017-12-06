@@ -1,3 +1,9 @@
-/view/
+/.DS_Store
+/.classpath
+/.metadata/
+/.project
+/Easter Egg/
+/README.md
 /model/
 /saveFile.ser
+/view/

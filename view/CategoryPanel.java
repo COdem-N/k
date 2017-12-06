@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import model.ApplicationModel;
 
@@ -50,35 +51,33 @@ public class CategoryPanel extends JPanel {
 	
 	private void setup() {
 		this.setLayout(new BorderLayout());
+		buildScrollMenu();
+		this.setVisible(true);
+	}
+	
+	private void buildScrollMenu() {
 		final JPanel myCategoryPanel = new JPanel();
 		myCategoryPanel.setBackground(Color.BLACK);
 		GridLayout myCategoryLayout = new GridLayout(20, 2);
 		myCategoryLayout.setHgap(10);
 		myCategoryLayout.setVgap(10);
 		myCategoryPanel.setLayout(myCategoryLayout);
-		/////////////////
-		
-		Random random = new Random();
-		for(int i = 0; i < myCategoryLayout.getColumns() * myCategoryLayout.getRows(); i++) {
-			int r = random.nextInt(255);
-			int g = random.nextInt(255);
-			int b = random.nextInt(255);
-			JPanel temp = new JPanel();
-			temp.setBackground(new Color(r, g, b));
-			temp.setPreferredSize(new Dimension(this.getWidth() / 2, 200));
-			myCategoryPanel.add(temp);
-		}
-		
-		////////////////
 		final JScrollPane myCategoryScroller = new JScrollPane(myCategoryPanel);
 		myCategoryScroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		myCategoryScroller.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		myCategoryScroller.setPreferredSize(new Dimension(50, 6000));
 		myCategoryScroller.getVerticalScrollBar().setUnitIncrement(20);
-		final JButton myJButton = new JButton("test");
-		this.add(myJButton, BorderLayout.NORTH);
 		this.add(myCategoryScroller, BorderLayout.CENTER);
-		this.setVisible(true);
+	}
+	
+	private void buildSearchMenu() {
+		final JPanel mySearchPanel = new JPanel(new BorderLayout());
+		final JTextField mySearchBar = new JTextField("Enter tag to search for.");
+		// TODO finish mySearchBar.addActionListener();
+		final JButton myBackButton = new JButton("Back");
+		// TODO finish myBackButton.addActionListener();
+		final JButton mySearchButton = new JButton("Back");
+		// TODO finish mySearchButton.addActionListener();
 	}
 	
 	public void passIn(ApplicationModel theApp, LandingPanel theLand, 
