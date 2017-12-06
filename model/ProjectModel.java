@@ -8,7 +8,7 @@ public class ProjectModel implements Serializable {
 	private static int myRunningID = 0;
 	private final int myID;
 	private final String myName;
-	private final List<String> myImageLinks;
+	private final String myImageLink;
 	private final String myMaterials;
 	private final int myDifficulty;
 	private final int myCost;
@@ -16,7 +16,7 @@ public class ProjectModel implements Serializable {
 	private final List<String> myTags;
 	
 	public ProjectModel(String theName,
-						List<String> theImageLinks,
+						String theImageLinks,
 						String theMaterials,
 						int theDifficulty,
 						int theCost,
@@ -25,7 +25,7 @@ public class ProjectModel implements Serializable {
 		myID= myRunningID;
 		myRunningID++;
 		myName = theName;
-		myImageLinks = theImageLinks;
+		myImageLink = theImageLinks;
 		myMaterials = theMaterials;
 		myDifficulty = theDifficulty;
 		myCost = theCost;
@@ -49,8 +49,8 @@ public class ProjectModel implements Serializable {
 		return myName;
 	}
 	
-	public List<String> getImageLinks() {
-		return myImageLinks;
+	public String getImageLink() {
+		return myImageLink;
 	}
 	
 	public String getMaterials() {
@@ -77,9 +77,7 @@ public class ProjectModel implements Serializable {
 		StringBuilder str = new StringBuilder();
 		str.append(myRunningID + "," + myID + "\n");
 		str.append(myName + "\n");
-		for (String s : myImageLinks) {
-			str.append(s + ", ");
-		}
+		str.append(myImageLink + "\n");
 		str.append("\n" + myMaterials + "\n");
 		str.append(myDifficulty + "," + myCost + "\n");
 		str.append(myBody + "\n");

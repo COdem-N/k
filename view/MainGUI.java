@@ -55,6 +55,7 @@ public class MainGUI extends JFrame implements WindowListener {
 		setLocation(SCREENSIZE.width / 2 - getWidth() / 2, 
 					SCREENSIZE.height / 2 - getHeight() / 2);
 		setVisible(true);
+		add(myCategoryPanel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
