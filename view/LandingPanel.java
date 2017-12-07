@@ -52,6 +52,8 @@ public class LandingPanel extends JPanel {
 	private JButton importBtn = new JButton("Import");
 	// button to save all the projects to a file
 	private JButton exportBtn = new JButton("Export");
+	
+	JFrame myFrame;
 
 	/**
 	 * the back end model
@@ -76,15 +78,15 @@ public class LandingPanel extends JPanel {
 	/*
 	 * pass in function to get the data from the application model
 	 */
-	public void passIn(ApplicationModel theApp, CategoryPanel theCat) {
+	public void passIn(JFrame theFrame,ApplicationModel theApp, CategoryPanel theCat) {
 		myApplcationModel = theApp;
 		myCategoryPanel = theCat;
+		myFrame = theFrame;
 	}
 
 	public void move() {
-		this.setVisible(false);
-		myCategoryPanel.setVisible(false);
-		this.setVisible(false);
+		myFrame.remove(this);
+		myFrame.add(myCategoryPanel);
 	}
 	/*
 	 * Config method to initialize all the components and add them to the landing

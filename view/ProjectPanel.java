@@ -51,6 +51,7 @@ public class ProjectPanel extends JPanel {
     private JLabel tagsResult;
     private JLabel materialsResult;
     private JLabel directionsResult;
+    JFrame myFrame;
     
     private JButton back;
 	public ProjectPanel() {
@@ -81,9 +82,10 @@ public class ProjectPanel extends JPanel {
 	        setup();
 	}
 
-	public void passIn(ApplicationModel theApp, CategoryPanel theCat) {
+	public void passIn(JFrame theFrame, ApplicationModel theApp, CategoryPanel theCat) {
 		myApplcationModel = theApp;
 		myCategoryPanel = theCat;
+		myFrame = theFrame;
 	}	
 	
 	public void setup() {

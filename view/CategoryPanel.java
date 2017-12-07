@@ -9,6 +9,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -64,6 +65,8 @@ public class CategoryPanel extends JPanel {
     private JTextField mySearchBar;
     
     private JPanel myCategoryPanel;
+    
+    private JFrame myframe;
     
     /**
      * Default constructor.
@@ -177,20 +180,17 @@ public class CategoryPanel extends JPanel {
 	 */
 	protected void sendTag(final String theTag) {
 		myTag = theTag;
-<<<<<<< HEAD
-	
-		
-=======
 		myLandingPanel.setVisible(false);
 		this.setVisible(true);
->>>>>>> 7d661216ca5f8ebd454f16aa652f7c2ddc6064cc
+
 	}
 	
-	public void passIn(ApplicationModel theApp, LandingPanel theLand, 
+	public void passIn(JFrame theFrame,ApplicationModel theApp, LandingPanel theLand, 
 					   SubmitPanel theSub, ProjectPanel thePro) {
 		myApplcationModel = theApp;
 		myLandingPanel = theLand;
 		myProjectPanel = thePro;
 		mySubmitPanel = theSub;
+		myframe = theFrame;
 	}
 }

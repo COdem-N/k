@@ -109,6 +109,8 @@ public class SubmitPanel extends JPanel {
      */
     private JButton buttonPic = new JButton("Add a Picture..");
     
+    JFrame myFrame;
+    
     /************************************
      ** CLASS CONSTRUCTOR AND METHODS **
      ***********************************/
@@ -132,9 +134,10 @@ public class SubmitPanel extends JPanel {
 	 * @param theApp
 	 * @param theCat
 	 */
-	public void passIn(ApplicationModel theApp, CategoryPanel theCat) {
+	public void passIn(JFrame theFrame,ApplicationModel theApp, CategoryPanel theCat) {
 		myApplcationModel = theApp;
 		myCategoryPanel = theCat;
+		myFrame = theFrame;
 	}
 	
 	/**

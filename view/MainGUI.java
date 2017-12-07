@@ -30,6 +30,7 @@ public class MainGUI implements WindowListener {
 	private JFrame myframe;
 	
 	public MainGUI() {
+		myframe = new JFrame();
 		myLandingPanel = new LandingPanel();
 		myLandingPanel.config();
 		myCategoryPanel = new CategoryPanel();
