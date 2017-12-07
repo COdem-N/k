@@ -29,9 +29,13 @@ public class MainGUI extends JFrame implements WindowListener {
 	
 	public MainGUI() {
 		myLandingPanel = new LandingPanel();
+		myLandingPanel.config();
 		myCategoryPanel = new CategoryPanel();
+		myCategoryPanel.setup();
 		myProjectPanel = new ProjectPanel();
+		myProjectPanel.setup();
 		mySubmitPanel = new SubmitPanel();	
+		mySubmitPanel.setup();
 		try {
 			load();
 		} catch (IOException e) {
