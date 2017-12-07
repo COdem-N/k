@@ -178,11 +178,11 @@ public class CategoryPanel extends JPanel {
 		}
 		//Comment this after testing
 		myCategoryPanel = new JPanel();
-		GridLayout myCategoryLayout = new GridLayout(5, 2);
+		GridLayout myCategoryLayout = new GridLayout(6, 2);
 		myCategoryLayout.setHgap(10);
 		myCategoryLayout.setVgap(10);
 		myCategoryPanel.setLayout(myCategoryLayout);
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < myCategoryLayout.getColumns() * myCategoryLayout.getRows(); i++) {
 			JButton fake = new JButton("test");
 			fake.addActionListener((theEvent) -> {
 				this.setVisible(false);
