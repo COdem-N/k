@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import javafx.scene.layout.Border;
 import model.ApplicationModel;
 
 @SuppressWarnings("serial")
@@ -27,19 +28,28 @@ public class CategoryPanel extends JPanel {
     private static final Color CATEGORY_PANEL_BG_COLOR = new Color(60, 141, 13);
     
     /**
-     * 
+     * Holds the currently submitted projects.
      */
     private ApplicationModel myApplcationModel;
     
     /**
-     * 
+     * A LandingPanel object used for display purposes (used to display the Landing Panel).
      */
     private LandingPanel myLandingPanel;
     
+    /**
+     * A ProjectPanel object used for display purposes (used to display the ProjectPanel).
+     */
     private ProjectPanel myProjectPanel;
     
+    /**
+     * A SubmitPanel object used for display purposes (used to display the SubmitPanel).
+     */
     private SubmitPanel mySubmitPanel;
     
+    /**
+     * Default constructor.
+     */
 	public CategoryPanel() {
 			super();
 			
@@ -49,12 +59,18 @@ public class CategoryPanel extends JPanel {
 	        setup();
 	}
 	
+	/**
+	 * Adds the visual components of the panel.
+	 */
 	private void setup() {
 		this.setLayout(new BorderLayout());
 		buildScrollMenu();
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Constructs the menu for scrolling through submitted projects.
+	 */
 	private void buildScrollMenu() {
 		final JPanel myCategoryPanel = new JPanel();
 		myCategoryPanel.setBackground(Color.BLACK);
@@ -70,14 +86,40 @@ public class CategoryPanel extends JPanel {
 		this.add(myCategoryScroller, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * 
+	 */
 	private void buildSearchMenu() {
 		final JPanel mySearchPanel = new JPanel(new BorderLayout());
+		mySearchPanel.add(buildSearchBar(), BorderLayout.CENTER);
+		mySearchPanel.add(buildBackButton(), BorderLayout.WEST);
+		mySearchPanel.add(buildSearchButton(), BorderLayout.EAST);
+		
+		
+	}
+	
+	private JTextField buildSearchBar() {
 		final JTextField mySearchBar = new JTextField("Enter tag to search for.");
-		// TODO finish mySearchBar.addActionListener();
+		mySearchBar.addActionListener((theEvent) -> {
+			
+		});
+		return mySearchBar;
+	}
+	
+	private JButton buildBackButton() {
 		final JButton myBackButton = new JButton("Back");
-		// TODO finish myBackButton.addActionListener();
-		final JButton mySearchButton = new JButton("Back");
-		// TODO finish mySearchButton.addActionListener();
+		myBackButton.addActionListener((theEvent) -> { 
+			
+		});
+		return myBackButton;
+	}
+	
+	private JButton buildSearchButton() {
+		final JButton mySearchButton = new JButton("Search");
+		mySearchButton.addActionListener((theEvent) -> {
+			
+		});
+		return mySearchButton;
 	}
 	
 	public void passIn(ApplicationModel theApp, LandingPanel theLand, 
