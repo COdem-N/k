@@ -46,7 +46,7 @@ public class MainGUI extends JFrame implements WindowListener {
 	}
 	
 	private void setup() {
-		//testProject();
+		//git adtestProject();
 		myLandingPanel.passIn(myApplicationModel, myCategoryPanel);
 		myCategoryPanel.passIn(myApplicationModel, myLandingPanel, mySubmitPanel, myProjectPanel);
 		myProjectPanel.passIn(myApplicationModel, myCategoryPanel);
@@ -56,7 +56,7 @@ public class MainGUI extends JFrame implements WindowListener {
 		setLocation(SCREENSIZE.width / 2 - getWidth() / 2, 
 					SCREENSIZE.height / 2 - getHeight() / 2);
 		setVisible(true);
-		add(myCategoryPanel);
+		this.add(myLandingPanel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	

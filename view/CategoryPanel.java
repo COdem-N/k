@@ -112,8 +112,7 @@ public class CategoryPanel extends JPanel {
 		mySearchPanel.add(mySearchBar, BorderLayout.CENTER);
 		mySearchPanel.add(myBackButton, BorderLayout.WEST);
 		mySearchPanel.add(mySearchButton, BorderLayout.EAST);
-		
-		
+		this.add(mySearchPanel, BorderLayout.NORTH);
 	}
 	
 	private JButton buildSubmitButton() {
