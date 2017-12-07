@@ -67,14 +67,13 @@ public class LandingPanel extends JPanel {
 		super();
 		this.setLayout(new GridBagLayout());
 		config();
-
 		/* Setting some properties of the panel. */
 		setPreferredSize(LANDING_PANEL_SIZE);
 		setBackground(LANDING_PANEL_BG_COLOR);
 	}
 
 	/*
-	 * pass in function to get te data from the applicatoin model
+	 * pass in function to get the data from the application model
 	 */
 	public void passIn(ApplicationModel theApp, CategoryPanel theCat) {
 		myApplcationModel = theApp;
@@ -82,14 +81,14 @@ public class LandingPanel extends JPanel {
 	}
 
 	/*
-	 * Config method to initialize all the componets and add them to the landing panel
+	 * Config method to initialize all the components and add them to the landing panel
 	 */
 	public void config() {
 		// action for the search BAR
 		AbstractAction action = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				myCategoryPanel.sendTag(jTextField.getText());
+				myCategoryPanel.sendTag(searchBar.getText());
 			}
 		};
 
@@ -98,15 +97,16 @@ public class LandingPanel extends JPanel {
 		//setting up the catagory buttons 
 		for (int i = 0; i < 4; i++) {
 			ImageIcon img = new ImageIcon(
-					myApplcationModel.getProjects(myApplcationModel.getTags().get(i)).get(0).getImageLinks());
+					myApplcationModel.getProjects(myApplcationModel.getTags().get(i)).get(0).getImageLink());
 			c.insets = new Insets(5, 0, 0, 0);
 			c.ipady = 200;
 			c.ipadx = 150;
 			c.gridx = i;
 			c.gridy = 2;
+			String tag = myApplcationModel.getTags().get(i);
 			projectBtns[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					myCategoryPanel.sendTag(myApplcationModel.getTags().get(i));
+					myCategoryPanel.sendTag(tag);
 				}
 			});
 			projectBtns[i].setIcon(img);
@@ -117,20 +117,20 @@ public class LandingPanel extends JPanel {
 		// setting up the second row of catagory buttons
 		for (int i = 0; i < 4; i++) {
 			ImageIcon img = new ImageIcon(
-					myApplcationModel.getProjects(myApplcationModel.getTags().get(i + 3)).get(0).getImageLinks());
+					myApplcationModel.getProjects(myApplcationModel.getTags().get(i + 3)).get(0).getImageLink());
 			c.ipady = 200;
 			c.ipadx = 150;
 			c.gridx = i;
 			c.gridy = 3;
+			String tag = myApplcationModel.getTags().get(i);
 			projectBtns[i + 3].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					myCategoryPanel.sendTag(myApplcationModel.getTags().get(i));
+					myCategoryPanel.sendTag(tag);
 				}
 			});
 			projectBtns[i + 3].setIcon(img);
 			projectBtns[i] = new ProjectBtn();
 			this.add(projectBtns[i], c);
-
 		}
 		
 		//setting up the search bar
@@ -163,20 +163,20 @@ public class LandingPanel extends JPanel {
 
 	}
 
-	/**
-	 * A test method to run and display this panel only.
-	 */
-	public static void main(String[] args) {
-		final JFrame frame = new JFrame("Landing page");
-
-		LandingPanel landingPage = new LandingPanel();
-
-		frame.add(landingPage);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(LANDING_PANEL_SIZE);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-	}
+//	/**
+//	 * A test method to run and display this panel only.
+//	 */
+//	public static void main(String[] args) {
+//		final JFrame frame = new JFrame("Landing page");
+//
+//		LandingPanel landingPage = new LandingPanel();
+//
+//		frame.add(landingPage);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setSize(LANDING_PANEL_SIZE);
+//		frame.setResizable(false);
+//		frame.setLocationRelativeTo(null);
+//		frame.setVisible(true);
+//	}
 
 }
