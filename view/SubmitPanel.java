@@ -147,6 +147,20 @@ public class SubmitPanel extends JPanel {
 	 */
 	public void setup() {
 		
+		buttonSubmit.addActionListener((theEvent) -> {
+			this.setVisible(false);
+			myFrame.remove(this);
+			myFrame.add(myCategoryPanel);
+			myCategoryPanel.setVisible(true);
+		});
+		
+		buttonCancel.addActionListener((theEvent) -> {
+			this.setVisible(false);
+			myFrame.remove(this);
+			myFrame.add(myCategoryPanel);
+			myCategoryPanel.setVisible(true);
+		});
+		
 		/* Setting up GridBag constraints. */
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;

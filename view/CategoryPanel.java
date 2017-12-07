@@ -120,7 +120,8 @@ public class CategoryPanel extends JPanel {
 	private JButton buildSubmitButton() {
 		mySubmitButton = new JButton("Submit new project");
 		mySubmitButton.addActionListener((theEvent) -> {
-			this.setVisible(false);
+			myframe.remove(this);
+			myframe.add(mySubmitPanel);
 			mySubmitPanel.setVisible(true);
 		});
 		return mySubmitButton;
@@ -135,7 +136,10 @@ public class CategoryPanel extends JPanel {
 		final JButton myBackButton = new JButton("Back");
 		myBackButton.addActionListener((theEvent) -> { 
 			this.setVisible(false);
+			myframe.remove(this);
 			myLandingPanel.setVisible(true);
+			myframe.add(myLandingPanel);
+			
 		});
 		return myBackButton;
 	}
@@ -166,8 +170,10 @@ public class CategoryPanel extends JPanel {
 					System.out.println(e);
 				}
 				projectButton.addActionListener((theEvent) -> {
-					myProjectPanel.setVisible(true);
 					this.setVisible(false);
+					myframe.remove(this);
+					myframe.add(myProjectPanel);
+					myProjectPanel.setVisible(true);
 				});
 				myCategoryPanel.add(projectButton);
 			}
@@ -180,9 +186,7 @@ public class CategoryPanel extends JPanel {
 	 */
 	protected void sendTag(final String theTag) {
 		myTag = theTag;
-		myLandingPanel.setVisible(false);
 		this.setVisible(true);
-
 	}
 	
 	public void passIn(JFrame theFrame,ApplicationModel theApp, LandingPanel theLand, 

@@ -92,6 +92,13 @@ public class ProjectPanel extends JPanel {
 		setPreferredSize(PROJECT_PANEL_SIZE);
         setBackground(PROJECT_PANEL_BG_COLOR);
         
+        back.addActionListener((theEvent) -> {
+        	this.setVisible(false);
+			myFrame.remove(this);
+			myFrame.add(myCategoryPanel);
+			myCategoryPanel.setVisible(true);
+        });
+        
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.anchor = GridBagConstraints.WEST;
         constraints.insets = new Insets(20, 20, 20, 20);
