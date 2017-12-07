@@ -46,7 +46,7 @@ public class MainGUI extends JFrame implements WindowListener {
 	}
 	
 	private void setup() {
-		testProject();
+		//testProject();
 		myLandingPanel.passIn(myApplicationModel, myCategoryPanel);
 		myCategoryPanel.passIn(myApplicationModel, myLandingPanel, mySubmitPanel, myProjectPanel);
 		myProjectPanel.passIn(myApplicationModel, myCategoryPanel);
