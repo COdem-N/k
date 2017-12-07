@@ -48,6 +48,17 @@ public class CategoryPanel extends JPanel {
     private SubmitPanel mySubmitPanel;
     
     /**
+     * Saves the tag sent by LandingPanel that the user wishes to view.
+     */
+    private String myTag;
+    
+    private JButton myBackButton;
+    
+    private JButton mySearchButton;
+    
+    private JTextField mySearchBar;
+    
+    /**
      * Default constructor.
      */
 	public CategoryPanel() {
@@ -65,6 +76,7 @@ public class CategoryPanel extends JPanel {
 	private void setup() {
 		this.setLayout(new BorderLayout());
 		buildScrollMenu();
+		buildSearchMenu();
 		this.setVisible(true);
 	}
 	
@@ -87,22 +99,27 @@ public class CategoryPanel extends JPanel {
 	}
 	
 	/**
-	 * 
+	 * Constructs the search menu for the window.
 	 */
 	private void buildSearchMenu() {
 		final JPanel mySearchPanel = new JPanel(new BorderLayout());
-		mySearchPanel.add(buildSearchBar(), BorderLayout.CENTER);
-		mySearchPanel.add(buildBackButton(), BorderLayout.WEST);
-		mySearchPanel.add(buildSearchButton(), BorderLayout.EAST);
+		myBackButton = buildBackButton();
+		mySearchButton = buildSearchButton();
+		mySearchBar = buildSearchBar();
+		mySearchPanel.add(mySearchBar, BorderLayout.CENTER);
+		mySearchPanel.add(myBackButton, BorderLayout.WEST);
+		mySearchPanel.add(mySearchButton, BorderLayout.EAST);
 		
 		
 	}
 	
 	private JTextField buildSearchBar() {
 		final JTextField mySearchBar = new JTextField("Enter tag to search for.");
+		/*
 		mySearchBar.addActionListener((theEvent) -> {
 			
 		});
+		*/
 		return mySearchBar;
 	}
 	
@@ -117,9 +134,17 @@ public class CategoryPanel extends JPanel {
 	private JButton buildSearchButton() {
 		final JButton mySearchButton = new JButton("Search");
 		mySearchButton.addActionListener((theEvent) -> {
-			
+			myTag = mySearchBar.getText();
 		});
 		return mySearchButton;
+	}
+	
+	/**
+	 * Receives a tag from the LandingPanel and updates the shown projects.
+	 * @param theTag is the string received from the LandingPanel.
+	 */
+	protected void sendTag(final String theTag) {
+		myTag = theTag;
 	}
 	
 	public void passIn(ApplicationModel theApp, LandingPanel theLand, 
