@@ -46,6 +46,7 @@ public class MainGUI extends JFrame implements WindowListener {
 	}
 	
 	private void setup() {
+		testProject();
 		myLandingPanel.passIn(myApplicationModel, myCategoryPanel);
 		myCategoryPanel.passIn(myApplicationModel, myLandingPanel, mySubmitPanel, myProjectPanel);
 		myProjectPanel.passIn(myApplicationModel, myCategoryPanel);
@@ -57,6 +58,11 @@ public class MainGUI extends JFrame implements WindowListener {
 		setVisible(true);
 		add(myCategoryPanel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	private void testProject()  {
+		ProjectModel test = new ProjectModel("testing", "icon.png", "a hammer", 2, 2, "test project", null);
+		myApplicationModel.addProject(test);
 	}
 	
 	private void load() throws IOException, ClassNotFoundException {
