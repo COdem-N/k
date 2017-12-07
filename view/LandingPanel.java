@@ -94,43 +94,46 @@ public class LandingPanel extends JPanel {
 
 		GridBagConstraints c = new GridBagConstraints();
 
+		//only run if there are no projects
+		if(myApplcationModel.getTags().size() > 0) {
 		//setting up the catagory buttons 
-		for (int i = 0; i < 4; i++) {
-			ImageIcon img = new ImageIcon(
-					myApplcationModel.getProjects(myApplcationModel.getTags().get(i)).get(0).getImageLink());
-			c.insets = new Insets(5, 0, 0, 0);
-			c.ipady = 200;
-			c.ipadx = 150;
-			c.gridx = i;
-			c.gridy = 2;
-			String tag = myApplcationModel.getTags().get(i);
-			projectBtns[i].addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					myCategoryPanel.sendTag(tag);
-				}
-			});
-			projectBtns[i].setIcon(img);
-			projectBtns[i] = new ProjectBtn();
-			this.add(projectBtns[i], c);
-
-		}
-		// setting up the second row of catagory buttons
-		for (int i = 0; i < 4; i++) {
-			ImageIcon img = new ImageIcon(
-					myApplcationModel.getProjects(myApplcationModel.getTags().get(i + 3)).get(0).getImageLink());
-			c.ipady = 200;
-			c.ipadx = 150;
-			c.gridx = i;
-			c.gridy = 3;
-			String tag = myApplcationModel.getTags().get(i);
-			projectBtns[i + 3].addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					myCategoryPanel.sendTag(tag);
-				}
-			});
-			projectBtns[i + 3].setIcon(img);
-			projectBtns[i] = new ProjectBtn();
-			this.add(projectBtns[i], c);
+			for (int i = 0; i < 4; i++) {
+				ImageIcon img = new ImageIcon(
+						myApplcationModel.getProjects(myApplcationModel.getTags().get(i)).get(0).getImageLink());
+				c.insets = new Insets(5, 0, 0, 0);
+				c.ipady = 200;
+				c.ipadx = 150;
+				c.gridx = i;
+				c.gridy = 2;
+				String tag = myApplcationModel.getTags().get(i);
+				projectBtns[i].addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						myCategoryPanel.sendTag(tag);
+					}
+				});
+				projectBtns[i].setIcon(img);
+				projectBtns[i] = new ProjectBtn();
+				this.add(projectBtns[i], c);
+	
+			}
+			// setting up the second row of catagory buttons
+			for (int i = 0; i < 4; i++) {
+				ImageIcon img = new ImageIcon(
+						myApplcationModel.getProjects(myApplcationModel.getTags().get(i + 3)).get(0).getImageLink());
+				c.ipady = 200;
+				c.ipadx = 150;
+				c.gridx = i;
+				c.gridy = 3;
+				String tag = myApplcationModel.getTags().get(i);
+				projectBtns[i + 3].addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						myCategoryPanel.sendTag(tag);
+					}
+				});
+				projectBtns[i + 3].setIcon(img);
+				projectBtns[i] = new ProjectBtn();
+				this.add(projectBtns[i], c);
+			}
 		}
 		
 		//setting up the search bar
