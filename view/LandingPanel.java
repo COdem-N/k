@@ -145,6 +145,9 @@ public class LandingPanel extends JPanel {
 				projectBtns[i] = new ProjectBtn();
 				this.add(projectBtns[i], c);
 			}
+		}else{// default buttons
+		
+			
 		}
 
 		// setting up the search bar
