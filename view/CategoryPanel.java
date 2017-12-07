@@ -80,11 +80,10 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Adds the visual components of the panel.
 	 */
-	private void setup() {
+	protected void setup() {
 		this.setLayout(new BorderLayout());
 		buildScrollMenu();
 		buildSearchMenu();
-		this.setVisible(true);
 	}
 	
 	/**
@@ -178,8 +177,13 @@ public class CategoryPanel extends JPanel {
 	 */
 	protected void sendTag(final String theTag) {
 		myTag = theTag;
+<<<<<<< HEAD
 	
 		
+=======
+		myLandingPanel.setVisible(false);
+		this.setVisible(true);
+>>>>>>> 7d661216ca5f8ebd454f16aa652f7c2ddc6064cc
 	}
 	
 	public void passIn(ApplicationModel theApp, LandingPanel theLand, 
