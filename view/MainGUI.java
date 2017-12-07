@@ -53,7 +53,7 @@ public class MainGUI implements WindowListener {
 	}
 	
 	private void setup() {
-		//git adtestProject();
+		//testProject();
 		myLandingPanel.passIn(myframe,myApplicationModel, myCategoryPanel);
 		myCategoryPanel.passIn(myframe,myApplicationModel, myLandingPanel, mySubmitPanel, myProjectPanel);
 		myProjectPanel.passIn(myframe,myApplicationModel, myCategoryPanel);

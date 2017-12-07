@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.List;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import javafx.scene.layout.Border;
 import model.ApplicationModel;
 import model.ProjectModel;
 
@@ -178,6 +176,23 @@ public class CategoryPanel extends JPanel {
 				myCategoryPanel.add(projectButton);
 			}
 		}
+		//Comment this after testing
+		myCategoryPanel = new JPanel();
+		GridLayout myCategoryLayout = new GridLayout(5, 2);
+		myCategoryLayout.setHgap(10);
+		myCategoryLayout.setVgap(10);
+		myCategoryPanel.setLayout(myCategoryLayout);
+		for (int i = 0; i < 5; i++) {
+			JButton fake = new JButton("test");
+			fake.addActionListener((theEvent) -> {
+				this.setVisible(false);
+				myframe.remove(this);
+				myframe.add(myProjectPanel);
+				myProjectPanel.setVisible(true);
+			});
+			myCategoryPanel.add(fake);
+		}
+		//Comemnt this after testing.
 	}
 	
 	/**
@@ -186,6 +201,7 @@ public class CategoryPanel extends JPanel {
 	 */
 	protected void sendTag(final String theTag) {
 		myTag = theTag;
+		myframe.setTitle(myTag);
 		this.setVisible(true);
 	}
 	
