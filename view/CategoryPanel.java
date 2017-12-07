@@ -178,6 +178,8 @@ public class CategoryPanel extends JPanel {
 	 */
 	protected void sendTag(final String theTag) {
 		myTag = theTag;
+	
+		
 	}
 	
 	public void passIn(ApplicationModel theApp, LandingPanel theLand, 

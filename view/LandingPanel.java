@@ -81,6 +81,11 @@ public class LandingPanel extends JPanel {
 		myCategoryPanel = theCat;
 	}
 
+	public void move() {
+		this.setVisible(false);
+		myCategoryPanel.setVisible(false);
+		this.setVisible(false);
+	}
 	/*
 	 * Config method to initialize all the components and add them to the landing
 	 * panel
@@ -90,6 +95,7 @@ public class LandingPanel extends JPanel {
 		AbstractAction action = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				move();
 				myCategoryPanel.sendTag(searchBar.getText());
 			}
 		};
@@ -169,20 +175,20 @@ public class LandingPanel extends JPanel {
 
 	}
 
-	/**
-	 * A test method to run and display this panel only.
-	 */
-	public static void main(String[] args) {
-		final JFrame frame = new JFrame("Landing page");
-
-		LandingPanel landingPage = new LandingPanel();
-
-		frame.add(landingPage);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(LANDING_PANEL_SIZE);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-	}
+//	/**
+//	 * A test method to run and display this panel only.
+//	 */
+//	public static void main(String[] args) {
+//		final JFrame frame = new JFrame("Landing page");
+//
+//		LandingPanel landingPage = new LandingPanel();
+//
+//		frame.add(landingPage);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setSize(LANDING_PANEL_SIZE);
+//		frame.setResizable(false);
+//		frame.setLocationRelativeTo(null);
+//		frame.setVisible(true);
+//	}
 
 }
