@@ -95,7 +95,7 @@ public class LandingPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 
 		//only run if there are no projects
-		if(myApplcationModel.getTags().size() > 0) {
+		if(myApplcationModel.getTags() == null) {
 		//setting up the catagory buttons 
 			for (int i = 0; i < 4; i++) {
 				ImageIcon img = new ImageIcon(
