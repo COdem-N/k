@@ -59,6 +59,8 @@ public class CategoryPanel extends JPanel {
     
     private JButton mySearchButton;
     
+    private JButton mySubmitButton;
+    
     private JTextField mySearchBar;
     
     private JPanel myCategoryPanel;
@@ -96,6 +98,7 @@ public class CategoryPanel extends JPanel {
 		myCategoryScroller.setPreferredSize(new Dimension(50, 6000));
 		myCategoryScroller.getVerticalScrollBar().setUnitIncrement(20);
 		this.add(myCategoryScroller, BorderLayout.CENTER);
+		this.add(buildSubmitButton(), BorderLayout.SOUTH);
 	}
 	
 	/**
@@ -113,13 +116,17 @@ public class CategoryPanel extends JPanel {
 		
 	}
 	
-	private JTextField buildSearchBar() {
-		final JTextField mySearchBar = new JTextField("Enter tag to search for.");
-		/*
-		mySearchBar.addActionListener((theEvent) -> {
-			
+	private JButton buildSubmitButton() {
+		mySubmitButton = new JButton("Submit new project");
+		mySubmitButton.addActionListener((theEvent) -> {
+			this.setVisible(false);
+			mySubmitPanel.setVisible(true);
 		});
-		*/
+		return mySubmitButton;
+	}
+	
+	private JTextField buildSearchBar() {
+		mySearchBar = new JTextField("Enter tag to search for.");
 		return mySearchBar;
 	}
 	
@@ -127,6 +134,7 @@ public class CategoryPanel extends JPanel {
 		final JButton myBackButton = new JButton("Back");
 		myBackButton.addActionListener((theEvent) -> { 
 			this.setVisible(false);
+			myLandingPanel.setVisible(true);
 		});
 		return myBackButton;
 	}
@@ -141,25 +149,27 @@ public class CategoryPanel extends JPanel {
 	}
 	
 	private void populate() {
-		List<ProjectModel> myProjects = myApplcationModel.getProjects(myTag);
-		myCategoryPanel = new JPanel();
-		myCategoryPanel.setBackground(Color.BLACK);
-		GridLayout myCategoryLayout = new GridLayout(myProjects.size() / 2, 2);
-		myCategoryLayout.setHgap(10);
-		myCategoryLayout.setVgap(10);
-		myCategoryPanel.setLayout(myCategoryLayout);
-		for(ProjectModel project : myProjects) {
-			JButton projectButton = new JButton(project.getName());
-			try {
-				projectButton.setIcon(new ImageIcon(project.getImageLink()));
-			} catch (Exception e){
-				System.out.println(e);
+		if (myApplcationModel != null) {
+			List<ProjectModel> myProjects = myApplcationModel.getProjects(myTag);
+			myCategoryPanel = new JPanel();
+			myCategoryPanel.setBackground(Color.BLACK);
+			GridLayout myCategoryLayout = new GridLayout(myProjects.size() / 2, 2);
+			myCategoryLayout.setHgap(10);
+			myCategoryLayout.setVgap(10);
+			myCategoryPanel.setLayout(myCategoryLayout);
+			for(ProjectModel project : myProjects) {
+				JButton projectButton = new JButton(project.getName());
+				try {
+					projectButton.setIcon(new ImageIcon(project.getImageLink()));
+				} catch (Exception e){
+					System.out.println(e);
+				}
+				projectButton.addActionListener((theEvent) -> {
+					myProjectPanel.setVisible(true);
+					this.setVisible(false);
+				});
+				myCategoryPanel.add(projectButton);
 			}
-			projectButton.addActionListener((theEvent) -> {
-				myProjectPanel.setVisible(true);
-				this.setVisible(false);
-			});
-			myCategoryPanel.add(projectButton);
 		}
 	}
 	
