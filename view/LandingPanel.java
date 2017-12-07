@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -62,7 +63,7 @@ public class LandingPanel extends JPanel {
 	 */
 	private CategoryPanel myCategoryPanel;
 
-	// defualt constructor for the landing panel setting the layout and size 
+	// defualt constructor for the landing panel setting the layout and size
 	public LandingPanel() {
 		super();
 		this.setLayout(new GridBagLayout());
@@ -81,7 +82,8 @@ public class LandingPanel extends JPanel {
 	}
 
 	/*
-	 * Config method to initialize all the components and add them to the landing panel
+	 * Config method to initialize all the components and add them to the landing
+	 * panel
 	 */
 	public void config() {
 		// action for the search BAR
@@ -93,13 +95,14 @@ public class LandingPanel extends JPanel {
 		};
 
 		GridBagConstraints c = new GridBagConstraints();
-
-		//only run if there are no projects
-		if(myApplcationModel.getTags() == null) {
-		//setting up the catagory buttons 
+		if (myApplcationModel != null) {
+			List<String> catagories = myApplcationModel.getTags();
+		}
+		// only run if there are no projects
+		if (myApplcationModel != null) {
+			// setting up the catagory buttons
 			for (int i = 0; i < 4; i++) {
-				ImageIcon img = new ImageIcon(
-						myApplcationModel.getProjects(myApplcationModel.getTags().get(i)).get(0).getImageLink());
+				ImageIcon img = new ImageIcon(myApplcationModel.getProjects(myApplcationModel.getTags().get(i)).get(0).getImageLink());
 				c.insets = new Insets(5, 0, 0, 0);
 				c.ipady = 200;
 				c.ipadx = 150;
@@ -114,7 +117,7 @@ public class LandingPanel extends JPanel {
 				projectBtns[i].setIcon(img);
 				projectBtns[i] = new ProjectBtn();
 				this.add(projectBtns[i], c);
-	
+
 			}
 			// setting up the second row of catagory buttons
 			for (int i = 0; i < 4; i++) {
@@ -135,8 +138,8 @@ public class LandingPanel extends JPanel {
 				this.add(projectBtns[i], c);
 			}
 		}
-		
-		//setting up the search bar
+
+		// setting up the search bar
 		c.ipady = 10;
 		c.ipadx = 600;
 		c.gridx = 0;
@@ -148,8 +151,8 @@ public class LandingPanel extends JPanel {
 		searchBar.setPreferredSize(new Dimension(600, 50));
 
 		this.add(searchBar, c);
-		
-		//Setting up the import and export buttons
+
+		// Setting up the import and export buttons
 		c.anchor = GridBagConstraints.WEST;
 		this.add(saerchLb, c);
 		c.insets = new Insets(10, 5, 5, 5);
@@ -166,20 +169,20 @@ public class LandingPanel extends JPanel {
 
 	}
 
-//	/**
-//	 * A test method to run and display this panel only.
-//	 */
-//	public static void main(String[] args) {
-//		final JFrame frame = new JFrame("Landing page");
-//
-//		LandingPanel landingPage = new LandingPanel();
-//
-//		frame.add(landingPage);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setSize(LANDING_PANEL_SIZE);
-//		frame.setResizable(false);
-//		frame.setLocationRelativeTo(null);
-//		frame.setVisible(true);
-//	}
+	/**
+	 * A test method to run and display this panel only.
+	 */
+	public static void main(String[] args) {
+		final JFrame frame = new JFrame("Landing page");
+
+		LandingPanel landingPage = new LandingPanel();
+
+		frame.add(landingPage);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(LANDING_PANEL_SIZE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
 
 }

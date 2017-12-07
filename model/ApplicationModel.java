@@ -79,21 +79,23 @@ public class ApplicationModel implements Serializable {
 	 * in descending order of occurrences.
 	 */
 	public List<String> getTags() {
-		Map<String, Integer> map = new HashMap<String, Integer>(myTagMap);
 		List<String> returnList = new ArrayList<String>();
-		String largestKey = "";
-		int largest = 0;
-		for (int i = 0; i < myTagMap.size(); i++) {
-			for (String key : map.keySet()) {
-				if (map.get(key) > largest) {
-					largestKey = key;
-					largest = map.get(key);
+		if (myTagMap != null) {
+			Map<String, Integer> map = new HashMap<String, Integer>(myTagMap);
+			String largestKey = "";
+			int largest = 0;
+			for (int i = 0; i < myTagMap.size(); i++) {
+				for (String key : map.keySet()) {
+					if (map.get(key) > largest) {
+						largestKey = key;
+						largest = map.get(key);
+					}
 				}
+				map.put(largestKey, 0);
+				returnList.add(largestKey);
+				largestKey = "";
+				largest = 0;
 			}
-			map.put(largestKey, 0);
-			returnList.add(largestKey);
-			largestKey = "";
-			largest = 0;
 		}
 		
 		return returnList;
