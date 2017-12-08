@@ -16,7 +16,7 @@ public class ProjectModel implements Serializable {
 	private final List<String> myTags;
 	
 	public ProjectModel(String theName,
-						String theImageLinks,
+						String theImageLink,
 						String theMaterials,
 						int theDifficulty,
 						int theCost,
@@ -25,7 +25,7 @@ public class ProjectModel implements Serializable {
 		myID= myRunningID;
 		myRunningID++;
 		myName = theName;
-		myImageLink = theImageLinks;
+		myImageLink = theImageLink;
 		myMaterials = theMaterials;
 		myDifficulty = theDifficulty;
 		myCost = theCost;
