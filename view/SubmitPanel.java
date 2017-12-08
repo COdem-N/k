@@ -7,7 +7,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.Hashtable;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,7 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+
 import model.ApplicationModel;
+import model.ProjectModel;
 
 @SuppressWarnings("serial")
 public class SubmitPanel extends JPanel {
@@ -35,14 +38,39 @@ public class SubmitPanel extends JPanel {
     private static final Color SUBMIT_PANEL_BG_COLOR = new Color(200, 200, 255);
     
     /**
-     * 
+     * An integer object to be used as a static slider value (minimum value).
      */
-    private ApplicationModel myApplcationModel;
+    private static final int SLIDER_MIN_VALUE = 1;
+    
+    /**
+     * An integer object to be used as a static slider value (default value).
+     */
+    private static final int SLIDER_DEFAULT_VALUE = 2;
+    
+    /**
+     * An integer object to be used as a static slider value (maximum value).
+     */
+    private static final int SLIDER_MAX_VALUE = 3;
     
     /**
      * 
      */
+    private JFrame myFrame;
+    
+    /**
+     * 
+     */
+    private ApplicationModel myApplicationModel;
+    
+    /**
+     * A CategoryPanel object used for display purposes (used to display the Category Panel).
+     */
     private CategoryPanel myCategoryPanel;
+    
+    /**
+     * A LandingPanel object used for display purposes (used to display the Landing Panel).
+     */
+    private LandingPanel myLandingPanel;
     
     /**
      * A JLabel object to set next to the "Title" text box.
@@ -72,17 +100,7 @@ public class SubmitPanel extends JPanel {
     /**
      * A JTextArea object for inputting the "Title".
      */
-    private JTextArea textTitle = new JTextArea(1, 20);
-    
-    /**
-     * A JTextArea object for inputting the "Difficulty".
-     */
-    private JTextArea textDiff = new JTextArea(1, 20);
-    
-    /**
-     * A JTextArea object for inputting the "Cost".
-     */
-    private JTextArea textCost = new JTextArea(1, 20);
+    private JTextArea textTitle = new JTextArea(2, 20);
     
     /**
      * A JTextArea object for inputting the "Materials".
@@ -93,6 +111,16 @@ public class SubmitPanel extends JPanel {
      * A JTextArea object for inputting the "Directions".
      */
     private JTextArea textDirections = new JTextArea(10, 20);
+    
+    /**
+     * A JSlider object used to input the project difficulty.
+     */
+    private JSlider diffSlider = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN_VALUE, SLIDER_MAX_VALUE, SLIDER_DEFAULT_VALUE);
+    
+    /**
+     * A JSlider object used to input the project cost.
+     */
+    private JSlider costSlider = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN_VALUE, SLIDER_MAX_VALUE, SLIDER_DEFAULT_VALUE);
     
     /**
      * A JButton object for submitting the pending project.
@@ -107,9 +135,7 @@ public class SubmitPanel extends JPanel {
     /**
      * A JButton object for adding a picture to the pending project.
      */
-    private JButton buttonPic = new JButton("Add a Picture..");
-    
-    JFrame myFrame;
+    private JButton buttonPic = new JButton("Add Picture...");
     
     /************************************
      ** CLASS CONSTRUCTOR AND METHODS **
@@ -119,13 +145,15 @@ public class SubmitPanel extends JPanel {
      * The SubmitPanel constructor.
      */
 	public SubmitPanel() {
-			super(new GridBagLayout());
-			
-			setup();
-			
-	        /* Setting some properties of the panel. */
-	        setPreferredSize(SUBMIT_PANEL_SIZE);
-	        setBackground(SUBMIT_PANEL_BG_COLOR);
+		/* Constructing the panel with a GridBag layout. */
+		super(new GridBagLayout());
+		
+		/* Calling the main setup method of the panel. */
+		setup();
+		
+        /* Setting some properties of the panel. */
+        setPreferredSize(SUBMIT_PANEL_SIZE);
+        setBackground(SUBMIT_PANEL_BG_COLOR);
 	}
 	
 	/**
@@ -134,10 +162,11 @@ public class SubmitPanel extends JPanel {
 	 * @param theApp
 	 * @param theCat
 	 */
-	public void passIn(JFrame theFrame,ApplicationModel theApp, CategoryPanel theCat) {
-		myApplcationModel = theApp;
-		myCategoryPanel = theCat;
+	public void passIn(JFrame theFrame, LandingPanel theLand, ApplicationModel theApp, CategoryPanel theCat) {
 		myFrame = theFrame;
+		myLandingPanel = theLand;
+		myApplicationModel = theApp;
+		myCategoryPanel = theCat;
 	}
 	
 	/**
@@ -147,49 +176,18 @@ public class SubmitPanel extends JPanel {
 	 */
 	public void setup() {
 		
-		buttonSubmit.addActionListener((theEvent) -> {
-			this.setVisible(false);
-			myFrame.remove(this);
-			myFrame.add(myCategoryPanel);
-			myCategoryPanel.setVisible(true);
-		});
-		
-		buttonCancel.addActionListener((theEvent) -> {
-			this.setVisible(false);
-			myFrame.remove(this);
-			myFrame.add(myCategoryPanel);
-			myCategoryPanel.setVisible(true);
-		});
-		
 		/* Setting up GridBag constraints. */
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;
         constraints.insets = new Insets(5, 5, 5, 5);
         
-        /* Creating a slider for selecting project difficulty. */
-        JSlider diffSlider = new JSlider(JSlider.HORIZONTAL, 1, 3, 2);
-        diffSlider.setMajorTickSpacing(1);
-        diffSlider.setPaintTicks(true);
-        diffSlider.setPaintLabels(true);
-        
-        Hashtable<Integer, JLabel> diffLabelTable = new Hashtable<Integer, JLabel>();
-        diffLabelTable.put(new Integer(1), new JLabel("Easy"));
-        diffLabelTable.put(new Integer(2), new JLabel("Med"));
-        diffLabelTable.put(new Integer(3), new JLabel("Hard"));
-        diffSlider.setLabelTable(diffLabelTable);
-        
-        /* Creating a slider for selecting project cost. */
-        JSlider costSlider = new JSlider(JSlider.HORIZONTAL, 1, 4, 2);
-        costSlider.setMajorTickSpacing(1);
-        costSlider.setPaintTicks(true);
-        costSlider.setPaintLabels(true);
-        
-        Hashtable<Integer, JLabel> costLabelTable = new Hashtable<Integer, JLabel>();
-        costLabelTable.put(new Integer(1), new JLabel("$"));
-        costLabelTable.put(new Integer(2), new JLabel("$$"));
-        costLabelTable.put(new Integer(3), new JLabel("$$$"));
-        costLabelTable.put(new Integer(4), new JLabel("$$$$"));
-        costSlider.setLabelTable(costLabelTable);
+        /* Calling helper methods to setup the sliders 
+         * for selecting the project difficulty and cost.
+         */
+        setupDifficultySlider();
+        setupCostSlider();
+        buildCancelButton();
+        buildSubmitButton();
          
         /* Adding text box labels to the panel. */
         constraints.gridx = 0;
@@ -206,18 +204,17 @@ public class SubmitPanel extends JPanel {
         
         /* Enabling line wrap on all the text fields. */
         textTitle.setLineWrap(true);
-        textDiff.setLineWrap(true);
-        textCost.setLineWrap(true);
         textMaterials.setLineWrap(true);
         textDirections.setLineWrap(true);
         
         /* Adding text boxes to the panel. */
+        final JScrollPane scrollTitle = new JScrollPane(textTitle);
         final JScrollPane scrollMaterials = new JScrollPane(textMaterials);
         final JScrollPane scrollDirections = new JScrollPane(textDirections);
         
         constraints.gridx = 1;
         constraints.gridy = 0;
-        this.add(textTitle, constraints);
+        this.add(scrollTitle, constraints);
         constraints.gridy = 2;
         this.add(diffSlider, constraints);
         constraints.gridy = 3;
@@ -227,7 +224,7 @@ public class SubmitPanel extends JPanel {
         constraints.gridy = 5;
         this.add(scrollDirections, constraints);
             
-        /* Adding buttons. */        
+        /* Adding the "Submit", "Cancel", and "Add Picture" buttons. */        
         constraints.gridx = 2;
         constraints.gridy = 2;
         this.add(buttonPic, constraints);
@@ -236,9 +233,82 @@ public class SubmitPanel extends JPanel {
         constraints.gridx = 9;
         this.add(buttonSubmit, constraints);
          
-        /* Setting border for the panel. */
-        this.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createEtchedBorder(), "Submit a New Project"));
+        /* Setting up a basic border for the panel. */
+        final TitledBorder border = new TitledBorder(new LineBorder(Color.BLUE),
+                "Submit a New Project",
+                TitledBorder.CENTER,
+                TitledBorder.BELOW_TOP);
+		border.setTitleColor(Color.BLACK);
+		this.setBorder(border);
+	}
+	
+	/**
+	 * 
+	 */
+	private void setupDifficultySlider() {		
+		/* Setting up Slider options for selecting project difficulty. */
+        diffSlider.setMajorTickSpacing(1);
+        diffSlider.setPaintTicks(true);
+        diffSlider.setPaintLabels(true);
+        
+        /* Setting up labels for the slider ticks. */
+        Hashtable<Integer, JLabel> diffLabelTable = new Hashtable<Integer, JLabel>();
+        diffLabelTable.put(new Integer(1), new JLabel("Easy"));
+        diffLabelTable.put(new Integer(2), new JLabel("Med"));
+        diffLabelTable.put(new Integer(3), new JLabel("Hard"));
+        diffSlider.setLabelTable(diffLabelTable);
+	}
+	
+	/**
+	 * 
+	 */
+	private void setupCostSlider() {		
+        /* Setting up Slider options for selecting project cost. */
+        costSlider.setMajorTickSpacing(1);
+        costSlider.setPaintTicks(true);
+        costSlider.setPaintLabels(true);
+        
+        /* Setting up labels for the slider ticks. */
+        Hashtable<Integer, JLabel> costLabelTable = new Hashtable<Integer, JLabel>();
+        costLabelTable.put(new Integer(1), new JLabel("$"));
+        costLabelTable.put(new Integer(2), new JLabel("$$"));
+        costLabelTable.put(new Integer(3), new JLabel("$$$"));
+        costSlider.setLabelTable(costLabelTable);
+	}
+	
+	/**
+	 * 
+	 */
+	private void buildCancelButton() {
+		buttonCancel.addActionListener((theEvent) -> { 
+			this.setVisible(false);
+			myFrame.remove(this);
+			myLandingPanel.setVisible(true);
+			myFrame.add(myLandingPanel);
+			
+		});
+	}
+	
+	/**
+	 * 
+	 */
+	private void buildSubmitButton() {
+		buttonSubmit.addActionListener((theEvent) -> { 
+			
+			if (textTitle.paramString() == "" ) {
+				
+			}
+			
+			ProjectModel newProject = new ProjectModel();
+			
+			myApplicationModel.addProject(newProject);
+			
+			this.setVisible(false);
+			myFrame.remove(this);
+			myLandingPanel.setVisible(true);
+			myFrame.add(myLandingPanel);
+			
+		});
 	}
 	
     /************************************
@@ -253,8 +323,7 @@ public class SubmitPanel extends JPanel {
 		
 		SubmitPanel submitPanel = new SubmitPanel();
 		
-		frame.add(submitPanel);
-		
+		frame.add(submitPanel);		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(SUBMIT_PANEL_SIZE);
         frame.setResizable(false);
