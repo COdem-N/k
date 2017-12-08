@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,10 +42,10 @@ public class LandingPanel extends JPanel {
 	private JTextField searchBar = new JTextField();
 
 	// label for the search bar
-	private JLabel saerchLb = new JLabel("search");
+	private JLabel mySearchLabel = new JLabel("Search");
 
 	// array of buttons that will be used as category's
-	private ProjectBtn[] projectBtns = new ProjectBtn[8];
+	private JButton[] projectBtns = new JButton[8];
 
 	// button to import projects to the application
 	private JButton importBtn = new JButton("Import");
@@ -67,7 +68,6 @@ public class LandingPanel extends JPanel {
 	public LandingPanel() {
 		super();
 		this.setLayout(new GridBagLayout());
-		config();
 		/* Setting some properties of the panel. */
 		setPreferredSize(LANDING_PANEL_SIZE);
 		setBackground(LANDING_PANEL_BG_COLOR);
@@ -83,101 +83,124 @@ public class LandingPanel extends JPanel {
 	}
 
 	public void move() {
+		this.setVisible(false);
 		myFrame.remove(this);
 		myFrame.add(myCategoryPanel);
+		myCategoryPanel.setVisible(true);
 	}
 	/*
 	 * Config method to initialize all the components and add them to the landing
 	 * panel
 	 */
-	public void config() {
+	public void setup() {
+		for (int i = 0; i < 8; i++) {
+			projectBtns[i] = new JButton();
+		}
 		// action for the search BAR
 		AbstractAction action = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				reset();
 				move();
 				myCategoryPanel.sendTag(searchBar.getText());
 			}
 		};
-
+		
 		GridBagConstraints c = new GridBagConstraints();
-		if (myApplicationModel != null) {
-			List<String> catagories = myApplicationModel.getTags();
-		}
+		c.anchor = GridBagConstraints.NORTH;
+		
+		// setting up the search bar
+		//c.ipady = 10;
+		//c.ipadx = 10;
+		
+
+		c.insets = new Insets(5, 0, 30, 0);
+		searchBar.addActionListener(action);
+		searchBar.setPreferredSize(new Dimension(600, 25));
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 4;
+		this.add(mySearchLabel, c);
+		
+		c.gridy = 1;
+		
+		this.add(searchBar, c);
+
+		// Setting up the import and export buttons
+		//c.anchor = GridBagConstraints.WEST;
+		
+		//c.insets = new Insets(10, 5, 5, 5);
+		//c.ipadx = 80;
+		//c.fill = GridBagConstraints.NONE;
+
+		
+		List<String> tags = myApplicationModel.getTags();
+			
+		int tagCount = myApplicationModel.getTags().size();
 		// only run if there are no projects
-		if (myApplicationModel != null) {
-			// setting up the catagory buttons
-			for (int i = 0; i < 4; i++) {
-				ImageIcon img = new ImageIcon(myApplicationModel.getProjects(myApplicationModel.getTags().get(i)).get(0).getImageLink());
-				c.insets = new Insets(5, 0, 0, 0);
-				c.ipady = 200;
-				c.ipadx = 150;
+		if (tagCount != 0) {
+			// setting up the first row of tag buttons
+			for (int i = 0; i < (tagCount > 4 ? 4 : tagCount); i++) {
+				c.gridwidth = 1;
 				c.gridx = i;
 				c.gridy = 2;
+				ImageIcon icon = new ImageIcon(myApplicationModel.getProjects(myApplicationModel.getTags().get(i)).get(0).getImageLink());
+				Image image = icon.getImage();
+				image = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
+				icon = new ImageIcon(image);
+				
+//				c.insets = new Insets(5, 0, 0, 0);
+//				c.ipady = 200;
+//				c.ipadx = 150;
+				
+				projectBtns[i].setIcon(icon);
+				
 				String tag = myApplicationModel.getTags().get(i);
 				projectBtns[i].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						myCategoryPanel.sendTag(tag);
+						move();
 					}
 				});
-				projectBtns[i].setIcon(img);
-				projectBtns[i] = new ProjectBtn();
+				
 				this.add(projectBtns[i], c);
 
 			}
-			// setting up the second row of catagory buttons
-			for (int i = 0; i < 4; i++) {
-				ImageIcon img = new ImageIcon(
-						myApplicationModel.getProjects(myApplicationModel.getTags().get(i + 3)).get(0).getImageLink());
-				c.ipady = 200;
-				c.ipadx = 150;
+			// setting up the second row of tag buttons
+			for (int i = 0; i < (tagCount > 8 ? 4 : tagCount - 4); i++) {
+				c.gridwidth = 1;
 				c.gridx = i;
 				c.gridy = 3;
-				String tag = myApplicationModel.getTags().get(i);
-				projectBtns[i + 3].addActionListener(new ActionListener() {
+				ImageIcon icon = new ImageIcon(myApplicationModel.getProjects(myApplicationModel.getTags().get(i+4)).get(0).getImageLink());
+				Image image = icon.getImage();
+				image = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
+				icon = new ImageIcon(image);
+				String tag = myApplicationModel.getTags().get(i+4);
+				projectBtns[i + 4].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						myCategoryPanel.sendTag(tag);
+						move();
 					}
 				});
-				projectBtns[i + 3].setIcon(img);
-				projectBtns[i] = new ProjectBtn();
-				this.add(projectBtns[i], c);
+				projectBtns[i + 4].setIcon(icon);
+				this.add(projectBtns[i+4], c);
 			}
-		}else{// default buttons
-		
-			
 		}
-
-		// setting up the search bar
-		c.ipady = 10;
-		c.ipadx = 600;
+		
 		c.gridx = 0;
-		c.gridy = 0;
-		c.gridwidth = 4;
-
-		c.insets = new Insets(5, 0, 30, 0);
-		searchBar.addActionListener(action);
-		searchBar.setPreferredSize(new Dimension(600, 50));
-
-		this.add(searchBar, c);
-
-		// Setting up the import and export buttons
-		c.anchor = GridBagConstraints.WEST;
-		this.add(saerchLb, c);
-		c.insets = new Insets(10, 5, 5, 5);
-		c.ipadx = 80;
-		c.fill = GridBagConstraints.NONE;
-		c.gridx = 2;
 		c.gridy = 4;
+		c.gridwidth = 2;
 
 		this.add(importBtn, c);
+		c.gridx = 2;
 
-		c.gridx = 3;
-		c.gridy = 4;
 		this.add(exportBtn, c);
-
 	}
-
+	
+	private void reset() {
+		searchBar.setText("");
+	}
 //	/**
 //	 * A test method to run and display this panel only.
 //	 */

@@ -33,15 +33,13 @@ public class MainGUI implements WindowListener {
 	public MainGUI() {
 		myFrame = new JFrame();
 		myLandingPanel = new LandingPanel();
-		myLandingPanel.config();
 		myCategoryPanel = new CategoryPanel();
-		myCategoryPanel.setup();
-		myProjectPanel = new ProjectPanel();
-		myProjectPanel.setup();
+		myProjectPanel = new ProjectPanel();	
 		mySubmitPanel = new SubmitPanel();	
-		mySubmitPanel.setup();
+		
 		try {
 			load();
+			System.out.println(myApplicationModel.getTags().size());
 		} catch (IOException e) {
 			System.out.println("No existing save");
 			myApplicationModel = new ApplicationModel();
@@ -60,6 +58,11 @@ public class MainGUI implements WindowListener {
 		myProjectPanel.passIn(myFrame,myApplicationModel, myCategoryPanel);
 		mySubmitPanel.passIn(myFrame,myApplicationModel, myCategoryPanel);
 		
+		myLandingPanel.setup();
+		myCategoryPanel.setup();
+		myProjectPanel.setup();
+		mySubmitPanel.setup();
+		
 		myFrame.setTitle("K");
 		myFrame.setSize(800, 600);
 		myFrame.setLocation(SCREENSIZE.width / 2 - myFrame.getWidth() / 2, 
@@ -73,11 +76,9 @@ public class MainGUI implements WindowListener {
 		myProjectPanel.setVisible(false);
 		myFrame.add(mySubmitPanel);
 		mySubmitPanel.setVisible(false);
-		
-		
 		myFrame.add(myLandingPanel);
 		
-		
+		myFrame.setResizable(false);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	

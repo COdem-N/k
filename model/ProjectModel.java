@@ -178,7 +178,7 @@ public class ProjectModel implements Serializable {
 		for (String s : myTags) {
 			str.append(s + ", ");
 		}
-		str.append("\n");
+		str.append("\n\n");
 		
 		return str.toString();
 	}

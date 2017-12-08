@@ -32,7 +32,7 @@ public class CategoryPanel extends JPanel {
     /**
      * Holds the currently submitted projects.
      */
-    private ApplicationModel myApplcationModel;
+    private ApplicationModel myApplicationModel;
     
     /**
      * A LandingPanel object used for display purposes (used to display the Landing Panel).
@@ -135,6 +135,7 @@ public class CategoryPanel extends JPanel {
 		myBackButton.addActionListener((theEvent) -> { 
 			this.setVisible(false);
 			myframe.remove(this);
+			myframe.setTitle("K");
 			myLandingPanel.setVisible(true);
 			myframe.add(myLandingPanel);
 			
@@ -152,8 +153,8 @@ public class CategoryPanel extends JPanel {
 	}
 	
 	private void populate() {
-		if (myApplcationModel != null) {
-			List<ProjectModel> myProjects = myApplcationModel.getProjects(myTag);
+		if (myApplicationModel != null) {
+			List<ProjectModel> myProjects = myApplicationModel.getProjects(myTag);
 			myCategoryPanel = new JPanel();
 			myCategoryPanel.setBackground(Color.BLACK);
 			GridLayout myCategoryLayout = new GridLayout(myProjects.size() / 2, 2);
@@ -200,14 +201,13 @@ public class CategoryPanel extends JPanel {
 	 * @param theTag is the string received from the LandingPanel.
 	 */
 	protected void sendTag(final String theTag) {
-		myTag = theTag;
+		myTag = theTag.toUpperCase();
 		myframe.setTitle(myTag);
-		this.setVisible(true);
 	}
 	
 	public void passIn(JFrame theFrame,ApplicationModel theApp, LandingPanel theLand, 
 					   SubmitPanel theSub, ProjectPanel thePro) {
-		myApplcationModel = theApp;
+		myApplicationModel = theApp;
 		myLandingPanel = theLand;
 		myProjectPanel = thePro;
 		mySubmitPanel = theSub;
