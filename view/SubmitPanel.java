@@ -10,6 +10,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.ApplicationModel;
 import model.ProjectModel;
@@ -100,7 +102,7 @@ public class SubmitPanel extends JPanel {
      */
     private JLabel labelDirections = new JLabel("Directions: ");
     
-    private String imagePath;
+    private String imagePath = "directory";
     
     private List<String> projectTags = new ArrayList<String>();
     
@@ -192,6 +194,7 @@ public class SubmitPanel extends JPanel {
          */
         setupDifficultySlider();
         setupCostSlider();
+        buildPictureButton();
         buildCancelButton();
         buildSubmitButton();
          
@@ -240,7 +243,7 @@ public class SubmitPanel extends JPanel {
         this.add(buttonSubmit, constraints);
          
         /* Setting up a basic border for the panel. */
-        final TitledBorder border = new TitledBorder(new LineBorder(Color.BLUE),
+        final TitledBorder border = new TitledBorder(new LineBorder(Color.BLACK),
                 "Submit a New Project",
                 TitledBorder.CENTER,
                 TitledBorder.BELOW_TOP);
@@ -285,6 +288,24 @@ public class SubmitPanel extends JPanel {
 	/**
 	 * 
 	 */
+	private void buildPictureButton() {
+		buttonPic.addActionListener((theEvent) -> {
+		    JFileChooser chooser = new JFileChooser();
+		    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		        "JPG, PNG, & GIF Images", "jpg", "gif", "png");
+		    chooser.setFileFilter(filter);
+		    int returnVal = chooser.showOpenDialog(getParent());
+		    if (returnVal == JFileChooser.APPROVE_OPTION) {
+		       System.out.println("You chose to open this file: " +
+		            chooser.getSelectedFile().getName());
+		    }
+		 
+		});
+	}
+	
+	/**
+	 * 
+	 */
 	private void buildCancelButton() {
 		buttonCancel.addActionListener((theEvent) -> { 
 			this.setVisible(false);
@@ -300,10 +321,17 @@ public class SubmitPanel extends JPanel {
 	 */
 	private void buildSubmitButton() {
 		buttonSubmit.addActionListener((theEvent) -> { 
+			System.out.println(textTitle.getText());
+			System.out.println(imagePath);
+			System.out.println(textMaterials.getText());
+			System.out.println(diffSlider.getValue());
+			System.out.println(costSlider.getValue());
+			System.out.println(textDirections.getText());
+			System.out.println(projectTags);
 			
 			if (textTitle.getText() == "" | textMaterials.getText() == "" | textDirections.getText() == "") {
                 JOptionPane.showMessageDialog(null,
-                		"One or more fields are empty. Please complete form and submit.", "Warning", JOptionPane.INFORMATION_MESSAGE);
+                		"One or more fields are empty. Please complete form.", "Warning", JOptionPane.INFORMATION_MESSAGE);
 				
 			} else {
 				ProjectModel newProject = new ProjectModel(textTitle.getText(), imagePath, textMaterials.getText(), 
@@ -311,10 +339,13 @@ public class SubmitPanel extends JPanel {
 				
 				myApplicationModel.addProject(newProject);
 				
+				JOptionPane.showMessageDialog(null,
+                		"Project Successfully Created!", "Project Created!", JOptionPane.INFORMATION_MESSAGE);
+				
 				this.setVisible(false);
 				myFrame.remove(this);
-				myLandingPanel.setVisible(true);
-				myFrame.add(myLandingPanel);
+				myCategoryPanel.setVisible(true);
+				myFrame.add(myCategoryPanel);
 			}			
 		});
 	}
