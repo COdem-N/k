@@ -78,12 +78,13 @@ public class ProjectModel implements Serializable {
 		str.append(myRunningID + "," + myID + "\n");
 		str.append(myName + "\n");
 		str.append(myImageLink + "\n");
-		str.append("\n" + myMaterials + "\n");
+		str.append(myMaterials + "\n");
 		str.append(myDifficulty + "," + myCost + "\n");
 		str.append(myBody + "\n");
 		for (String s : myTags) {
 			str.append(s + ", ");
 		}
+		str.append("\n");
 		
 		return str.toString();
 	}

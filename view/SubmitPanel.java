@@ -5,6 +5,12 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -97,9 +103,12 @@ public class SubmitPanel extends JPanel {
      */
     private JLabel labelDirections = new JLabel("Directions: ");
     
-    private String imagePath = "directory";
+    /**
+     * A JLabel object to set next to the "Tags" text box.
+     */
+    private JLabel myLabelTags = new JLabel("Tags: ");
     
-    private List<String> projectTags = new ArrayList<String>();
+    private String myImagePath;
     
     /**
      * A JTextArea object for inputting the "Title".
@@ -109,12 +118,17 @@ public class SubmitPanel extends JPanel {
     /**
      * A JTextArea object for inputting the "Materials".
      */
-    private JTextArea textMaterials = new JTextArea(10, 20);
+    private JTextArea textMaterials = new JTextArea(5, 20);
     
     /**
      * A JTextArea object for inputting the "Directions".
      */
     private JTextArea textDirections = new JTextArea(10, 20);
+    
+    /**
+     * A JextArea object for inputting the "Tags".
+     */
+    private JTextArea myTextTags = new JTextArea(2,20);
     
     /**
      * A JSlider object used to input the project difficulty.
@@ -152,9 +166,6 @@ public class SubmitPanel extends JPanel {
 		/* Constructing the panel with a GridBag layout. */
 		super(new GridBagLayout());
 		
-		/* Calling the main setup method of the panel. */
-		setup();
-		
         /* Setting some properties of the panel. */
         setPreferredSize(SUBMIT_PANEL_SIZE);
         setBackground(SUBMIT_PANEL_BG_COLOR);
@@ -163,6 +174,7 @@ public class SubmitPanel extends JPanel {
 	/**
 	 * The passIn method for the SubmitPanel. This method
 	 * 
+	 * @param theFrame
 	 * @param theApp
 	 * @param theCat
 	 */
@@ -205,9 +217,10 @@ public class SubmitPanel extends JPanel {
         this.add(labelMaterials, constraints);
         constraints.gridy = 5;
         this.add(labelDirections, constraints);
+        constraints.gridy = 6;
+        this.add(myLabelTags, constraints);
         
         /* Enabling line wrap on all the text fields. */
-        textTitle.setLineWrap(true);
         textMaterials.setLineWrap(true);
         textDirections.setLineWrap(true);
         
@@ -215,6 +228,7 @@ public class SubmitPanel extends JPanel {
         final JScrollPane scrollTitle = new JScrollPane(textTitle);
         final JScrollPane scrollMaterials = new JScrollPane(textMaterials);
         final JScrollPane scrollDirections = new JScrollPane(textDirections);
+        final JScrollPane scrollTags = new JScrollPane(myTextTags);
         
         constraints.gridx = 1;
         constraints.gridy = 0;
@@ -227,6 +241,8 @@ public class SubmitPanel extends JPanel {
         this.add(scrollMaterials, constraints);
         constraints.gridy = 5;
         this.add(scrollDirections, constraints);
+        constraints.gridy = 6;
+        this.add(scrollTags, constraints);
             
         /* Adding the "Submit", "Cancel", and "Add Picture" buttons. */        
         constraints.gridx = 2;
@@ -286,13 +302,21 @@ public class SubmitPanel extends JPanel {
 	private void buildPictureButton() {
 		buttonPic.addActionListener((theEvent) -> {
 		    JFileChooser chooser = new JFileChooser();
+		    File newFile = new File("imgs/" + ProjectModel.getRunningID() + ".png");
+		    
 		    FileNameExtensionFilter filter = new FileNameExtensionFilter(
 		        "JPG, PNG, & GIF Images", "jpg", "gif", "png");
 		    chooser.setFileFilter(filter);
 		    int returnVal = chooser.showOpenDialog(getParent());
 		    if (returnVal == JFileChooser.APPROVE_OPTION) {
-		       System.out.println("You chose to open this file: " +
-		            chooser.getSelectedFile().getName());
+		    	try {
+					Files.copy(chooser.getSelectedFile().toPath(), 
+							newFile.toPath(), 
+							StandardCopyOption.REPLACE_EXISTING);
+					myImagePath = newFile.getPath();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		    }
 		 
 		});
@@ -306,8 +330,7 @@ public class SubmitPanel extends JPanel {
 			this.setVisible(false);
 			myFrame.remove(this);
 			myCategoryPanel.setVisible(true);
-			myFrame.add(myCategoryPanel);
-			
+			myFrame.add(myCategoryPanel);	
 		});
 	}
 	
@@ -315,27 +338,26 @@ public class SubmitPanel extends JPanel {
 	 * 
 	 */
 	private void buildSubmitButton() {
+		
 		buttonSubmit.addActionListener((theEvent) -> { 
 			System.out.println(textTitle.getText());
-			System.out.println(imagePath);
+			System.out.println(myImagePath);
 			System.out.println(textMaterials.getText());
 			System.out.println(diffSlider.getValue());
 			System.out.println(costSlider.getValue());
 			System.out.println(textDirections.getText());
-			System.out.println(projectTags);
+			System.out.println(myTextTags.getText());
 			
-			if (textTitle.getText() == "" | textMaterials.getText() == "" | textDirections.getText() == "") {
+			if (textTitle.getText().equals("") | 
+				myImagePath == null |
+				textMaterials.getText().equals("") | 
+				textDirections.getText().equals("") | 
+				myTextTags.getText().equals("")) {
                 JOptionPane.showMessageDialog(null,
                 		"One or more fields are empty. Please complete form.", "Warning", JOptionPane.INFORMATION_MESSAGE);
 				
 			} else {
-				ProjectModel newProject = new ProjectModel(textTitle.getText(), imagePath, textMaterials.getText(), 
-						diffSlider.getValue(), costSlider.getValue(), textDirections.getText(), projectTags);			
-				
-				myApplicationModel.addProject(newProject);
-				
-				JOptionPane.showMessageDialog(null,
-                		"Project Successfully Created!", "Project Created!", JOptionPane.INFORMATION_MESSAGE);
+				createProject();
 				
 				this.setVisible(false);
 				myFrame.remove(this);
@@ -345,23 +367,53 @@ public class SubmitPanel extends JPanel {
 		});
 	}
 	
+	private void createProject() {
+		ProjectModel newProject = new ProjectModel(textTitle.getText(), 
+												   myImagePath, 
+												   textMaterials.getText(), 
+												   diffSlider.getValue(), 
+												   costSlider.getValue(), 
+												   textDirections.getText(), 
+												   formatTags(myTextTags.getText()));			
+		
+		myApplicationModel.addProject(newProject);
+		
+		JOptionPane.showMessageDialog(null,
+        		"Project Successfully Created!", "Project Created!", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	private List<String> formatTags(String theInput) {
+		List<String> strList = new ArrayList<String>();
+		String[] strArr = theInput.toLowerCase().split(",");
+		for (String s : strArr) {
+			while (s.charAt(0) == ' ') {
+				s = s.substring(1);
+			}
+			while (s.charAt(s.length() - 1) == ' ') {
+				s = s.substring(0, s.length() - 2);
+			}
+			strList.add(s);
+		}
+		return strList;
+	}
+	
     /************************************
      **       CLASS MAIN() TESTER     **
      ***********************************/
 	
-	/**
-	 * A test method to run and display this panel only.
-	 */
-	public static void main(String[] args) {
-		final JFrame frame = new JFrame("Submit a New Project"); 
-		
-		SubmitPanel submitPanel = new SubmitPanel();
-		
-		frame.add(submitPanel);		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(SUBMIT_PANEL_SIZE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-	}
+//	/**
+//	 * A test method to run and display this panel only.
+//	 */
+//	public static void main(String[] args) {
+//		final JFrame frame = new JFrame("Submit a New Project"); 
+//		
+//		SubmitPanel submitPanel = new SubmitPanel();
+//		
+//		frame.add(submitPanel);		
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setSize(SUBMIT_PANEL_SIZE);
+//        frame.setResizable(false);
+//        frame.setLocationRelativeTo(null);
+//        frame.setVisible(true);
+//	}
 }

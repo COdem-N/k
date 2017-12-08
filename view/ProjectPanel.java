@@ -36,7 +36,7 @@ public class ProjectPanel extends JPanel {
     /**
      * 
      */
-    private ApplicationModel myApplcationModel;
+    private ApplicationModel myApplicationModel;
     
     /**
      * 
@@ -104,7 +104,7 @@ public class ProjectPanel extends JPanel {
 	}
 
 	public void passIn(JFrame theFrame, ApplicationModel theApp, CategoryPanel theCat) {
-		myApplcationModel = theApp;
+		myApplicationModel = theApp;
 		myCategoryPanel = theCat;
 		myFrame = theFrame;
 	}	
