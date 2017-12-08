@@ -3,7 +3,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -12,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import model.ApplicationModel;
 import model.ProjectModel;
@@ -49,10 +54,17 @@ public class CategoryPanel extends JPanel {
      */
     private SubmitPanel mySubmitPanel;
     
+    private JScrollPane mySubPane;
+    
+    private JPanel mySubPanel;
     /**
      * Saves the tag sent by LandingPanel that the user wishes to view.
      */
     private String myTag;
+    
+    private List<ProjectModel> myProjects;
+    
+    private List<JButton> myProjectButtons;
     
     private JButton myBackButton;
     
@@ -83,10 +95,17 @@ public class CategoryPanel extends JPanel {
 	 */
 	protected void setup() {
 		this.setLayout(new BorderLayout());
+		setupSubPanel();
+		
 		buildScrollMenu();
 		buildSearchMenu();
 	}
 	
+	private void setupSubPanel() {
+		mySubPanel = new JPanel();
+		mySubPanel.setLayout(new GridBagLayout());
+	}
+
 	/**
 	 * Constructs the menu for scrolling through submitted projects.
 	 */
@@ -133,16 +152,26 @@ public class CategoryPanel extends JPanel {
 	private JButton buildBackButton() {
 		final JButton myBackButton = new JButton("Back");
 		myBackButton.addActionListener((theEvent) -> { 
-			this.setVisible(false);
-			myframe.remove(this);
-			myframe.setTitle("K");
-			myLandingPanel.setVisible(true);
-			myframe.add(myLandingPanel);
-			
+			reset();
+			moveToLanding();
 		});
 		return myBackButton;
 	}
 	
+	private void moveToLanding() {
+		this.setVisible(false);
+		myframe.remove(this);
+		myframe.setTitle("K");
+		myLandingPanel.setup();
+		myLandingPanel.setVisible(true);
+		myframe.add(myLandingPanel);
+	}
+
+	private void reset() {
+		setupSubPanel();
+		this.remove(mySubPane);
+	}
+
 	private JButton buildSearchButton() {
 		final JButton mySearchButton = new JButton("Search");
 		mySearchButton.addActionListener((theEvent) -> {
@@ -152,6 +181,44 @@ public class CategoryPanel extends JPanel {
 		return mySearchButton;
 	}
 	
+	private void populate2() {
+		if (myApplicationModel != null) {
+			GridBagConstraints constraints = new GridBagConstraints();
+			mySubPane = new JScrollPane(mySubPanel);
+			mySubPane.setPreferredSize(new Dimension(600,400));
+			myProjectButtons = new ArrayList<JButton>();
+			for (int i = 0; i < myProjects.size(); i++) {
+				ImageIcon icon = new ImageIcon(myProjects.get(i).getImageLink());
+				Image image = icon.getImage();
+				image = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
+				icon = new ImageIcon(image);
+				
+				JButton button = new JButton(icon);
+				button.setVerticalTextPosition(SwingConstants.BOTTOM);
+				button.setHorizontalTextPosition(SwingConstants.CENTER);
+				button.setText(myProjects.get(i).getName());
+				ProjectModel project = myProjects.get(i);
+				button.addActionListener((theEvent) -> {
+					myProjectPanel.setup(project);
+					moveToProject();
+				});
+				myProjectButtons.add(button);
+				constraints.gridy = i / 3;
+				constraints.gridx = i % 3;
+				mySubPanel.add(button, constraints);
+			}
+	
+			this.add(mySubPane);
+		}
+	}
+	
+	private void moveToProject() {
+		this.setVisible(false);
+		myframe.remove(this);
+		myframe.add(myProjectPanel);
+		myProjectPanel.setVisible(true);
+	}
+
 	private void populate() {
 		if (myApplicationModel != null) {
 			List<ProjectModel> myProjects = myApplicationModel.getProjects(myTag);
@@ -200,9 +267,11 @@ public class CategoryPanel extends JPanel {
 	 * Receives a tag from the LandingPanel and updates the shown projects.
 	 * @param theTag is the string received from the LandingPanel.
 	 */
-	protected void sendTag(final String theTag) {
-		myTag = theTag.toUpperCase();
-		myframe.setTitle(myTag);
+	protected void setTag(final String theTag) {
+		myframe.setTitle(theTag.toUpperCase());
+		myTag = theTag;
+		myProjects = myApplicationModel.getProjects(myTag);
+		populate2();
 	}
 	
 	public void passIn(JFrame theFrame,ApplicationModel theApp, LandingPanel theLand, 

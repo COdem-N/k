@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.ApplicationModel;
+import model.ProjectModel;
 
 @SuppressWarnings("serial")
 public class ProjectPanel extends JPanel {
@@ -47,7 +48,7 @@ public class ProjectPanel extends JPanel {
     
     private BufferedImage imageIcon;
     
-    private JLabel name;
+    private JLabel myName;
     private JLabel difficulty;
     private JLabel cost;
     private JLabel tags;
@@ -74,7 +75,7 @@ public class ProjectPanel extends JPanel {
 	        
 	        this.setLayout(new GridBagLayout());
 	        heading = new JLabel("Welcome to the Project");
-	        name = new JLabel("Name:");
+	        myName = new JLabel("Name:");
 	        difficulty = new JLabel("Difficulty:");
 	        cost = new JLabel("cost:");
 	        tags = new JLabel("Tags:");
@@ -108,7 +109,11 @@ public class ProjectPanel extends JPanel {
 		myCategoryPanel = theCat;
 		myFrame = theFrame;
 	}	
-	
+	public void setup(ProjectModel projectModel) {
+		setPreferredSize(PROJECT_PANEL_SIZE);
+        setBackground(PROJECT_PANEL_BG_COLOR);
+		
+	}
 	public void setup() {
 		setPreferredSize(PROJECT_PANEL_SIZE);
         setBackground(PROJECT_PANEL_BG_COLOR);
@@ -128,7 +133,7 @@ public class ProjectPanel extends JPanel {
         constraints.gridy = 0; 
         this.add(heading);
         constraints.gridy = 10;
-		this.add(name, constraints);
+		this.add(myName, constraints);
 		constraints.gridy = 20;
 		this.add(difficulty, constraints);
 		constraints.gridy = 30;
@@ -196,4 +201,6 @@ public class ProjectPanel extends JPanel {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+
+	
 }

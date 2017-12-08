@@ -328,13 +328,17 @@ public class SubmitPanel extends JPanel {
 	private void buildCancelButton() {
 		buttonCancel.addActionListener((theEvent) -> { 
 			reset();
-			this.setVisible(false);
-			myFrame.remove(this);
-			myCategoryPanel.setVisible(true);
-			myFrame.add(myCategoryPanel);	
+			move();
 		});
 	}
 	
+	private void move() {
+		this.setVisible(false);
+		myFrame.remove(this);
+		myCategoryPanel.setVisible(true);
+		myFrame.add(myCategoryPanel);	
+	}
+
 	private void reset() {
 		textTitle.setText("");
 		textMaterials.setText("");
@@ -373,10 +377,7 @@ public class SubmitPanel extends JPanel {
 			} else {
 				createProject();
 				reset();
-				this.setVisible(false);
-				myFrame.remove(this);
-				myCategoryPanel.setVisible(true);
-				myFrame.add(myCategoryPanel);
+				move();
 			}			
 		});
 	}

@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import model.ApplicationModel;
 
@@ -95,6 +96,8 @@ public class LandingPanel extends JPanel {
 	public void setup() {
 		for (int i = 0; i < 8; i++) {
 			projectBtns[i] = new JButton();
+			projectBtns[i].setVerticalTextPosition(SwingConstants.BOTTOM);
+			projectBtns[i].setHorizontalTextPosition(SwingConstants.CENTER);
 		}
 		// action for the search BAR
 		AbstractAction action = new AbstractAction() {
@@ -102,7 +105,7 @@ public class LandingPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				reset();
 				move();
-				myCategoryPanel.sendTag(searchBar.getText());
+				myCategoryPanel.setTag(searchBar.getText());
 			}
 		};
 		
@@ -114,7 +117,7 @@ public class LandingPanel extends JPanel {
 		//c.ipadx = 10;
 		
 
-		c.insets = new Insets(5, 0, 30, 0);
+		c.insets = new Insets(5, 0, 20, 0);
 		searchBar.addActionListener(action);
 		searchBar.setPreferredSize(new Dimension(600, 25));
 		
@@ -145,7 +148,7 @@ public class LandingPanel extends JPanel {
 				c.gridwidth = 1;
 				c.gridx = i;
 				c.gridy = 2;
-				ImageIcon icon = new ImageIcon(myApplicationModel.getProjects(myApplicationModel.getTags().get(i)).get(0).getImageLink());
+				ImageIcon icon = new ImageIcon(myApplicationModel.getProjects(tags.get(i)).get(0).getImageLink());
 				Image image = icon.getImage();
 				image = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
 				icon = new ImageIcon(image);
@@ -154,12 +157,13 @@ public class LandingPanel extends JPanel {
 //				c.ipady = 200;
 //				c.ipadx = 150;
 				
+				projectBtns[i].setText(tags.get(i));
 				projectBtns[i].setIcon(icon);
 				
 				String tag = myApplicationModel.getTags().get(i);
 				projectBtns[i].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						myCategoryPanel.sendTag(tag);
+						myCategoryPanel.setTag(tag);
 						move();
 					}
 				});
@@ -179,12 +183,14 @@ public class LandingPanel extends JPanel {
 				String tag = myApplicationModel.getTags().get(i+4);
 				projectBtns[i + 4].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						myCategoryPanel.sendTag(tag);
+						myCategoryPanel.setTag(tag);
 						move();
 					}
 				});
+				
+				projectBtns[i + 4].setText(tags.get(i + 4));
 				projectBtns[i + 4].setIcon(icon);
-				this.add(projectBtns[i+4], c);
+				this.add(projectBtns[i + 4], c);
 			}
 		}
 		
