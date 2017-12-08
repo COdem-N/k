@@ -58,7 +58,7 @@ public class LandingPanel extends JPanel {
 	/**
 	 * the back end model
 	 */
-	private ApplicationModel myApplcationModel;
+	private ApplicationModel myApplicationModel;
 
 	/**
 	 * the next panel that will potentialy called
@@ -79,7 +79,7 @@ public class LandingPanel extends JPanel {
 	 * pass in function to get the data from the application model
 	 */
 	public void passIn(JFrame theFrame,ApplicationModel theApp, CategoryPanel theCat) {
-		myApplcationModel = theApp;
+		myApplicationModel = theApp;
 		myCategoryPanel = theCat;
 		myFrame = theFrame;
 	}
@@ -103,20 +103,20 @@ public class LandingPanel extends JPanel {
 		};
 
 		GridBagConstraints c = new GridBagConstraints();
-		if (myApplcationModel != null) {
-			List<String> catagories = myApplcationModel.getTags();
+		if (myApplicationModel != null) {
+			List<String> catagories = myApplicationModel.getTags();
 		}
 		// only run if there are no projects
-		if (myApplcationModel != null) {
+		if (myApplicationModel != null) {
 			// setting up the catagory buttons
 			for (int i = 0; i < 4; i++) {
-				ImageIcon img = new ImageIcon(myApplcationModel.getProjects(myApplcationModel.getTags().get(i)).get(0).getImageLink());
+				ImageIcon img = new ImageIcon(myApplicationModel.getProjects(myApplicationModel.getTags().get(i)).get(0).getImageLink());
 				c.insets = new Insets(5, 0, 0, 0);
 				c.ipady = 200;
 				c.ipadx = 150;
 				c.gridx = i;
 				c.gridy = 2;
-				String tag = myApplcationModel.getTags().get(i);
+				String tag = myApplicationModel.getTags().get(i);
 				projectBtns[i].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						myCategoryPanel.sendTag(tag);
@@ -130,12 +130,12 @@ public class LandingPanel extends JPanel {
 			// setting up the second row of catagory buttons
 			for (int i = 0; i < 4; i++) {
 				ImageIcon img = new ImageIcon(
-						myApplcationModel.getProjects(myApplcationModel.getTags().get(i + 3)).get(0).getImageLink());
+						myApplicationModel.getProjects(myApplicationModel.getTags().get(i + 3)).get(0).getImageLink());
 				c.ipady = 200;
 				c.ipadx = 150;
 				c.gridx = i;
 				c.gridy = 3;
-				String tag = myApplcationModel.getTags().get(i);
+				String tag = myApplicationModel.getTags().get(i);
 				projectBtns[i + 3].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						myCategoryPanel.sendTag(tag);

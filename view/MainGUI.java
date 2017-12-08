@@ -27,10 +27,10 @@ public class MainGUI implements WindowListener {
 	private ProjectPanel myProjectPanel;
 	private SubmitPanel mySubmitPanel;
 	private ApplicationModel myApplicationModel;
-	private JFrame myframe;
+	private JFrame myFrame;
 	
 	public MainGUI() {
-		myframe = new JFrame();
+		myFrame = new JFrame();
 		myLandingPanel = new LandingPanel();
 		myLandingPanel.config();
 		myCategoryPanel = new CategoryPanel();
@@ -48,36 +48,36 @@ public class MainGUI implements WindowListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		myframe.addWindowListener(this);
+		myFrame.addWindowListener(this);
 		setup();
 	}
 	
 	private void setup() {
 		//testProject();
-		myLandingPanel.passIn(myframe,myApplicationModel, myCategoryPanel);
-		myCategoryPanel.passIn(myframe,myApplicationModel, myLandingPanel, mySubmitPanel, myProjectPanel);
-		myProjectPanel.passIn(myframe,myApplicationModel, myCategoryPanel);
-		mySubmitPanel.passIn(myframe,myApplicationModel, myCategoryPanel);
+		myLandingPanel.passIn(myFrame,myApplicationModel, myCategoryPanel);
+		myCategoryPanel.passIn(myFrame,myApplicationModel, myLandingPanel, mySubmitPanel, myProjectPanel);
+		myProjectPanel.passIn(myFrame,myApplicationModel, myCategoryPanel);
+		mySubmitPanel.passIn(myFrame,myApplicationModel, myCategoryPanel);
 		
-		myframe.setTitle("K");
-		myframe.setSize(800, 600);
-		myframe.setLocation(SCREENSIZE.width / 2 - myframe.getWidth() / 2, 
-					SCREENSIZE.height / 2 - myframe.getHeight() / 2);
-		myframe.setVisible(true);
+		myFrame.setTitle("K");
+		myFrame.setSize(800, 600);
+		myFrame.setLocation(SCREENSIZE.width / 2 - myFrame.getWidth() / 2, 
+					SCREENSIZE.height / 2 - myFrame.getHeight() / 2);
+		myFrame.setVisible(true);
 		
 		
-		myframe.add(myCategoryPanel);
+		myFrame.add(myCategoryPanel);
 		myCategoryPanel.setVisible(false);
-		myframe.add(myProjectPanel);
+		myFrame.add(myProjectPanel);
 		myProjectPanel.setVisible(false);
-		myframe.add(mySubmitPanel);
+		myFrame.add(mySubmitPanel);
 		mySubmitPanel.setVisible(false);
 		
 		
-		myframe.add(myLandingPanel);
+		myFrame.add(myLandingPanel);
 		
 		
-		myframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void testProject()  {
