@@ -5,11 +5,14 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
@@ -96,6 +99,10 @@ public class SubmitPanel extends JPanel {
      * A JLabel object to set next to the "Directions" text box.
      */
     private JLabel labelDirections = new JLabel("Directions: ");
+    
+    private String imagePath;
+    
+    private List<String> projectTags = new ArrayList<String>();
     
     /**
      * A JTextArea object for inputting the "Title".
@@ -294,19 +301,21 @@ public class SubmitPanel extends JPanel {
 	private void buildSubmitButton() {
 		buttonSubmit.addActionListener((theEvent) -> { 
 			
-			if (textTitle.paramString() == "" ) {
+			if (textTitle.getText() == "" | textMaterials.getText() == "" | textDirections.getText() == "") {
+                JOptionPane.showMessageDialog(null,
+                		"One or more fields are empty. Please complete form and submit.", "Warning", JOptionPane.INFORMATION_MESSAGE);
 				
-			}
-			
-			ProjectModel newProject = new ProjectModel();
-			
-			myApplicationModel.addProject(newProject);
-			
-			this.setVisible(false);
-			myFrame.remove(this);
-			myLandingPanel.setVisible(true);
-			myFrame.add(myLandingPanel);
-			
+			} else {
+				ProjectModel newProject = new ProjectModel(textTitle.getText(), imagePath, textMaterials.getText(), 
+						diffSlider.getValue(), costSlider.getValue(), textDirections.getText(), projectTags);			
+				
+				myApplicationModel.addProject(newProject);
+				
+				this.setVisible(false);
+				myFrame.remove(this);
+				myLandingPanel.setVisible(true);
+				myFrame.add(myLandingPanel);
+			}			
 		});
 	}
 	
