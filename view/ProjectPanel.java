@@ -90,11 +90,11 @@ public class ProjectPanel extends JPanel {
 	        image = new JLabel(new ImageIcon(imageIcon));
 	        
 	        nameResult = new JLabel("Desk ");
-	        difficultyResult = new JLabel("3");
-	        costResult = new JLabel("2 ");
-	        tagsResult = new JLabel("Indoor,outdoor, rooms");
+	        difficultyResult = new JLabel("Easy");
+	        costResult = new JLabel("$$");
+	        tagsResult = new JLabel("Indoor,outdoor");
 	        materialsResult = new JLabel("Wood, Nails, Saw, Hammer ");
-	        directionsResult = new JLabel("Instructions will be displayed here");
+	        directionsResult = new JLabel("Directions will be displayed here");
 	        
 	        back = new JButton("Back:");
 	        this.setLayout(new GridBagLayout());
