@@ -14,6 +14,11 @@ import javax.swing.JFrame;
 import model.ApplicationModel;
 import model.ProjectModel;
 
+/**
+ * The main GUI for the program.
+ * @author Peter Bae
+ * @version 0.2
+ */
 public class MainGUI implements WindowListener {
 	
 	private static final Toolkit KIT = Toolkit.getDefaultToolkit();
@@ -76,16 +81,11 @@ public class MainGUI implements WindowListener {
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	private void testProject()  {
-		ProjectModel test = new ProjectModel("testing", "icon.png", "a hammer", 2, 2, "test project", null);
-		myApplicationModel.addProject(test);
-	}
-	
 	private void load() throws IOException, ClassNotFoundException {
 		FileInputStream fis =  new FileInputStream("saveFile.ser");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		
-		ProjectModel.onLoad((int) ois.readObject());
+		ProjectModel.setRunningID((int) ois.readObject());
 		myApplicationModel = (ApplicationModel) ois.readObject();
 		
 		System.out.println(myApplicationModel);

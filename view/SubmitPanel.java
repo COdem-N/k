@@ -327,6 +327,7 @@ public class SubmitPanel extends JPanel {
 	 */
 	private void buildCancelButton() {
 		buttonCancel.addActionListener((theEvent) -> { 
+			reset();
 			this.setVisible(false);
 			myFrame.remove(this);
 			myCategoryPanel.setVisible(true);
@@ -334,6 +335,16 @@ public class SubmitPanel extends JPanel {
 		});
 	}
 	
+	private void reset() {
+		textTitle.setText("");
+		textMaterials.setText("");
+		myImagePath = null;
+	    textDirections.setText("");
+	    myTextTags.setText("");
+	    diffSlider.setValue(2);
+	    costSlider.setValue(2);   
+	}
+
 	/**
 	 * 
 	 */
@@ -354,11 +365,14 @@ public class SubmitPanel extends JPanel {
 				textDirections.getText().equals("") | 
 				myTextTags.getText().equals("")) {
                 JOptionPane.showMessageDialog(null,
-                		"One or more fields are empty. Please complete form.", "Warning", JOptionPane.INFORMATION_MESSAGE);
+                							  "One or more fields are empty. "
+                							  + "Please complete form.", 
+                							  "Warning", 
+                							  JOptionPane.INFORMATION_MESSAGE);
 				
 			} else {
 				createProject();
-				
+				reset();
 				this.setVisible(false);
 				myFrame.remove(this);
 				myCategoryPanel.setVisible(true);

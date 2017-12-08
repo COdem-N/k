@@ -33,6 +33,7 @@ public class ApplicationModel implements Serializable {
 	
 	/**
 	 * Adds the passed in ProjectModel to the project list.
+	 * @author Peter Bae
 	 * @param theProject The ProjectModel to be added in.
 	 */
 	public void addProject(ProjectModel theProject) {
@@ -57,6 +58,7 @@ public class ApplicationModel implements Serializable {
 	
 	/**
 	 * Returns a list of projects containing the passed in tag.
+	 * @author Peter Bae
 	 * @param theTag The tag to test for.
 	 * @return A list of projects containing the passed in tag.
 	 */
@@ -75,6 +77,7 @@ public class ApplicationModel implements Serializable {
 	/**
 	 * Returns the list of tags occurring in the projects in the project list
 	 * in descending order of occurrences.
+	 * @author Peter Bae
 	 * @return List of tags occurring in the projects in the project list
 	 * in descending order of occurrences.
 	 */
@@ -115,6 +118,7 @@ public class ApplicationModel implements Serializable {
 	
 	/**
 	 * Returns the string representation of the the ApplicationModel.
+	 * @author Peter Bae
 	 * @return String representation of the the ApplicationModel.
 	 */
 	public String toString() {
