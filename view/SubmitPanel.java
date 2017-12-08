@@ -162,9 +162,8 @@ public class SubmitPanel extends JPanel {
 	 * @param theApp
 	 * @param theCat
 	 */
-	public void passIn(JFrame theFrame, LandingPanel theLand, ApplicationModel theApp, CategoryPanel theCat) {
+	public void passIn(JFrame theFrame, ApplicationModel theApp, CategoryPanel theCat) {
 		myFrame = theFrame;
-		myLandingPanel = theLand;
 		myApplicationModel = theApp;
 		myCategoryPanel = theCat;
 	}
@@ -283,8 +282,8 @@ public class SubmitPanel extends JPanel {
 		buttonCancel.addActionListener((theEvent) -> { 
 			this.setVisible(false);
 			myFrame.remove(this);
-			myLandingPanel.setVisible(true);
-			myFrame.add(myLandingPanel);
+			myCategoryPanel.setVisible(true);
+			myFrame.add(myCategoryPanel);
 			
 		});
 	}
