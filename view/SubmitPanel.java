@@ -73,11 +73,6 @@ public class SubmitPanel extends JPanel {
     private CategoryPanel myCategoryPanel;
     
     /**
-     * A LandingPanel object used for display purposes (used to display the Landing Panel).
-     */
-    private LandingPanel myLandingPanel;
-    
-    /**
      * A JLabel object to set next to the "Title" text box.
      */
     private JLabel labelTitle = new JLabel("Title: ");

@@ -17,8 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.sun.corba.se.spi.orbutil.fsm.Action;
-
 import model.ApplicationModel;
 
 /*

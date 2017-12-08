@@ -5,19 +5,15 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 
 import model.ApplicationModel;
 import model.ProjectModel;
 
-@SuppressWarnings("serial")
 public class MainGUI implements WindowListener {
 	
 	private static final Toolkit KIT = Toolkit.getDefaultToolkit();
