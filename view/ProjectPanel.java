@@ -2,10 +2,17 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,12 +45,18 @@ public class ProjectPanel extends JPanel {
    
     private JLabel heading;
     
+    private BufferedImage imageIcon;
+    
     private JLabel name;
     private JLabel difficulty;
     private JLabel cost;
     private JLabel tags;
     private JLabel materials;
     private JLabel directions;
+
+    JFrame myFrame;
+    
+    private JLabel image;
     
     private JLabel nameResult;
     private JLabel difficultyResult;
@@ -51,7 +64,7 @@ public class ProjectPanel extends JPanel {
     private JLabel tagsResult;
     private JLabel materialsResult;
     private JLabel directionsResult;
-    JFrame myFrame;
+    
     
     private JButton back;
 	public ProjectPanel() {
@@ -60,20 +73,28 @@ public class ProjectPanel extends JPanel {
 	        /* Setting some properties of the panel. */
 	        
 	        this.setLayout(new GridBagLayout());
-	        heading = new JLabel("Project Details");
+	        heading = new JLabel("Welcome to the Project");
 	        name = new JLabel("Name:");
 	        difficulty = new JLabel("Difficulty:");
 	        cost = new JLabel("cost:");
 	        tags = new JLabel("Tags:");
 	        materials = new JLabel("Materials:");
 	        directions = new JLabel("Directions:");
+	        try {
+	        		imageIcon = ImageIO.read(new File("view/desk.png"));
+	        		imageIcon = getScaledImage(imageIcon, 250, 250);
+	        } catch (IOException ex) {
+	        		//System.out.println("Here");
+	        }
 	        
-	        nameResult = new JLabel("nameResult");
-	        difficultyResult = new JLabel("difficultyResult");
-	        costResult = new JLabel("costResult ");
-	        tagsResult = new JLabel("tagsResult");
-	        materialsResult = new JLabel("materialsResult");
-	        directionsResult = new JLabel("directionsResult");
+	        image = new JLabel(new ImageIcon(imageIcon));
+	        
+	        nameResult = new JLabel("Desk ");
+	        difficultyResult = new JLabel("3");
+	        costResult = new JLabel("2 ");
+	        tagsResult = new JLabel("Indoor,outdoor, rooms");
+	        materialsResult = new JLabel("Wood, Nails, Saw, Hammer ");
+	        directionsResult = new JLabel("Instructions will be displayed here");
 	        
 	        back = new JButton("Back:");
 	        this.setLayout(new GridBagLayout());
@@ -134,10 +155,34 @@ public class ProjectPanel extends JPanel {
 		constraints.gridy = 60;
 		this.add(directionsResult, constraints);
 		
+		
 		constraints.gridx = 40;
         constraints.gridy = 100;
 		this.add(back,constraints);
 		
+		constraints.gridx = 40;
+		constraints.gridy = 0;
+        this.add(image,constraints);
+	}
+	
+	private BufferedImage getScaledImage(BufferedImage src, int w, int h){
+	    int finalw = w;
+	    int finalh = h;
+	    double factor = 1.0d;
+	    if(src.getWidth() > src.getHeight()){
+	        factor = ((double)src.getHeight()/(double)src.getWidth());
+	        finalh = (int)(finalw * factor);                
+	    }else{
+	        factor = ((double)src.getWidth()/(double)src.getHeight());
+	        finalw = (int)(finalh * factor);
+	    }   
+
+	    BufferedImage resizedImg = new BufferedImage(finalw, finalh, BufferedImage.TRANSLUCENT);
+	    Graphics2D g2 = resizedImg.createGraphics();
+	    g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+	    g2.drawImage(src, 0, 0, finalw, finalh, null);
+	    g2.dispose();
+	    return resizedImg;
 	}
 	public static void main(String[] args) {
 		final JFrame frame = new JFrame("Project Panel");
