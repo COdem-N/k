@@ -186,6 +186,8 @@ public class SubmitPanel extends JPanel {
 	 * The setup() method of the SubmitPanel.
 	 * 
 	 * This method initializes and sets up the panel itself.
+	 * 
+	 * @author Logan Stafford, Editted by: Peter Bae
 	 */
 	public void setup() {
 		
@@ -337,6 +339,10 @@ public class SubmitPanel extends JPanel {
 		myFrame.add(myCategoryPanel);	
 	}
 
+	/**
+	 * Resets the SubmitPanel.
+	 * @author Peter Bae
+	 */
 	private void reset() {
 		textTitle.setText("");
 		textMaterials.setText("");
@@ -380,6 +386,9 @@ public class SubmitPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Creates a ProjectModel object and shows a dialog box.
+	 */
 	private void createProject() {
 		ProjectModel newProject = new ProjectModel(textTitle.getText(), 
 												   myImagePath, 
@@ -395,6 +404,12 @@ public class SubmitPanel extends JPanel {
         		"Project Successfully Created!", "Project Created!", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Formats the input tag String into a list of String.
+	 * @author Peter Bae
+	 * @param theInput The raw String input.
+	 * @return List of tags as Strings.
+	 */
 	private List<String> formatTags(String theInput) {
 		List<String> strList = new ArrayList<String>();
 		String[] strArr = theInput.toLowerCase().split(",");

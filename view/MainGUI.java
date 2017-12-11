@@ -21,15 +21,50 @@ import model.ProjectModel;
  */
 public class MainGUI implements WindowListener {
 	
+	/**
+	 * Toolkit used to set the frame location.
+	 */
 	private static final Toolkit KIT = Toolkit.getDefaultToolkit();
+	
+	/**
+	 * Gets the user's monitor resolutions.
+	 */
 	private static final Dimension SCREENSIZE = KIT.getScreenSize();
+	
+	/**
+	 * First Panel of the program.
+	 */
 	private LandingPanel myLandingPanel;
+	
+	/**
+	 * Panel to display the tagged Projects.
+	 */
 	private CategoryPanel myCategoryPanel;
+	
+	/**
+	 * Panel to display the individual Project details.
+	 */
 	private ProjectPanel myProjectPanel;
+	
+	/**
+	 * Panel used to submit new projects.
+	 */
 	private SubmitPanel mySubmitPanel;
+	
+	/**
+	 * Aggregation of ProjectModels
+	 */
 	private ApplicationModel myApplicationModel;
+	
+	/**
+	 * The main frame for the program.
+	 */
 	private JFrame myFrame;
 	
+	/**
+	 * Constructor to initialize and setup all the panels
+	 * and loads from an existing save file if one exists.
+	 */
 	public MainGUI() {
 		myFrame = new JFrame();
 		myLandingPanel = new LandingPanel();
@@ -51,6 +86,9 @@ public class MainGUI implements WindowListener {
 		setup();
 	}
 	
+	/**
+	 * Helper method to setup all the panels.
+	 */
 	private void setup() {
 		//testProject();
 		myLandingPanel.passIn(myFrame, myApplicationModel, myCategoryPanel);
@@ -82,6 +120,12 @@ public class MainGUI implements WindowListener {
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	/**
+	 * Saves from an existing save file if that file exists,
+	 * if not, creates a new save file.
+	 * @throws IOException If the file path is not valid.
+	 * @throws ClassNotFoundException Thrown if type casts are wrong.
+	 */
 	private void load() throws IOException, ClassNotFoundException {
 		FileInputStream fis =  new FileInputStream("saveFile.ser");
 		ObjectInputStream ois = new ObjectInputStream(fis);
@@ -94,6 +138,10 @@ public class MainGUI implements WindowListener {
 		fis.close();
 	}
 	
+	/**
+	 * Saves the current session to a save file.
+	 * @throws IOException Thrown if the file path cannot be accessed.
+	 */
 	private void save() throws IOException {
 		FileOutputStream fos = new FileOutputStream("saveFile.ser");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -111,8 +159,12 @@ public class MainGUI implements WindowListener {
 		
 	}
 
+	/**
+	 * Tries to save before closing out of the program.
+	 * @param theEvent The closing event.
+	 */
 	@Override
-	public void windowClosing(WindowEvent e) {
+	public void windowClosing(WindowEvent theEvent) {
 		try {
 			save();
 		} catch (IOException e1) {

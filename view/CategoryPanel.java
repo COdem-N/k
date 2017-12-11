@@ -181,6 +181,10 @@ public class CategoryPanel extends JPanel {
 		return mySearchButton;
 	}
 	
+	/**
+	 * Populates the panel with projects with the passed in tag. 
+	 * @author Peter Bae
+	 */
 	private void populate2() {
 		if (myApplicationModel != null) {
 			GridBagConstraints constraints = new GridBagConstraints();
@@ -212,6 +216,9 @@ public class CategoryPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Switches screen to the Project Panel.
+	 */
 	private void moveToProject() {
 		this.setVisible(false);
 		myFrame.remove(this);
@@ -266,6 +273,7 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Receives a tag from the LandingPanel and updates the shown projects.
 	 * @param theTag is the string received from the LandingPanel.
+	 * @author Alex Merk, Editted by: Peter Bae
 	 */
 	protected void setTag(final String theTag) {
 		myFrame.setTitle(theTag.toUpperCase());

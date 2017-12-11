@@ -102,6 +102,12 @@ public class ProjectPanel extends JPanel {
 		myCategoryPanel = theCat;
 		myFrame = theFrame;
 	}	
+	
+	/**
+	 * Sets up the Panel according to the passed in ProjectModel.
+	 * @author Peter Bae
+	 * @param theProject The passed in ProjectModel.
+	 */
 	public void setupPage(ProjectModel theProject) {
 		setPreferredSize(PROJECT_PANEL_SIZE);
         setBackground(PROJECT_PANEL_BG_COLOR);
@@ -143,6 +149,7 @@ public class ProjectPanel extends JPanel {
 		
 		image.setIcon(new ImageIcon(theProject.getImageLink()));
 	}
+	
 	public void setup() {
 		setPreferredSize(PROJECT_PANEL_SIZE);
         setBackground(PROJECT_PANEL_BG_COLOR);
@@ -219,6 +226,8 @@ public class ProjectPanel extends JPanel {
 	    g2.dispose();
 	    return resizedImg;
 	}
+	
+	/*
 	public static void main(String[] args) {
 		final JFrame frame = new JFrame("Project Panel");
 
@@ -232,5 +241,5 @@ public class ProjectPanel extends JPanel {
 		frame.setVisible(true);
 	}
 
-	
+	*/
 }

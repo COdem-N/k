@@ -83,15 +83,16 @@ public class LandingPanel extends JPanel {
 		myFrame = theFrame;
 	}
 
-	public void move() {
+	public void moveToCategory() {
 		this.setVisible(false);
 		myFrame.remove(this);
 		myFrame.add(myCategoryPanel);
 		myCategoryPanel.setVisible(true);
 	}
-	/*
+	/**
 	 * Config method to initialize all the components and add them to the landing
 	 * panel
+	 * @author Carter Odem, Editted by: Peter Bae
 	 */
 	public void setup() {
 		for (int i = 0; i < 8; i++) {
@@ -104,7 +105,7 @@ public class LandingPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				reset();
-				move();
+				moveToCategory();
 				myCategoryPanel.setTag(searchBar.getText());
 			}
 		};
@@ -164,7 +165,7 @@ public class LandingPanel extends JPanel {
 				projectBtns[i].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						myCategoryPanel.setTag(tag);
-						move();
+						moveToCategory();
 					}
 				});
 				
@@ -184,7 +185,7 @@ public class LandingPanel extends JPanel {
 				projectBtns[i + 4].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						myCategoryPanel.setTag(tag);
-						move();
+						moveToCategory();
 					}
 				});
 				
@@ -204,6 +205,9 @@ public class LandingPanel extends JPanel {
 		this.add(exportBtn, c);
 	}
 	
+	/**
+	 * Resets the search bar.
+	 */
 	private void reset() {
 		searchBar.setText("");
 	}

@@ -165,6 +165,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the string representation of the project. (for debugging)
+	 * @author Peter Bae
 	 * @return the string representation of the project.
 	 */
 	public String toString() {

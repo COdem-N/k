@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Class to aggregate and manage ProjectModel objects.
  * @author Peter Bae
- * @version 0.2
+ * @version 1.0
  */
 @SuppressWarnings("serial")
 public class ApplicationModel implements Serializable {
