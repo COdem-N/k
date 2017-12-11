@@ -76,7 +76,7 @@ public class CategoryPanel extends JPanel {
     
     private JPanel myCategoryPanel;
     
-    private JFrame myframe;
+    private JFrame myFrame;
     
     /**
      * Default constructor.
@@ -137,8 +137,8 @@ public class CategoryPanel extends JPanel {
 	private JButton buildSubmitButton() {
 		mySubmitButton = new JButton("Submit new project");
 		mySubmitButton.addActionListener((theEvent) -> {
-			myframe.remove(this);
-			myframe.add(mySubmitPanel);
+			myFrame.remove(this);
+			myFrame.add(mySubmitPanel);
 			mySubmitPanel.setVisible(true);
 		});
 		return mySubmitButton;
@@ -160,11 +160,11 @@ public class CategoryPanel extends JPanel {
 	
 	private void moveToLanding() {
 		this.setVisible(false);
-		myframe.remove(this);
-		myframe.setTitle("K");
+		myFrame.remove(this);
+		myFrame.setTitle("K");
 		myLandingPanel.setup();
 		myLandingPanel.setVisible(true);
-		myframe.add(myLandingPanel);
+		myFrame.add(myLandingPanel);
 	}
 
 	private void reset() {
@@ -199,7 +199,7 @@ public class CategoryPanel extends JPanel {
 				button.setText(myProjects.get(i).getName());
 				ProjectModel project = myProjects.get(i);
 				button.addActionListener((theEvent) -> {
-					myProjectPanel.setup(project);
+					myProjectPanel.setupPage(project);
 					moveToProject();
 				});
 				myProjectButtons.add(button);
@@ -214,8 +214,8 @@ public class CategoryPanel extends JPanel {
 	
 	private void moveToProject() {
 		this.setVisible(false);
-		myframe.remove(this);
-		myframe.add(myProjectPanel);
+		myFrame.remove(this);
+		myFrame.add(myProjectPanel);
 		myProjectPanel.setVisible(true);
 	}
 
@@ -237,8 +237,8 @@ public class CategoryPanel extends JPanel {
 				}
 				projectButton.addActionListener((theEvent) -> {
 					this.setVisible(false);
-					myframe.remove(this);
-					myframe.add(myProjectPanel);
+					myFrame.remove(this);
+					myFrame.add(myProjectPanel);
 					myProjectPanel.setVisible(true);
 				});
 				myCategoryPanel.add(projectButton);
@@ -254,8 +254,8 @@ public class CategoryPanel extends JPanel {
 			JButton fake = new JButton("test");
 			fake.addActionListener((theEvent) -> {
 				this.setVisible(false);
-				myframe.remove(this);
-				myframe.add(myProjectPanel);
+				myFrame.remove(this);
+				myFrame.add(myProjectPanel);
 				myProjectPanel.setVisible(true);
 			});
 			myCategoryPanel.add(fake);
@@ -268,7 +268,7 @@ public class CategoryPanel extends JPanel {
 	 * @param theTag is the string received from the LandingPanel.
 	 */
 	protected void setTag(final String theTag) {
-		myframe.setTitle(theTag.toUpperCase());
+		myFrame.setTitle(theTag.toUpperCase());
 		myTag = theTag;
 		myProjects = myApplicationModel.getProjects(myTag);
 		populate2();
@@ -280,6 +280,6 @@ public class CategoryPanel extends JPanel {
 		myLandingPanel = theLand;
 		myProjectPanel = thePro;
 		mySubmitPanel = theSub;
-		myframe = theFrame;
+		myFrame = theFrame;
 	}
 }

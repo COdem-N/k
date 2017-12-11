@@ -53,10 +53,10 @@ public class MainGUI implements WindowListener {
 	
 	private void setup() {
 		//testProject();
-		myLandingPanel.passIn(myFrame,myApplicationModel, myCategoryPanel);
-		myCategoryPanel.passIn(myFrame,myApplicationModel, myLandingPanel, mySubmitPanel, myProjectPanel);
-		myProjectPanel.passIn(myFrame,myApplicationModel, myCategoryPanel);
-		mySubmitPanel.passIn(myFrame,myApplicationModel, myCategoryPanel);
+		myLandingPanel.passIn(myFrame, myApplicationModel, myCategoryPanel);
+		myCategoryPanel.passIn(myFrame, myApplicationModel, myLandingPanel, mySubmitPanel, myProjectPanel);
+		myProjectPanel.passIn(myFrame, myCategoryPanel);
+		mySubmitPanel.passIn(myFrame, myApplicationModel, myCategoryPanel);
 		
 		myLandingPanel.setup();
 		myCategoryPanel.setup();

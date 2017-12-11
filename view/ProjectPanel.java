@@ -18,7 +18,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.ApplicationModel;
 import model.ProjectModel;
 
 @SuppressWarnings("serial")
@@ -33,11 +32,6 @@ public class ProjectPanel extends JPanel {
      * A Color object to be used as the background color of the Project panel.
      */
     private static final Color PROJECT_PANEL_BG_COLOR = new Color(60, 141, 13);
-    
-    /**
-     * 
-     */
-    private ApplicationModel myApplicationModel;
     
     /**
      * 
@@ -104,15 +98,50 @@ public class ProjectPanel extends JPanel {
 	        setup();
 	}
 
-	public void passIn(JFrame theFrame, ApplicationModel theApp, CategoryPanel theCat) {
-		myApplicationModel = theApp;
+	public void passIn(JFrame theFrame, CategoryPanel theCat) {
 		myCategoryPanel = theCat;
 		myFrame = theFrame;
 	}	
-	public void setup(ProjectModel projectModel) {
+	public void setupPage(ProjectModel theProject) {
 		setPreferredSize(PROJECT_PANEL_SIZE);
         setBackground(PROJECT_PANEL_BG_COLOR);
+        
+		nameResult.setText(theProject.getName());
 		
+		switch (theProject.getDifficulty()) {
+		case 1:
+			difficultyResult.setText("Beginner");
+			break;
+		case 2:
+			difficultyResult.setText("Intermediate");
+			break;
+		case 3:
+			difficultyResult.setText("Expert");
+		}
+		
+		switch (theProject.getCost()) {
+		case 1:
+			costResult.setText("$");
+			break;
+		case 2:
+			costResult.setText("$$");
+			break;
+		case 3:
+			costResult.setText("$$$");
+		}
+		
+		StringBuilder tags = new StringBuilder();
+		tags.append(theProject.getTags().get(0));
+		for (int i = 1; i < theProject.getTags().size(); i++) {
+			tags.append(", " + theProject.getTags().get(i));
+		}
+		tagsResult.setText(tags.toString());
+		
+		materialsResult.setText(theProject.getMaterials());
+		
+		directionsResult.setText(theProject.getBody());
+		
+		image.setIcon(new ImageIcon(theProject.getImageLink()));
 	}
 	public void setup() {
 		setPreferredSize(PROJECT_PANEL_SIZE);
@@ -166,6 +195,7 @@ public class ProjectPanel extends JPanel {
 		this.add(back,constraints);
 		
 		constraints.gridx = 40;
+		constraints.gridheight = 100;
 		constraints.gridy = 0;
         this.add(image,constraints);
 	}
