@@ -22,7 +22,8 @@ import model.ProjectModel;
 
 /**
  * Category Panel class. Displays all of the projects with a given tag. Allows users to search for a specific tag, as well as submit new projects.
- * @author Alex Merk, Peter Bae
+ * 
+ * @author Alex Merk, Peter Bae, edited by Logan Stafford
  */
 @SuppressWarnings("serial")
 public class CategoryPanel extends JPanel {
@@ -102,6 +103,7 @@ public class CategoryPanel extends JPanel {
     
     /**
      * Default constructor.
+     * 
      * @author Peter Bae.
      */
 	public CategoryPanel() {
@@ -115,6 +117,7 @@ public class CategoryPanel extends JPanel {
 	
 	/**
 	 * Adds the visual components of the panel.
+	 * 
 	 * @author Alex Merk.
 	 */
 	protected void setup() {
@@ -126,6 +129,7 @@ public class CategoryPanel extends JPanel {
 	
 	/**
 	 * Constructs the scroll window.
+	 * 
 	 * @author Peter Bae.
 	 */
 	private void buildSubPanel() {
@@ -135,6 +139,7 @@ public class CategoryPanel extends JPanel {
 	
 	/**
 	 * Constructs the search menu for the window.
+	 * 
 	 * @author Alex Merk.
 	 */
 	private void buildSearchMenu() {
@@ -148,6 +153,7 @@ public class CategoryPanel extends JPanel {
 	
     /**
      * Constructs the button for submitting a new project.
+     * 
      * @author Alex Merk.
      */
 	private JButton buildSubmitButton() {
@@ -160,6 +166,7 @@ public class CategoryPanel extends JPanel {
 	
     /**
      * Constructs the search bar to search for any tag.
+     * 
      * @author Alex Merk.
      */
 	private JTextField buildSearchBar() {
@@ -169,6 +176,7 @@ public class CategoryPanel extends JPanel {
 	
 	/**
      * Constructs the search button to search for all projects of a given tag.
+     * 
      * @author Alex Merk.
      */
 	private JButton buildSearchButton() {
@@ -181,6 +189,7 @@ public class CategoryPanel extends JPanel {
 	
     /**
      * Constructs the back button to shift view to the landing panel.
+     * 
      * @author Alex Merk.
      */
 	private JButton buildBackButton() {
@@ -194,6 +203,7 @@ public class CategoryPanel extends JPanel {
 	
 	/**
 	 * Populates the panel with projects with the passed in tag. 
+	 * 
 	 * @author Alex Merk, Peter Bae
 	 */
 	private void buildScrollMenu() {
@@ -228,6 +238,7 @@ public class CategoryPanel extends JPanel {
 	
 	/**
 	 * Switches screen to the Project Panel.
+	 * 
 	 * @author Alex Merk, Peter Bae.
 	 */
 	private void moveToProject() {
@@ -239,12 +250,13 @@ public class CategoryPanel extends JPanel {
 	
 	/**
      * Changes the view to the landing panel.
+     * 
      * @author Alex Merk, Peter Bae.
      */
 	private void moveToLanding() {
 		this.setVisible(false);
 		myFrame.remove(this);
-		myFrame.setTitle("K");
+		myFrame.setTitle("Special K - DIY Project Manager");
 		myLandingPanel.setup();
 		myLandingPanel.setVisible(true);
 		myFrame.add(myLandingPanel);
@@ -252,6 +264,7 @@ public class CategoryPanel extends JPanel {
 	
 	/**
 	 * Changes the view to the submit panel.
+	 * 
 	 * @author Alex Merk.
 	 */
 	private void moveToSubmit() {
@@ -263,6 +276,7 @@ public class CategoryPanel extends JPanel {
 	
 	/**
      * Resets the scroll menu displaying projects.
+     * 
      * @author Peter Bae
      */
 	private void reset() {
@@ -273,6 +287,7 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Receives a tag from the LandingPanel and updates the shown projects.
 	 * @param theTag is the string received from the LandingPanel.
+	 * 
 	 * @author Alex Merk, Edited by: Peter Bae.
 	 */
 	protected void setTag(final String theTag) {
@@ -284,14 +299,16 @@ public class CategoryPanel extends JPanel {
 	
 	/**
 	 * Passes in all of the panels to change the view.
+	 * 
+	 * @author Peter Bae
+	 * 
 	 * @param theFrame is the GUI frame.
 	 * @param theApplicationModel is the list of projects.
 	 * @param theLandingPanel is the landing panel.
 	 * @param theSubmissionPanel is the submit panel.
 	 * @param theProjectPanel is the project panel.
-	 * @author Peter Bae.
 	 */
-	public void passIn(JFrame theFrame ,ApplicationModel theApplicationModel, LandingPanel theLandingPanel, 
+	public void passIn(JFrame theFrame, ApplicationModel theApplicationModel, LandingPanel theLandingPanel, 
 					   SubmitPanel theSubmissionPanel, ProjectPanel theProjectPanel) {
 		myApplicationModel = theApplicationModel;
 		myLandingPanel = theLandingPanel;
@@ -299,6 +316,5 @@ public class CategoryPanel extends JPanel {
 		mySubmitPanel = theSubmissionPanel;
 		myFrame = theFrame;
 	}
-	
 	
 }

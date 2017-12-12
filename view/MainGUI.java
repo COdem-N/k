@@ -16,8 +16,9 @@ import model.ProjectModel;
 
 /**
  * The main GUI for the program.
- * @author Peter Bae
- * @version 0.2
+ * 
+ * @author Peter Bae, edited by Logan Stafford
+ * @version 1.0
  */
 public class MainGUI implements WindowListener {
 	
@@ -82,12 +83,11 @@ public class MainGUI implements WindowListener {
 		
 		try {
 			load();
-			System.out.println(myApplicationModel.getTags().size());
+			//System.out.println(myApplicationModel.getTags().size());
 		} catch (IOException e) {
 			System.out.println("No existing save");
 			myApplicationModel = new ApplicationModel();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		myFrame.addWindowListener(this);
@@ -98,7 +98,6 @@ public class MainGUI implements WindowListener {
 	 * Helper method to setup all the panels.
 	 */
 	private void setup() {
-		//testProject();
 		myLandingPanel.passIn(myFrame, myApplicationModel, myCategoryPanel);
 		myCategoryPanel.passIn(myFrame, myApplicationModel, myLandingPanel, mySubmitPanel, myProjectPanel);
 		myProjectPanel.passIn(myFrame, myCategoryPanel);
@@ -109,7 +108,7 @@ public class MainGUI implements WindowListener {
 		myProjectPanel.setup();
 		mySubmitPanel.setup();
 		
-		myFrame.setTitle("K");
+		myFrame.setTitle("Special K - DIY Project Manager");
 		myFrame.setSize(800, 600);
 		myFrame.setLocation(SCREENSIZE.width / 2 - myFrame.getWidth() / 2, 
 					SCREENSIZE.height / 2 - myFrame.getHeight() / 2);
@@ -131,6 +130,7 @@ public class MainGUI implements WindowListener {
 	/**
 	 * Saves from an existing save file if that file exists,
 	 * if not, creates a new save file.
+	 * 
 	 * @throws IOException If the file path is not valid.
 	 * @throws ClassNotFoundException Thrown if type casts are wrong.
 	 */
@@ -141,13 +141,14 @@ public class MainGUI implements WindowListener {
 		ProjectModel.setRunningID((int) ois.readObject());
 		myApplicationModel = (ApplicationModel) ois.readObject();
 		
-		System.out.println(myApplicationModel);
+		//System.out.println(myApplicationModel);
 		ois.close();
 		fis.close();
 	}
 	
 	/**
 	 * Saves the current session to a save file.
+	 * 
 	 * @throws IOException Thrown if the file path cannot be accessed.
 	 */
 	private void save() throws IOException {
@@ -172,6 +173,7 @@ public class MainGUI implements WindowListener {
 
 	/**
 	 * Tries to save before closing out of the program.
+	 * 
 	 * @param theEvent The closing event.
 	 */
 	@Override

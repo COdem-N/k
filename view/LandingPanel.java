@@ -22,7 +22,7 @@ import javax.swing.SwingConstants;
 import model.ApplicationModel;
 
 /**
- * @author Carter Odem
+ * @author Carter Odem, edited by Logan Stafford
  * 
  * The landing page for the application from here you can either search a tag or click on one
  *  of the most popular tags
@@ -45,37 +45,37 @@ public class LandingPanel extends JPanel {
 	private static final Color LANDING_PANEL_BG_COLOR = new Color(60, 141, 13);
 
     /**
-     * the Search bar
+     * A JTextField object used for the Search bar.
      */
-	private JTextField searchBar = new JTextField();
+	private JTextField mySearchBar = new JTextField();
 
     /**
-     * label for the search bar
+     * A JLabel object used to label the Search bar.
      */
 	private JLabel mySearchLabel = new JLabel("Search");
 
     /**
-     * array of buttons that will be used as category's
+     * An array of JButton objects used to represent each category of projects.
      */
-	private JButton[] projectBtns = new JButton[8];
+	private JButton[] myProjectButtons = new JButton[8];
 	
     /**
-     * button to import projects to the application
+     * A JButton object for importing projects to the application.
      */
-	private JButton importBtn = new JButton("Import");
+	private JButton myImportButton = new JButton("Import");
 	
     /**
-     * button to save all the projects to a file
+     * A JButton object for saving all the projects to a file.
      */
-	private JButton exportBtn = new JButton("Export");
+	private JButton myExportButton = new JButton("Export");
 	
     /**
-     * 
+     * The JFrame of the program.
      */
 	JFrame myFrame;
 
 	/**
-	 * the back end model
+	 * The ApplicationModel (back end) of the program.
 	 */
 	private ApplicationModel myApplicationModel;
 
@@ -88,27 +88,26 @@ public class LandingPanel extends JPanel {
      ** CLASS CONSTRUCTOR AND METHODS **
      ***********************************/
 	
-	// defualt constructor for the landing panel setting the layout and size
     /**
-     * 
+     * The LandingPanel() constructor. This just creates a LandingPanel and sets
+     * it's layout and size.
      */
 	public LandingPanel() {
 		super();
 		this.setLayout(new GridBagLayout());
+		
 		/* Setting some properties of the panel. */
 		setPreferredSize(LANDING_PANEL_SIZE);
 		setBackground(LANDING_PANEL_BG_COLOR);
 	}
 
-	/*
-	 * pass in function to get the data from the application model
-	 */
+
     /**
-     * 
+     * The passIn() method. This is used for switching between panels in the program.
      */
-	public void passIn(JFrame theFrame,ApplicationModel theApp, CategoryPanel theCat) {
-		myApplicationModel = theApp;
-		myCategoryPanel = theCat;
+	public void passIn(JFrame theFrame, ApplicationModel theApplicationModel, CategoryPanel theCategoryPanel) {
+		myApplicationModel = theApplicationModel;
+		myCategoryPanel = theCategoryPanel;
 		myFrame = theFrame;
 	}
 
@@ -121,38 +120,37 @@ public class LandingPanel extends JPanel {
 		myFrame.add(myCategoryPanel);
 		myCategoryPanel.setVisible(true);
 	}
+	
 	/**
-	 * Config method to initialize all the components and add them to the landing
-	 * panel
-	 * @author Carter Odem, Editted by: Peter Bae
+	 * The setup() method, used to initialize all the components and 
+	 * add them to the LandingPanel.
+	 * 
+	 * @author Carter Odem, Edited by: Peter Bae, Logan Stafford
 	 */
 	public void setup() {
 		for (int i = 0; i < 8; i++) {
-			projectBtns[i] = new JButton();
-			projectBtns[i].setVerticalTextPosition(SwingConstants.BOTTOM);
-			projectBtns[i].setHorizontalTextPosition(SwingConstants.CENTER);
+			myProjectButtons[i] = new JButton();
+			myProjectButtons[i].setVerticalTextPosition(SwingConstants.BOTTOM);
+			myProjectButtons[i].setHorizontalTextPosition(SwingConstants.CENTER);
 		}
-		// action for the search BAR
+		
+		/* Setting up an action for the search bar. */
 		AbstractAction action = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				reset();
 				moveToCategory();
-				myCategoryPanel.setTag(searchBar.getText());
+				myCategoryPanel.setTag(mySearchBar.getText());
 			}
 		};
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.NORTH;
 		
-		// setting up the search bar
-		//c.ipady = 10;
-		//c.ipadx = 10;
-		
-
+		/* Setting up the search bar. */
 		c.insets = new Insets(5, 0, 20, 0);
-		searchBar.addActionListener(action);
-		searchBar.setPreferredSize(new Dimension(600, 25));
+		mySearchBar.addActionListener(action);
+		mySearchBar.setPreferredSize(new Dimension(600, 25));
 		
 		c.gridx = 0;
 		c.gridy = 0;
@@ -161,22 +159,15 @@ public class LandingPanel extends JPanel {
 		
 		c.gridy = 1;
 		
-		this.add(searchBar, c);
-
-		// Setting up the import and export buttons
-		//c.anchor = GridBagConstraints.WEST;
+		this.add(mySearchBar, c);
 		
-		//c.insets = new Insets(10, 5, 5, 5);
-		//c.ipadx = 80;
-		//c.fill = GridBagConstraints.NONE;
-
-		
-		List<String> tags = myApplicationModel.getTags();
-			
+		List<String> tags = myApplicationModel.getTags();			
 		int tagCount = myApplicationModel.getTags().size();
-		// only run if there are no projects
-		if (tagCount != 0) {
-			// setting up the first row of tag buttons
+		
+		/* Only if there are no projects... */
+		if (tagCount != 0) {			
+			
+			/* Setting up the first row of tag buttons. */
 			for (int i = 0; i < (tagCount > 4 ? 4 : tagCount); i++) {
 				c.gridwidth = 1;
 				c.gridx = i;
@@ -184,27 +175,23 @@ public class LandingPanel extends JPanel {
 				ImageIcon icon = new ImageIcon(myApplicationModel.getProjects(tags.get(i)).get(0).getImageLink());
 				Image image = icon.getImage();
 				image = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
-				icon = new ImageIcon(image);
+				icon = new ImageIcon(image);				
 				
-//				c.insets = new Insets(5, 0, 0, 0);
-//				c.ipady = 200;
-//				c.ipadx = 150;
-				
-				projectBtns[i].setText(tags.get(i));
-				projectBtns[i].setIcon(icon);
+				myProjectButtons[i].setText(tags.get(i));
+				myProjectButtons[i].setIcon(icon);
 				
 				String tag = myApplicationModel.getTags().get(i);
-				projectBtns[i].addActionListener(new ActionListener() {
+				myProjectButtons[i].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						myCategoryPanel.setTag(tag);
 						moveToCategory();
 					}
 				});
 				
-				this.add(projectBtns[i], c);
-
+				this.add(myProjectButtons[i], c);
 			}
-			// setting up the second row of tag buttons
+			
+			/* Setting up the second row of tag buttons. */
 			for (int i = 0; i < (tagCount > 8 ? 4 : tagCount - 4); i++) {
 				c.gridwidth = 1;
 				c.gridx = i;
@@ -214,16 +201,17 @@ public class LandingPanel extends JPanel {
 				image = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
 				icon = new ImageIcon(image);
 				String tag = myApplicationModel.getTags().get(i+4);
-				projectBtns[i + 4].addActionListener(new ActionListener() {
+				
+				myProjectButtons[i + 4].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						myCategoryPanel.setTag(tag);
 						moveToCategory();
 					}
 				});
 				
-				projectBtns[i + 4].setText(tags.get(i + 4));
-				projectBtns[i + 4].setIcon(icon);
-				this.add(projectBtns[i + 4], c);
+				myProjectButtons[i + 4].setText(tags.get(i + 4));
+				myProjectButtons[i + 4].setIcon(icon);
+				this.add(myProjectButtons[i + 4], c);
 			}
 		}
 		
@@ -231,17 +219,17 @@ public class LandingPanel extends JPanel {
 		c.gridy = 4;
 		c.gridwidth = 2;
 
-		this.add(importBtn, c);
+		/* Adding the Import/Export buttons to the panel. */
+		this.add(myImportButton, c);
 		c.gridx = 2;
-
-		this.add(exportBtn, c);
+		this.add(myExportButton, c);
 	}
 	
 	/**
 	 * Resets the search bar.
 	 */
 	private void reset() {
-		searchBar.setText("");
+		mySearchBar.setText("");
 	}
 
 }

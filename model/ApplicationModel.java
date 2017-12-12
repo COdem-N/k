@@ -144,10 +144,9 @@ public class ApplicationModel implements Serializable {
 	 * Returns a string representation of the the ApplicationModel.
 	 * 
 	 * @author Peter Bae
-	 * @return String representation of the the ApplicationModel.
+	 * @return A String representation of the the ApplicationModel.
 	 */
-	public String toString() {
-		
+	public String toString() {		
 		/* Initializing a new String via StringBuilder. */
 		StringBuilder str = new StringBuilder();
 		
