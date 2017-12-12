@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,10 @@ import javax.swing.SwingConstants;
 import model.ApplicationModel;
 import model.ProjectModel;
 
+/**
+ * Category Panel class. Displays all of the projects with a given tag. Allows users to search for a specific tag, as well as submit new projects.
+ * @author Alex Merk, Peter Bae
+ */
 @SuppressWarnings("serial")
 public class CategoryPanel extends JPanel {
 	
@@ -59,14 +62,14 @@ public class CategoryPanel extends JPanel {
     private SubmitPanel mySubmitPanel;
     
     /**
-     * 
+     * Used to scroll through all submitted projects.
      */
-    private JScrollPane mySubPane;
+    private JScrollPane mySubmissionScroller;
     
     /**
-     * 
+     * Used to display all submitted projects.
      */
-    private JPanel mySubPanel;
+    private JPanel mySubmissionsPanel;
     
     /**
      * Saves the tag sent by LandingPanel that the user wishes to view.
@@ -74,42 +77,22 @@ public class CategoryPanel extends JPanel {
     private String myTag;
     
     /**
-     * 
+     * List of submitted projects whose tag list contains myTag.
      */
     private List<ProjectModel> myProjects;
     
     /**
-     * 
+     * List of buttons used for submitted projects.
      */
     private List<JButton> myProjectButtons;
     
     /**
-     * 
-     */
-    private JButton myBackButton;
-    
-    /**
-     * 
-     */
-    private JButton mySearchButton;
-    
-    /**
-     * 
-     */
-    private JButton mySubmitButton;
-    
-    /**
-     * 
+     * Search bar where users can enter a tag to search for.
      */
     private JTextField mySearchBar;
     
     /**
-     * 
-     */
-    private JPanel myCategoryPanel;
-    
-    /**
-     * 
+     * Frame for the GUI.
      */
     private JFrame myFrame;
     
@@ -119,6 +102,7 @@ public class CategoryPanel extends JPanel {
     
     /**
      * Default constructor.
+     * @author Peter Bae.
      */
 	public CategoryPanel() {
 			super();
@@ -131,71 +115,73 @@ public class CategoryPanel extends JPanel {
 	
 	/**
 	 * Adds the visual components of the panel.
+	 * @author Alex Merk.
 	 */
 	protected void setup() {
 		this.setLayout(new BorderLayout());
-		setupSubPanel();
-		
-		buildScrollMenu();
+		buildSubPanel();
 		buildSearchMenu();
-	}
-	
-	private void setupSubPanel() {
-		mySubPanel = new JPanel();
-		mySubPanel.setLayout(new GridBagLayout());
-	}
-
-	/**
-	 * Constructs the menu for scrolling through submitted projects.
-	 */
-	private void buildScrollMenu() {
-		populate();
-		final JScrollPane myCategoryScroller = new JScrollPane(myCategoryPanel);
-		myCategoryScroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		myCategoryScroller.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		myCategoryScroller.setPreferredSize(new Dimension(50, 6000));
-		myCategoryScroller.getVerticalScrollBar().setUnitIncrement(20);
-		this.add(myCategoryScroller, BorderLayout.CENTER);
 		this.add(buildSubmitButton(), BorderLayout.SOUTH);
 	}
 	
 	/**
+	 * Constructs the scroll window.
+	 * @author Peter Bae.
+	 */
+	private void buildSubPanel() {
+		mySubmissionsPanel = new JPanel();
+		mySubmissionsPanel.setLayout(new GridBagLayout());
+	}
+	
+	/**
 	 * Constructs the search menu for the window.
+	 * @author Alex Merk.
 	 */
 	private void buildSearchMenu() {
 		final JPanel mySearchPanel = new JPanel(new BorderLayout());
-		myBackButton = buildBackButton();
-		mySearchButton = buildSearchButton();
 		mySearchBar = buildSearchBar();
 		mySearchPanel.add(mySearchBar, BorderLayout.CENTER);
-		mySearchPanel.add(myBackButton, BorderLayout.WEST);
-		mySearchPanel.add(mySearchButton, BorderLayout.EAST);
+		mySearchPanel.add(buildBackButton(), BorderLayout.WEST);
+		mySearchPanel.add(buildSearchButton(), BorderLayout.EAST);
 		this.add(mySearchPanel, BorderLayout.NORTH);
 	}
 	
     /**
-     * 
+     * Constructs the button for submitting a new project.
+     * @author Alex Merk.
      */
 	private JButton buildSubmitButton() {
-		mySubmitButton = new JButton("Submit new project");
+		final JButton mySubmitButton = new JButton("Submit new project");
 		mySubmitButton.addActionListener((theEvent) -> {
-			myFrame.remove(this);
-			myFrame.add(mySubmitPanel);
-			mySubmitPanel.setVisible(true);
+			moveToSubmit();
 		});
 		return mySubmitButton;
 	}
 	
     /**
-     * 
+     * Constructs the search bar to search for any tag.
+     * @author Alex Merk.
      */
 	private JTextField buildSearchBar() {
-		mySearchBar = new JTextField("Enter tag to search for.");
+		mySearchBar = new JTextField("Enter tag to search for."); 
 		return mySearchBar;
 	}
 	
+	/**
+     * Constructs the search button to search for all projects of a given tag.
+     * @author Alex Merk.
+     */
+	private JButton buildSearchButton() {
+		final JButton mySearchButton = new JButton("Search");
+		mySearchButton.addActionListener((theEvent) -> {
+			myTag = mySearchBar.getText();
+		});
+		return mySearchButton;
+	}
+	
     /**
-     * 
+     * Constructs the back button to shift view to the landing panel.
+     * @author Alex Merk.
      */
 	private JButton buildBackButton() {
 		final JButton myBackButton = new JButton("Back");
@@ -206,8 +192,54 @@ public class CategoryPanel extends JPanel {
 		return myBackButton;
 	}
 	
-    /**
-     * 
+	/**
+	 * Populates the panel with projects with the passed in tag. 
+	 * @author Alex Merk, Peter Bae
+	 */
+	private void buildScrollMenu() {
+		if (myApplicationModel != null) {
+			mySubmissionScroller = new JScrollPane(mySubmissionsPanel);
+			mySubmissionScroller.setPreferredSize(new Dimension(600,400));
+			GridBagConstraints myScrollerConstraints = new GridBagConstraints();
+			myProjectButtons = new ArrayList<JButton>();
+			for (int i = 0; i < myProjects.size(); i++) {
+				ImageIcon myProjectIcon = new ImageIcon(myProjects.get(i).getImageLink());
+				Image myProjectImage = myProjectIcon.getImage();
+				myProjectImage = myProjectImage.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
+				myProjectIcon = new ImageIcon(myProjectImage);
+				
+				JButton myProjectButton = new JButton(myProjectIcon);
+				myProjectButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+				myProjectButton.setHorizontalTextPosition(SwingConstants.CENTER);
+				myProjectButton.setText(myProjects.get(i).getName());
+				ProjectModel project = myProjects.get(i);
+				myProjectButton.addActionListener((theEvent) -> {
+					myProjectPanel.setupPage(project);
+					moveToProject();
+				});
+				myProjectButtons.add(myProjectButton);
+				myScrollerConstraints.gridy = i / 3;
+				myScrollerConstraints.gridx = i % 3;
+				mySubmissionsPanel.add(myProjectButton, myScrollerConstraints);
+			}
+			this.add(mySubmissionScroller);
+		}
+	}	
+	
+	/**
+	 * Switches screen to the Project Panel.
+	 * @author Alex Merk, Peter Bae.
+	 */
+	private void moveToProject() {
+		this.setVisible(false);
+		myFrame.remove(this);
+		myFrame.add(myProjectPanel);
+		myProjectPanel.setVisible(true);
+	}
+	
+	/**
+     * Changes the view to the landing panel.
+     * @author Alex Merk, Peter Bae.
      */
 	private void moveToLanding() {
 		this.setVisible(false);
@@ -217,137 +249,56 @@ public class CategoryPanel extends JPanel {
 		myLandingPanel.setVisible(true);
 		myFrame.add(myLandingPanel);
 	}
-
-    /**
-     * 
-     */
-	private void reset() {
-		setupSubPanel();
-		this.remove(mySubPane);
-	}
-
-    /**
-     * 
-     */
-	private JButton buildSearchButton() {
-		final JButton mySearchButton = new JButton("Search");
-		mySearchButton.addActionListener((theEvent) -> {
-			myTag = mySearchBar.getText();
-			populate();
-		});
-		return mySearchButton;
-	}
 	
 	/**
-	 * Populates the panel with projects with the passed in tag. 
-	 * @author Peter Bae
+	 * Changes the view to the submit panel.
+	 * @author Alex Merk.
 	 */
-	private void populate2() {
-		if (myApplicationModel != null) {
-			GridBagConstraints constraints = new GridBagConstraints();
-			mySubPane = new JScrollPane(mySubPanel);
-			mySubPane.setPreferredSize(new Dimension(600,400));
-			myProjectButtons = new ArrayList<JButton>();
-			for (int i = 0; i < myProjects.size(); i++) {
-				ImageIcon icon = new ImageIcon(myProjects.get(i).getImageLink());
-				Image image = icon.getImage();
-				image = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
-				icon = new ImageIcon(image);
-				
-				JButton button = new JButton(icon);
-				button.setVerticalTextPosition(SwingConstants.BOTTOM);
-				button.setHorizontalTextPosition(SwingConstants.CENTER);
-				button.setText(myProjects.get(i).getName());
-				ProjectModel project = myProjects.get(i);
-				button.addActionListener((theEvent) -> {
-					myProjectPanel.setupPage(project);
-					moveToProject();
-				});
-				myProjectButtons.add(button);
-				constraints.gridy = i / 3;
-				constraints.gridx = i % 3;
-				mySubPanel.add(button, constraints);
-			}
-	
-			this.add(mySubPane);
-		}
-	}
-	
-	/**
-	 * Switches screen to the Project Panel.
-	 */
-	private void moveToProject() {
+	private void moveToSubmit() {
 		this.setVisible(false);
 		myFrame.remove(this);
-		myFrame.add(myProjectPanel);
-		myProjectPanel.setVisible(true);
+		myFrame.add(mySubmitPanel);
+		mySubmitPanel.setVisible(true);
 	}
-
-    /**
-     * 
+	
+	/**
+     * Resets the scroll menu displaying projects.
+     * @author Peter Bae
      */
-	private void populate() {
-		if (myApplicationModel != null) {
-			List<ProjectModel> myProjects = myApplicationModel.getProjects(myTag);
-			myCategoryPanel = new JPanel();
-			myCategoryPanel.setBackground(Color.BLACK);
-			GridLayout myCategoryLayout = new GridLayout(myProjects.size() / 2, 2);
-			myCategoryLayout.setHgap(10);
-			myCategoryLayout.setVgap(10);
-			myCategoryPanel.setLayout(myCategoryLayout);
-			for(ProjectModel project : myProjects) {
-				JButton projectButton = new JButton(project.getName());
-				try {
-					projectButton.setIcon(new ImageIcon(project.getImageLink()));
-				} catch (Exception e){
-					System.out.println(e);
-				}
-				projectButton.addActionListener((theEvent) -> {
-					this.setVisible(false);
-					myFrame.remove(this);
-					myFrame.add(myProjectPanel);
-					myProjectPanel.setVisible(true);
-				});
-				myCategoryPanel.add(projectButton);
-			}
-		}
-		//Comment this after testing
-		myCategoryPanel = new JPanel();
-		GridLayout myCategoryLayout = new GridLayout(6, 2);
-		myCategoryLayout.setHgap(10);
-		myCategoryLayout.setVgap(10);
-		myCategoryPanel.setLayout(myCategoryLayout);
-		for (int i = 0; i < myCategoryLayout.getColumns() * myCategoryLayout.getRows(); i++) {
-			JButton fake = new JButton("test");
-			fake.addActionListener((theEvent) -> {
-				this.setVisible(false);
-				myFrame.remove(this);
-				myFrame.add(myProjectPanel);
-				myProjectPanel.setVisible(true);
-			});
-			myCategoryPanel.add(fake);
-		}
-		//Comemnt this after testing.
+	private void reset() {
+		buildSubPanel();
+		this.remove(mySubmissionScroller);
 	}
 	
 	/**
 	 * Receives a tag from the LandingPanel and updates the shown projects.
 	 * @param theTag is the string received from the LandingPanel.
-	 * @author Alex Merk, Edited by: Peter Bae
+	 * @author Alex Merk, Edited by: Peter Bae.
 	 */
 	protected void setTag(final String theTag) {
 		myFrame.setTitle(theTag.toUpperCase());
 		myTag = theTag;
 		myProjects = myApplicationModel.getProjects(myTag);
-		populate2();
+		buildScrollMenu();
 	}
 	
-	public void passIn(JFrame theFrame,ApplicationModel theApp, LandingPanel theLand, 
-					   SubmitPanel theSub, ProjectPanel thePro) {
-		myApplicationModel = theApp;
-		myLandingPanel = theLand;
-		myProjectPanel = thePro;
-		mySubmitPanel = theSub;
+	/**
+	 * Passes in all of the panels to change the view.
+	 * @param theFrame is the GUI frame.
+	 * @param theApplicationModel is the list of projects.
+	 * @param theLandingPanel is the landing panel.
+	 * @param theSubmissionPanel is the submit panel.
+	 * @param theProjectPanel is the project panel.
+	 * @author Peter Bae.
+	 */
+	public void passIn(JFrame theFrame ,ApplicationModel theApplicationModel, LandingPanel theLandingPanel, 
+					   SubmitPanel theSubmissionPanel, ProjectPanel theProjectPanel) {
+		myApplicationModel = theApplicationModel;
+		myLandingPanel = theLandingPanel;
+		myProjectPanel = theProjectPanel;
+		mySubmitPanel = theSubmissionPanel;
 		myFrame = theFrame;
 	}
+	
+	
 }
