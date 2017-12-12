@@ -20,8 +20,18 @@ import javax.swing.JPanel;
 
 import model.ProjectModel;
 
+/**
+ * Class to manage the Projects panel.
+ * 
+ * @author Logan Stafford, edited by Peter Bae
+ * @version 1.0
+ */
 @SuppressWarnings("serial")
 public class ProjectPanel extends JPanel {
+	
+    /************************************
+     **          CLASS FIELDS         **
+     ***********************************/
 	
     /**
      * A Dimension object representing the panel size of the Project panel.
@@ -38,30 +48,95 @@ public class ProjectPanel extends JPanel {
      */
     private CategoryPanel myCategoryPanel;
    
+    /**
+     * 
+     */
     private JLabel heading;
     
+    /**
+     * 
+     */
     private BufferedImage imageIcon;
     
+    /**
+     * 
+     */
     private JLabel myName;
+    
+    /**
+     * 
+     */
     private JLabel difficulty;
+    
+    /**
+     * 
+     */
     private JLabel cost;
+    
+    /**
+     * 
+     */
     private JLabel tags;
+    
+    /**
+     * 
+     */
     private JLabel materials;
+    
+    /**
+     * 
+     */
     private JLabel directions;
 
-    JFrame myFrame;
+    /**
+     * 
+     */
+    private JFrame myFrame;
     
+    /**
+     * 
+     */
     private JLabel image;
     
+    /**
+     * 
+     */
     private JLabel nameResult;
+    
+    /**
+     * 
+     */
     private JLabel difficultyResult;
+    
+    /**
+     * 
+     */
     private JLabel costResult;
+    
+    /**
+     * 
+     */
     private JLabel tagsResult;
+    
+    /**
+     * 
+     */
     private JLabel materialsResult;
+    
+    /**
+     * 
+     */
     private JLabel directionsResult;
     
-    
+    /**
+     * 
+     */
     private JButton back;
+    
+    /************************************
+     ** CLASS CONSTRUCTOR AND METHODS **
+     ***********************************/
+    
 	public ProjectPanel() {
 		super();
 			
@@ -98,6 +173,9 @@ public class ProjectPanel extends JPanel {
 	        setup();
 	}
 
+    /**
+     * 
+     */
 	public void passIn(JFrame theFrame, CategoryPanel theCat) {
 		myCategoryPanel = theCat;
 		myFrame = theFrame;
@@ -105,7 +183,7 @@ public class ProjectPanel extends JPanel {
 	
 	/**
 	 * Sets up the Panel according to the passed in ProjectModel.
-	 * @author Peter Bae
+	 * 
 	 * @param theProject The passed in ProjectModel.
 	 */
 	public void setupPage(ProjectModel theProject) {
@@ -150,6 +228,9 @@ public class ProjectPanel extends JPanel {
 		image.setIcon(new ImageIcon(theProject.getImageLink()));
 	}
 	
+    /**
+     * 
+     */
 	public void setup() {
 		setPreferredSize(PROJECT_PANEL_SIZE);
         setBackground(PROJECT_PANEL_BG_COLOR);
@@ -207,6 +288,9 @@ public class ProjectPanel extends JPanel {
         this.add(image,constraints);
 	}
 	
+    /**
+     * 
+     */
 	private BufferedImage getScaledImage(BufferedImage src, int w, int h){
 	    int finalw = w;
 	    int finalh = h;
@@ -226,20 +310,5 @@ public class ProjectPanel extends JPanel {
 	    g2.dispose();
 	    return resizedImg;
 	}
-	
-	/*
-	public static void main(String[] args) {
-		final JFrame frame = new JFrame("Project Panel");
 
-		ProjectPanel projectPanel = new ProjectPanel();
-
-		frame.add(projectPanel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(PROJECT_PANEL_SIZE);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-	}
-
-	*/
 }

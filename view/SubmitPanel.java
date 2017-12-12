@@ -29,6 +29,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import model.ApplicationModel;
 import model.ProjectModel;
 
+/**
+ * Class to manage the submission of projects and the according panel.
+ * 
+ * @author Logan Stafford, edited by Peter Bae
+ * @version 1.0
+ */
 @SuppressWarnings("serial")
 public class SubmitPanel extends JPanel {
 
@@ -62,12 +68,12 @@ public class SubmitPanel extends JPanel {
     private static final int SLIDER_MAX_VALUE = 3;
     
     /**
-     * 
+     * The JFrame of the program.
      */
     private JFrame myFrame;
     
     /**
-     * 
+     * The ApplicationModel object used for display purposes.
      */
     private ApplicationModel myApplicationModel;
     
@@ -79,49 +85,52 @@ public class SubmitPanel extends JPanel {
     /**
      * A JLabel object to set next to the "Title" text box.
      */
-    private JLabel labelTitle = new JLabel("Title: ");
+    private JLabel myLabelTitle = new JLabel("Title: ");
     
     /**
      * A JLabel object to set next to the "Difficulty" text box.
      */
-    private JLabel labelDiff = new JLabel("Difficulty: ");
+    private JLabel myLabelDiff = new JLabel("Difficulty: ");
     
     /**
      * A JLabel object to set next to the "Cost" text box.
      */
-    private JLabel labelCost = new JLabel("Cost: ");
+    private JLabel myLabelCost = new JLabel("Cost: ");
     
     /**
      * A JLabel object to set next to the "Materials" text box.
      */
-    private JLabel labelMaterials = new JLabel("Materials: ");
+    private JLabel myLabelMaterials = new JLabel("Materials: ");
     
     /**
      * A JLabel object to set next to the "Directions" text box.
      */
-    private JLabel labelDirections = new JLabel("Directions: ");
+    private JLabel myLabelDirections = new JLabel("Directions: ");
     
     /**
      * A JLabel object to set next to the "Tags" text box.
      */
     private JLabel myLabelTags = new JLabel("Tags: ");
     
+    /**
+     * A String object representing the image path of the uploaded picture.
+     */
     private String myImagePath;
     
     /**
      * A JTextArea object for inputting the "Title".
      */
-    private JTextArea textTitle = new JTextArea(2, 20);
+    private JTextArea myTextTitle = new JTextArea(2, 20);
     
     /**
      * A JTextArea object for inputting the "Materials".
      */
-    private JTextArea textMaterials = new JTextArea(5, 20);
+    private JTextArea myTextMaterials = new JTextArea(5, 20);
     
     /**
      * A JTextArea object for inputting the "Directions".
      */
-    private JTextArea textDirections = new JTextArea(10, 20);
+    private JTextArea myTextDirections = new JTextArea(10, 20);
     
     /**
      * A JextArea object for inputting the "Tags".
@@ -131,27 +140,27 @@ public class SubmitPanel extends JPanel {
     /**
      * A JSlider object used to input the project difficulty.
      */
-    private JSlider diffSlider = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN_VALUE, SLIDER_MAX_VALUE, SLIDER_DEFAULT_VALUE);
+    private JSlider myDiffSlider = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN_VALUE, SLIDER_MAX_VALUE, SLIDER_DEFAULT_VALUE);
     
     /**
      * A JSlider object used to input the project cost.
      */
-    private JSlider costSlider = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN_VALUE, SLIDER_MAX_VALUE, SLIDER_DEFAULT_VALUE);
+    private JSlider myCostSlider = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN_VALUE, SLIDER_MAX_VALUE, SLIDER_DEFAULT_VALUE);
     
     /**
      * A JButton object for submitting the pending project.
      */
-    private JButton buttonSubmit = new JButton("Submit");
+    private JButton mySubmitButton = new JButton("Submit");
     
     /**
      * A JButton object for canceling the pending project.
      */
-    private JButton buttonCancel = new JButton("Cancel");
+    private JButton myCancelButton = new JButton("Cancel");
     
     /**
      * A JButton object for adding a picture to the pending project.
      */
-    private JButton buttonPic = new JButton("Add Picture...");
+    private JButton myPicButton = new JButton("Add Picture...");
     
     /************************************
      ** CLASS CONSTRUCTOR AND METHODS **
@@ -170,27 +179,24 @@ public class SubmitPanel extends JPanel {
 	}
 	
 	/**
-	 * The passIn method for the SubmitPanel. This method
+	 * The passIn method for the SubmitPanel. 
+	 * This method allows for switching of panels.
 	 * 
-	 * @param theFrame
-	 * @param theApp
-	 * @param theCat
+	 * @param theFrame The JFrame of the project.
+	 * @param theApp The ApplicationModel data of the project.
+	 * @param theCat The Category Panel of the project.
 	 */
-	public void passIn(JFrame theFrame, ApplicationModel theApp, CategoryPanel theCat) {
+	public void passIn(JFrame theFrame, ApplicationModel theApplicationModel, CategoryPanel theCategoryPanel) {
 		myFrame = theFrame;
-		myApplicationModel = theApp;
-		myCategoryPanel = theCat;
+		myApplicationModel = theApplicationModel;
+		myCategoryPanel = theCategoryPanel;
 	}
 	
 	/**
-	 * The setup() method of the SubmitPanel.
-	 * 
+	 * The setup() method of the SubmitPanel. 
 	 * This method initializes and sets up the panel itself.
-	 * 
-	 * @author Logan Stafford, Editted by: Peter Bae
 	 */
-	public void setup() {
-		
+	public void setup() {		
 		/* Setting up GridBag constraints. */
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;
@@ -208,35 +214,35 @@ public class SubmitPanel extends JPanel {
         /* Adding text box labels to the panel. */
         constraints.gridx = 0;
         constraints.gridy = 0;     
-        this.add(labelTitle, constraints);
+        this.add(myLabelTitle, constraints);
         constraints.gridy = 2;
-        this.add(labelDiff, constraints);
+        this.add(myLabelDiff, constraints);
         constraints.gridy = 3;
-        this.add(labelCost, constraints);
+        this.add(myLabelCost, constraints);
         constraints.gridy = 4;
-        this.add(labelMaterials, constraints);
+        this.add(myLabelMaterials, constraints);
         constraints.gridy = 5;
-        this.add(labelDirections, constraints);
+        this.add(myLabelDirections, constraints);
         constraints.gridy = 6;
         this.add(myLabelTags, constraints);
         
         /* Enabling line wrap on all the text fields. */
-        textMaterials.setLineWrap(true);
-        textDirections.setLineWrap(true);
+        myTextMaterials.setLineWrap(true);
+        myTextDirections.setLineWrap(true);
         
         /* Adding text boxes to the panel. */
-        final JScrollPane scrollTitle = new JScrollPane(textTitle);
-        final JScrollPane scrollMaterials = new JScrollPane(textMaterials);
-        final JScrollPane scrollDirections = new JScrollPane(textDirections);
+        final JScrollPane scrollTitle = new JScrollPane(myTextTitle);
+        final JScrollPane scrollMaterials = new JScrollPane(myTextMaterials);
+        final JScrollPane scrollDirections = new JScrollPane(myTextDirections);
         final JScrollPane scrollTags = new JScrollPane(myTextTags);
         
         constraints.gridx = 1;
         constraints.gridy = 0;
         this.add(scrollTitle, constraints);
         constraints.gridy = 2;
-        this.add(diffSlider, constraints);
+        this.add(myDiffSlider, constraints);
         constraints.gridy = 3;
-        this.add(costSlider, constraints);
+        this.add(myCostSlider, constraints);
         constraints.gridy = 4;
         this.add(scrollMaterials, constraints);
         constraints.gridy = 5;
@@ -247,11 +253,11 @@ public class SubmitPanel extends JPanel {
         /* Adding the "Submit", "Cancel", and "Add Picture" buttons. */        
         constraints.gridx = 2;
         constraints.gridy = 2;
-        this.add(buttonPic, constraints);
+        this.add(myPicButton, constraints);
         constraints.gridy = 5;
-        this.add(buttonCancel, constraints);
+        this.add(myCancelButton, constraints);
         constraints.gridx = 9;
-        this.add(buttonSubmit, constraints);
+        this.add(mySubmitButton, constraints);
          
         /* Setting up a basic border for the panel. */
         final TitledBorder border = new TitledBorder(new LineBorder(Color.BLACK),
@@ -263,44 +269,44 @@ public class SubmitPanel extends JPanel {
 	}
 	
 	/**
-	 * 
+	 * Creates the Difficulty slider and corresponding labels for it.
 	 */
 	private void setupDifficultySlider() {		
 		/* Setting up Slider options for selecting project difficulty. */
-        diffSlider.setMajorTickSpacing(1);
-        diffSlider.setPaintTicks(true);
-        diffSlider.setPaintLabels(true);
+        myDiffSlider.setMajorTickSpacing(1);
+        myDiffSlider.setPaintTicks(true);
+        myDiffSlider.setPaintLabels(true);
         
         /* Setting up labels for the slider ticks. */
         Hashtable<Integer, JLabel> diffLabelTable = new Hashtable<Integer, JLabel>();
         diffLabelTable.put(new Integer(1), new JLabel("Easy"));
         diffLabelTable.put(new Integer(2), new JLabel("Med"));
         diffLabelTable.put(new Integer(3), new JLabel("Hard"));
-        diffSlider.setLabelTable(diffLabelTable);
+        myDiffSlider.setLabelTable(diffLabelTable);
 	}
 	
 	/**
-	 * 
+	 * Creates the Cost slider and corresponding labels for it.
 	 */
 	private void setupCostSlider() {		
         /* Setting up Slider options for selecting project cost. */
-        costSlider.setMajorTickSpacing(1);
-        costSlider.setPaintTicks(true);
-        costSlider.setPaintLabels(true);
+        myCostSlider.setMajorTickSpacing(1);
+        myCostSlider.setPaintTicks(true);
+        myCostSlider.setPaintLabels(true);
         
         /* Setting up labels for the slider ticks. */
         Hashtable<Integer, JLabel> costLabelTable = new Hashtable<Integer, JLabel>();
         costLabelTable.put(new Integer(1), new JLabel("$"));
         costLabelTable.put(new Integer(2), new JLabel("$$"));
         costLabelTable.put(new Integer(3), new JLabel("$$$"));
-        costSlider.setLabelTable(costLabelTable);
+        myCostSlider.setLabelTable(costLabelTable);
 	}
-	
+
 	/**
-	 * 
+	 * Creates the Add Picture Button object for the SubmitPanel.
 	 */
 	private void buildPictureButton() {
-		buttonPic.addActionListener((theEvent) -> {
+		myPicButton.addActionListener((theEvent) -> {
 		    JFileChooser chooser = new JFileChooser();
 		    File newFile = new File("imgs/" + ProjectModel.getRunningID() + ".png");
 		    
@@ -323,15 +329,19 @@ public class SubmitPanel extends JPanel {
 	}
 	
 	/**
-	 * 
+	 * Creates the Cancel Button object for the SubmitPanel.
 	 */
 	private void buildCancelButton() {
-		buttonCancel.addActionListener((theEvent) -> { 
+		myCancelButton.addActionListener((theEvent) -> { 
 			reset();
 			move();
 		});
 	}
 	
+	/**
+	 * Removes the SubmitPanel from the frame and replaces
+	 * it with the CategoryPanel.
+	 */
 	private void move() {
 		this.setVisible(false);
 		myFrame.remove(this);
@@ -341,43 +351,32 @@ public class SubmitPanel extends JPanel {
 
 	/**
 	 * Resets the SubmitPanel.
-	 * @author Peter Bae
 	 */
 	private void reset() {
-		textTitle.setText("");
-		textMaterials.setText("");
+		myTextTitle.setText("");
+		myTextMaterials.setText("");
 		myImagePath = null;
-	    textDirections.setText("");
+	    myTextDirections.setText("");
 	    myTextTags.setText("");
-	    diffSlider.setValue(2);
-	    costSlider.setValue(2);   
+	    myDiffSlider.setValue(2);
+	    myCostSlider.setValue(2);   
 	}
 
 	/**
-	 * 
+	 * Creates the Submit Button object for the SubmitPanel.
 	 */
-	private void buildSubmitButton() {
-		
-		buttonSubmit.addActionListener((theEvent) -> { 
-			System.out.println(textTitle.getText());
-			System.out.println(myImagePath);
-			System.out.println(textMaterials.getText());
-			System.out.println(diffSlider.getValue());
-			System.out.println(costSlider.getValue());
-			System.out.println(textDirections.getText());
-			System.out.println(myTextTags.getText());
-			
-			if (textTitle.getText().equals("") | 
+	private void buildSubmitButton() {		
+		mySubmitButton.addActionListener((theEvent) -> { 		
+			if (myTextTitle.getText().equals("") | 
 				myImagePath == null |
-				textMaterials.getText().equals("") | 
-				textDirections.getText().equals("") | 
+				myTextMaterials.getText().equals("") | 
+				myTextDirections.getText().equals("") | 
 				myTextTags.getText().equals("")) {
                 JOptionPane.showMessageDialog(null,
                 							  "One or more fields are empty. "
                 							  + "Please complete form.", 
                 							  "Warning", 
-                							  JOptionPane.INFORMATION_MESSAGE);
-				
+                							  JOptionPane.INFORMATION_MESSAGE);				
 			} else {
 				createProject();
 				reset();
@@ -390,12 +389,12 @@ public class SubmitPanel extends JPanel {
 	 * Creates a ProjectModel object and shows a dialog box.
 	 */
 	private void createProject() {
-		ProjectModel newProject = new ProjectModel(textTitle.getText(), 
+		ProjectModel newProject = new ProjectModel(myTextTitle.getText(), 
 												   myImagePath, 
-												   textMaterials.getText(), 
-												   diffSlider.getValue(), 
-												   costSlider.getValue(), 
-												   textDirections.getText(), 
+												   myTextMaterials.getText(), 
+												   myDiffSlider.getValue(), 
+												   myCostSlider.getValue(), 
+												   myTextDirections.getText(), 
 												   formatTags(myTextTags.getText()));			
 		
 		myApplicationModel.addProject(newProject);
@@ -406,7 +405,7 @@ public class SubmitPanel extends JPanel {
 	
 	/**
 	 * Formats the input tag String into a list of String.
-	 * @author Peter Bae
+	 * 
 	 * @param theInput The raw String input.
 	 * @return List of tags as Strings.
 	 */
@@ -424,24 +423,5 @@ public class SubmitPanel extends JPanel {
 		}
 		return strList;
 	}
-	
-    /************************************
-     **       CLASS MAIN() TESTER     **
-     ***********************************/
-	
-//	/**
-//	 * A test method to run and display this panel only.
-//	 */
-//	public static void main(String[] args) {
-//		final JFrame frame = new JFrame("Submit a New Project"); 
-//		
-//		SubmitPanel submitPanel = new SubmitPanel();
-//		
-//		frame.add(submitPanel);		
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(SUBMIT_PANEL_SIZE);
-//        frame.setResizable(false);
-//        frame.setLocationRelativeTo(null);
-//        frame.setVisible(true);
-//	}
+
 }

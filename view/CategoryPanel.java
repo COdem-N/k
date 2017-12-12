@@ -24,6 +24,10 @@ import model.ProjectModel;
 @SuppressWarnings("serial")
 public class CategoryPanel extends JPanel {
 	
+    /************************************
+     **          CLASS FIELDS         **
+     ***********************************/
+	
     /**
      * A Dimension object representing the panel size of the Category panel.
      */
@@ -54,29 +58,64 @@ public class CategoryPanel extends JPanel {
      */
     private SubmitPanel mySubmitPanel;
     
+    /**
+     * 
+     */
     private JScrollPane mySubPane;
     
+    /**
+     * 
+     */
     private JPanel mySubPanel;
+    
     /**
      * Saves the tag sent by LandingPanel that the user wishes to view.
      */
     private String myTag;
     
+    /**
+     * 
+     */
     private List<ProjectModel> myProjects;
     
+    /**
+     * 
+     */
     private List<JButton> myProjectButtons;
     
+    /**
+     * 
+     */
     private JButton myBackButton;
     
+    /**
+     * 
+     */
     private JButton mySearchButton;
     
+    /**
+     * 
+     */
     private JButton mySubmitButton;
     
+    /**
+     * 
+     */
     private JTextField mySearchBar;
     
+    /**
+     * 
+     */
     private JPanel myCategoryPanel;
     
+    /**
+     * 
+     */
     private JFrame myFrame;
+    
+    /************************************
+     ** CLASS CONSTRUCTOR AND METHODS **
+     ***********************************/
     
     /**
      * Default constructor.
@@ -134,6 +173,9 @@ public class CategoryPanel extends JPanel {
 		this.add(mySearchPanel, BorderLayout.NORTH);
 	}
 	
+    /**
+     * 
+     */
 	private JButton buildSubmitButton() {
 		mySubmitButton = new JButton("Submit new project");
 		mySubmitButton.addActionListener((theEvent) -> {
@@ -144,11 +186,17 @@ public class CategoryPanel extends JPanel {
 		return mySubmitButton;
 	}
 	
+    /**
+     * 
+     */
 	private JTextField buildSearchBar() {
 		mySearchBar = new JTextField("Enter tag to search for.");
 		return mySearchBar;
 	}
 	
+    /**
+     * 
+     */
 	private JButton buildBackButton() {
 		final JButton myBackButton = new JButton("Back");
 		myBackButton.addActionListener((theEvent) -> { 
@@ -158,6 +206,9 @@ public class CategoryPanel extends JPanel {
 		return myBackButton;
 	}
 	
+    /**
+     * 
+     */
 	private void moveToLanding() {
 		this.setVisible(false);
 		myFrame.remove(this);
@@ -167,11 +218,17 @@ public class CategoryPanel extends JPanel {
 		myFrame.add(myLandingPanel);
 	}
 
+    /**
+     * 
+     */
 	private void reset() {
 		setupSubPanel();
 		this.remove(mySubPane);
 	}
 
+    /**
+     * 
+     */
 	private JButton buildSearchButton() {
 		final JButton mySearchButton = new JButton("Search");
 		mySearchButton.addActionListener((theEvent) -> {
@@ -226,6 +283,9 @@ public class CategoryPanel extends JPanel {
 		myProjectPanel.setVisible(true);
 	}
 
+    /**
+     * 
+     */
 	private void populate() {
 		if (myApplicationModel != null) {
 			List<ProjectModel> myProjects = myApplicationModel.getProjects(myTag);
@@ -273,7 +333,7 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Receives a tag from the LandingPanel and updates the shown projects.
 	 * @param theTag is the string received from the LandingPanel.
-	 * @author Alex Merk, Editted by: Peter Bae
+	 * @author Alex Merk, Edited by: Peter Bae
 	 */
 	protected void setTag(final String theTag) {
 		myFrame.setTitle(theTag.toUpperCase());

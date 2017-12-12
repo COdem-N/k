@@ -5,13 +5,20 @@ import java.util.List;
 
 /**
  * Model for the Project Object.
- * @author Peter Bae
+ * 
+ * @author Peter Bae, edited by Logan Stafford
+ * 
  * @version 1.0
  */
 @SuppressWarnings("serial")
 public class ProjectModel implements Serializable {
+	
+    /************************************
+     **          CLASS FIELDS         **
+     ***********************************/
+	
 	/**
-	 * Keeps track of the id given to new objects.
+	 * Keeps track of the ID given to new objects.
 	 */
 	private static int myRunningID = 0;
 	
@@ -55,8 +62,13 @@ public class ProjectModel implements Serializable {
 	 */
 	private final List<String> myTags;
 	
+    /************************************
+     ** CLASS CONSTRUCTOR AND METHODS **
+     ***********************************/
+	
 	/**
 	 * Initializes the ProjectModel object.
+	 * 
 	 * @param theName The name of the project.
 	 * @param theImageLink The image link of the project.
 	 * @param theMaterials The material requirements of the project.
@@ -85,6 +97,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Edits the runningID. 
+	 * 
 	 * @param theRunningID The desired runningID value.
 	 */
 	public static void setRunningID(int theRunningID) {
@@ -93,6 +106,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Gets the total amount of projects.
+	 * 
 	 * @return the total amount of projects.
 	 */
 	public static int getRunningID() {
@@ -101,6 +115,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the unique ID of the project.
+	 * 
 	 * @return The unique ID of the project.
 	 */
 	public int getID() {
@@ -109,6 +124,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the name of the project.
+	 * 
 	 * @return The name of the project.
 	 */
 	public String getName() {
@@ -117,6 +133,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the image link of the project.
+	 * 
 	 * @return The image link of the project.
 	 */	
 	public String getImageLink() {
@@ -125,6 +142,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the required materials of the project.
+	 * 
 	 * @return The required materials of the project.
 	 */
 	public String getMaterials() {
@@ -133,6 +151,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the difficulty of the project.
+	 * 
 	 * @return The difficulty of the project.
 	 */
 	public int getDifficulty() {
@@ -141,6 +160,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the cost of the project.
+	 * 
 	 * @return The cost of the project.
 	 */
 	public int getCost() {
@@ -149,6 +169,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the directions of the project.
+	 * 
 	 * @return The directions of the project.
 	 */
 	public String getBody() {
@@ -157,6 +178,7 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the list of tags that describe the project.
+	 * 
 	 * @return The list of tags that describe the project.
 	 */
 	public List<String> getTags() {
@@ -164,9 +186,9 @@ public class ProjectModel implements Serializable {
 	}
 	
 	/**
-	 * Returns the string representation of the project. (for debugging)
-	 * @author Peter Bae
-	 * @return the string representation of the project.
+	 * Returns the string representation of the project (for debugging purposes).
+	 * 
+	 * @return The string representation of the project.
 	 */
 	public String toString() {
 		StringBuilder str = new StringBuilder();

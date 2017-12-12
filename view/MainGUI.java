@@ -21,6 +21,10 @@ import model.ProjectModel;
  */
 public class MainGUI implements WindowListener {
 	
+    /************************************
+     **          CLASS FIELDS         **
+     ***********************************/
+	
 	/**
 	 * Toolkit used to set the frame location.
 	 */
@@ -60,6 +64,10 @@ public class MainGUI implements WindowListener {
 	 * The main frame for the program.
 	 */
 	private JFrame myFrame;
+	
+    /************************************
+     ** CLASS CONSTRUCTOR AND METHODS **
+     ***********************************/
 	
 	/**
 	 * Constructor to initialize and setup all the panels
@@ -153,6 +161,9 @@ public class MainGUI implements WindowListener {
 		fos.close();
 	}
 
+    /**
+     * 
+     */
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
@@ -172,30 +183,45 @@ public class MainGUI implements WindowListener {
 		}
 	}
 
+    /**
+     * 
+     */
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+    /**
+     * 
+     */
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+    /**
+     * 
+     */
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+    /**
+     * 
+     */
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+    /**
+     * 
+     */
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub

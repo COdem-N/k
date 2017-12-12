@@ -8,11 +8,17 @@ import java.util.Map;
 
 /**
  * Class to aggregate and manage ProjectModel objects.
- * @author Peter Bae
+ * 
+ * @author Peter Bae, edited by Logan Stafford
  * @version 1.0
  */
 @SuppressWarnings("serial")
 public class ApplicationModel implements Serializable {
+	
+    /************************************
+     **          CLASS FIELDS         **
+     ***********************************/
+	
 	/**
 	 * List of ProjectModels.
 	 */
@@ -22,6 +28,10 @@ public class ApplicationModel implements Serializable {
 	 * Map of Tags/Occurrences pulled from the ProjectModels.
 	 */
 	private Map<String, Integer> myTagMap;
+	
+    /************************************
+     ** CLASS CONSTRUCTOR AND METHODS **
+     ***********************************/
 	
 	/**
 	 * Constructor to initialize the fields.
@@ -33,6 +43,7 @@ public class ApplicationModel implements Serializable {
 	
 	/**
 	 * Adds the passed in ProjectModel to the project list.
+	 * 
 	 * @author Peter Bae
 	 * @param theProject The ProjectModel to be added in.
 	 */
@@ -50,7 +61,8 @@ public class ApplicationModel implements Serializable {
 	
 	/**
 	 * Returns the entire project list.
-	 * @return the entire project list.
+	 * 
+	 * @return The entire project list.
 	 */
 	public List<ProjectModel> getProjects() {
 		return myProjectList;
@@ -58,13 +70,17 @@ public class ApplicationModel implements Serializable {
 	
 	/**
 	 * Returns a list of projects containing the passed in tag.
+	 * 
 	 * @author Peter Bae
 	 * @param theTag The tag to test for.
 	 * @return A list of projects containing the passed in tag.
 	 */
 	public List<ProjectModel> getProjects(String theTag) {
+		
+		/* Initializing a new ArrayList for the projects. */
 		List<ProjectModel> projects = new ArrayList<ProjectModel>();
 		
+		/* Appending each Project that contains the tag into the list. */
 		for (int i = 0; i < myProjectList.size(); i++) {
 			ProjectModel project = myProjectList.get(i);
 			if (project.getTags().contains(theTag))
@@ -77,16 +93,22 @@ public class ApplicationModel implements Serializable {
 	/**
 	 * Returns the list of tags occurring in the projects in the project list
 	 * in descending order of occurrences.
+	 * 
 	 * @author Peter Bae
 	 * @return List of tags occurring in the projects in the project list
 	 * in descending order of occurrences.
 	 */
 	public List<String> getTags() {
+		
+		/* Initializing a new ArrayList for the project tags. */
 		List<String> returnList = new ArrayList<String>();
+		
+		/* Appending each tag to the map. */
 		if (myTagMap != null) {
 			Map<String, Integer> map = new HashMap<String, Integer>(myTagMap);
 			String largestKey = "";
 			int largest = 0;
+			
 			for (int i = 0; i < myTagMap.size(); i++) {
 				for (String key : map.keySet()) {
 					if (map.get(key) > largest) {
@@ -94,6 +116,7 @@ public class ApplicationModel implements Serializable {
 						largest = map.get(key);
 					}
 				}
+				
 				map.put(largestKey, 0);
 				returnList.add(largestKey);
 				largestKey = "";
@@ -108,6 +131,7 @@ public class ApplicationModel implements Serializable {
 	 * Returns the tags/occurrences map according to how many
 	 * times the tag has appeared in the projects in the
 	 * project list.
+	 * 
 	 * @return Tags/occurrences map according to how many
 	 * times the tag has appeared in the projects in the
 	 * project list.
@@ -117,17 +141,22 @@ public class ApplicationModel implements Serializable {
 	}
 	
 	/**
-	 * Returns the string representation of the the ApplicationModel.
+	 * Returns a string representation of the the ApplicationModel.
+	 * 
 	 * @author Peter Bae
 	 * @return String representation of the the ApplicationModel.
 	 */
 	public String toString() {
+		
+		/* Initializing a new String via StringBuilder. */
 		StringBuilder str = new StringBuilder();
 		
+		/* Populating the String with the list of Projects in myProjectList. */
 		for (ProjectModel pm : myProjectList) {
 			str.append(pm);
 		}
 		
+		/* If myProjectList is empty, append "Empty" to the String. */
 		if (myProjectList.size() == 0) {
 			str.append("Empty");
 		}

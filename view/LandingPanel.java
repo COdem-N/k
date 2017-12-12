@@ -21,14 +21,19 @@ import javax.swing.SwingConstants;
 
 import model.ApplicationModel;
 
-/*
- * Author: Carter Odem
- * the landing page for the application from here you can either search a tag or click on one
+/**
+ * @author Carter Odem
+ * 
+ * The landing page for the application from here you can either search a tag or click on one
  *  of the most popular tags
  */
 @SuppressWarnings("serial")
 public class LandingPanel extends JPanel {
 
+    /************************************
+     **          CLASS FIELDS         **
+     ***********************************/
+	
 	/**
 	 * A Dimension object representing the panel size of the Landing panel.
 	 */
@@ -39,20 +44,34 @@ public class LandingPanel extends JPanel {
 	 */
 	private static final Color LANDING_PANEL_BG_COLOR = new Color(60, 141, 13);
 
-	// the Search bar
+    /**
+     * the Search bar
+     */
 	private JTextField searchBar = new JTextField();
 
-	// label for the search bar
+    /**
+     * label for the search bar
+     */
 	private JLabel mySearchLabel = new JLabel("Search");
 
-	// array of buttons that will be used as category's
+    /**
+     * array of buttons that will be used as category's
+     */
 	private JButton[] projectBtns = new JButton[8];
-
-	// button to import projects to the application
+	
+    /**
+     * button to import projects to the application
+     */
 	private JButton importBtn = new JButton("Import");
-	// button to save all the projects to a file
+	
+    /**
+     * button to save all the projects to a file
+     */
 	private JButton exportBtn = new JButton("Export");
 	
+    /**
+     * 
+     */
 	JFrame myFrame;
 
 	/**
@@ -61,11 +80,18 @@ public class LandingPanel extends JPanel {
 	private ApplicationModel myApplicationModel;
 
 	/**
-	 * the next panel that will potentialy called
+	 * the next panel that will potentially called
 	 */
 	private CategoryPanel myCategoryPanel;
 
+    /************************************
+     ** CLASS CONSTRUCTOR AND METHODS **
+     ***********************************/
+	
 	// defualt constructor for the landing panel setting the layout and size
+    /**
+     * 
+     */
 	public LandingPanel() {
 		super();
 		this.setLayout(new GridBagLayout());
@@ -77,12 +103,18 @@ public class LandingPanel extends JPanel {
 	/*
 	 * pass in function to get the data from the application model
 	 */
+    /**
+     * 
+     */
 	public void passIn(JFrame theFrame,ApplicationModel theApp, CategoryPanel theCat) {
 		myApplicationModel = theApp;
 		myCategoryPanel = theCat;
 		myFrame = theFrame;
 	}
 
+    /**
+     * 
+     */
 	public void moveToCategory() {
 		this.setVisible(false);
 		myFrame.remove(this);
@@ -211,20 +243,5 @@ public class LandingPanel extends JPanel {
 	private void reset() {
 		searchBar.setText("");
 	}
-//	/**
-//	 * A test method to run and display this panel only.
-//	 */
-//	public static void main(String[] args) {
-//		final JFrame frame = new JFrame("Landing page");
-//
-//		LandingPanel landingPage = new LandingPanel();
-//
-//		frame.add(landingPage);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setSize(LANDING_PANEL_SIZE);
-//		frame.setResizable(false);
-//		frame.setLocationRelativeTo(null);
-//		frame.setVisible(true);
-//	}
 
 }
