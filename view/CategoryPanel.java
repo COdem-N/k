@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -182,7 +183,19 @@ public class CategoryPanel extends JPanel {
 	private JButton buildSearchButton() {
 		final JButton mySearchButton = new JButton("Search");
 		mySearchButton.addActionListener((theEvent) -> {
-			myTag = mySearchBar.getText();
+			/*
+			reset();
+			setTag(mySearchBar.getText());
+			this.add(mySubmissionScroller, BorderLayout.CENTER);
+			repaint();
+			System.out.println(myTag);
+			System.out.println(Arrays.toString(myProjects.toArray()));
+			*/
+			reset();
+			setTag(mySearchBar.getText());
+			moveToLanding();
+			myLandingPanel.moveToCategory();
+			myFrame.setTitle(myTag);
 		});
 		return mySearchButton;
 	}
@@ -232,7 +245,7 @@ public class CategoryPanel extends JPanel {
 				myScrollerConstraints.gridx = i % 3;
 				mySubmissionsPanel.add(myProjectButton, myScrollerConstraints);
 			}
-			this.add(mySubmissionScroller);
+			this.add(mySubmissionScroller, BorderLayout.CENTER);
 		}
 	}	
 	
