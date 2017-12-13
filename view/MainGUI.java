@@ -17,7 +17,9 @@ import model.ProjectModel;
 /**
  * The main GUI for the program.
  * 
- * @author Peter Bae, edited by Logan Stafford
+ * @author Peter Bae
+ * @author Logan Stafford (editing)
+ * 
  * @version 1.0
  */
 public class MainGUI implements WindowListener {
@@ -73,6 +75,8 @@ public class MainGUI implements WindowListener {
 	/**
 	 * Constructor to initialize and setup all the panels
 	 * and loads from an existing save file if one exists.
+	 * 
+	 * @author Peter Bae
 	 */
 	public MainGUI() {
 		myFrame = new JFrame();
@@ -96,6 +100,8 @@ public class MainGUI implements WindowListener {
 	
 	/**
 	 * Helper method to setup all the panels.
+	 * 
+	 * @author Peter Bae
 	 */
 	private void setup() {
 		myLandingPanel.passIn(myFrame, myApplicationModel, myCategoryPanel);
@@ -131,6 +137,8 @@ public class MainGUI implements WindowListener {
 	 * Saves from an existing save file if that file exists,
 	 * if not, creates a new save file.
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @throws IOException If the file path is not valid.
 	 * @throws ClassNotFoundException Thrown if type casts are wrong.
 	 */
@@ -140,14 +148,15 @@ public class MainGUI implements WindowListener {
 		
 		ProjectModel.setRunningID((int) ois.readObject());
 		myApplicationModel = (ApplicationModel) ois.readObject();
-		
-		//System.out.println(myApplicationModel);
+
 		ois.close();
 		fis.close();
 	}
 	
 	/**
 	 * Saves the current session to a save file.
+	 * 
+	 * @author Peter Bae
 	 * 
 	 * @throws IOException Thrown if the file path cannot be accessed.
 	 */
@@ -173,6 +182,8 @@ public class MainGUI implements WindowListener {
 
 	/**
 	 * Tries to save before closing out of the program.
+	 * 
+	 * @author Peter Bae
 	 * 
 	 * @param theEvent The closing event.
 	 */

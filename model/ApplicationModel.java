@@ -9,7 +9,9 @@ import java.util.Map;
 /**
  * Class to aggregate and manage ProjectModel objects.
  * 
- * @author Peter Bae, edited by Logan Stafford
+ * @author Peter Bae
+ * @author Logan Stafford (editing)
+ * 
  * @version 1.0
  */
 @SuppressWarnings("serial")
@@ -35,6 +37,8 @@ public class ApplicationModel implements Serializable {
 	
 	/**
 	 * Constructor to initialize the fields.
+	 * 
+	 * @author Peter Bae
 	 */
 	public ApplicationModel() {
 		myProjectList = new ArrayList<ProjectModel>();
@@ -45,6 +49,7 @@ public class ApplicationModel implements Serializable {
 	 * Adds the passed in ProjectModel to the project list.
 	 * 
 	 * @author Peter Bae
+	 * 
 	 * @param theProject The ProjectModel to be added in.
 	 */
 	public void addProject(ProjectModel theProject) {
@@ -62,6 +67,8 @@ public class ApplicationModel implements Serializable {
 	/**
 	 * Returns the entire project list.
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @return The entire project list.
 	 */
 	public List<ProjectModel> getProjects() {
@@ -72,6 +79,7 @@ public class ApplicationModel implements Serializable {
 	 * Returns a list of projects containing the passed in tag.
 	 * 
 	 * @author Peter Bae
+	 * 
 	 * @param theTag The tag to test for.
 	 * @return A list of projects containing the passed in tag.
 	 */
@@ -95,6 +103,7 @@ public class ApplicationModel implements Serializable {
 	 * in descending order of occurrences.
 	 * 
 	 * @author Peter Bae
+	 * 
 	 * @return List of tags occurring in the projects in the project list
 	 * in descending order of occurrences.
 	 */
@@ -132,6 +141,8 @@ public class ApplicationModel implements Serializable {
 	 * times the tag has appeared in the projects in the
 	 * project list.
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @return Tags/occurrences map according to how many
 	 * times the tag has appeared in the projects in the
 	 * project list.
@@ -144,6 +155,7 @@ public class ApplicationModel implements Serializable {
 	 * Returns a string representation of the the ApplicationModel.
 	 * 
 	 * @author Peter Bae
+	 * 
 	 * @return A String representation of the the ApplicationModel.
 	 */
 	public String toString() {		

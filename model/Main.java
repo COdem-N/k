@@ -7,7 +7,10 @@ import view.MainGUI;
 /**
  * The main driver class of the program.
  * 
- * @author Carter Odem, Peter Bae, Alex Merk, edited by Logan Stafford
+ * @author Carter Odem
+ * @author Peter Bae
+ * @author Alex Merk
+ * @author Logan Stafford
  * @version 1.0
  */
 public class Main {

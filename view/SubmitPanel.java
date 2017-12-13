@@ -32,7 +32,7 @@ import model.ProjectModel;
 /**
  * Class to manage the submission of projects and the according panel.
  * 
- * @author Logan Stafford, edited by Peter Bae
+ * @author Logan Stafford, Peter Bae
  * @version 1.0
  */
 @SuppressWarnings("serial")
@@ -168,6 +168,8 @@ public class SubmitPanel extends JPanel {
     
     /**
      * The SubmitPanel constructor.
+     * 
+     * @author Logan Stafford
      */
 	public SubmitPanel() {
 		/* Constructing the panel with a GridBag layout. */
@@ -182,6 +184,8 @@ public class SubmitPanel extends JPanel {
 	 * The passIn method for the SubmitPanel. 
 	 * This method allows for switching of panels.
 	 * 
+	 * @author Logan Stafford
+	 * 
 	 * @param theFrame The JFrame of the project.
 	 * @param theApp The ApplicationModel data of the project.
 	 * @param theCat The Category Panel of the project.
@@ -195,6 +199,8 @@ public class SubmitPanel extends JPanel {
 	/**
 	 * The setup() method of the SubmitPanel. 
 	 * This method initializes and sets up the panel itself.
+	 * 
+	 * @author Logan Stafford
 	 */
 	public void setup() {		
 		/* Setting up GridBag constraints. */
@@ -277,6 +283,8 @@ public class SubmitPanel extends JPanel {
 	
 	/**
 	 * Creates the Difficulty slider and corresponding labels for it.
+	 * 
+	 * @author Logan Stafford
 	 */
 	private void setupDifficultySlider() {		
 		/* Setting up Slider options for selecting project difficulty. */
@@ -294,6 +302,8 @@ public class SubmitPanel extends JPanel {
 	
 	/**
 	 * Creates the Cost slider and corresponding labels for it.
+	 * 
+	 * @author Logan Stafford
 	 */
 	private void setupCostSlider() {		
         /* Setting up Slider options for selecting project cost. */
@@ -311,6 +321,8 @@ public class SubmitPanel extends JPanel {
 
 	/**
 	 * Creates the Add Picture Button object for the SubmitPanel.
+	 * 
+	 * @author Peter Bae
 	 */
 	private void buildPictureButton() {
 		myPicButton.addActionListener((theEvent) -> {
@@ -337,6 +349,8 @@ public class SubmitPanel extends JPanel {
 	
 	/**
 	 * Creates the Cancel Button object for the SubmitPanel.
+	 * 
+	 * @author Peter Bae
 	 */
 	private void buildCancelButton() {
 		myCancelButton.addActionListener((theEvent) -> { 
@@ -348,6 +362,8 @@ public class SubmitPanel extends JPanel {
 	/**
 	 * Removes the SubmitPanel from the frame and replaces
 	 * it with the CategoryPanel.
+	 * 
+	 * @author Peter bae
 	 */
 	private void move() {
 		this.setVisible(false);
@@ -358,6 +374,8 @@ public class SubmitPanel extends JPanel {
 
 	/**
 	 * Resets the SubmitPanel.
+	 * 
+	 * @author Peter Bae
 	 */
 	private void reset() {
 		myTextTitle.setText("");
@@ -371,6 +389,9 @@ public class SubmitPanel extends JPanel {
 
 	/**
 	 * Creates the Submit Button object for the SubmitPanel.
+	 * 
+	 * @author Logan Stafford
+	 * @author Peter Bae (editing)
 	 */
 	private void buildSubmitButton() {		
 		mySubmitButton.addActionListener((theEvent) -> { 		
@@ -394,6 +415,8 @@ public class SubmitPanel extends JPanel {
 	
 	/**
 	 * Creates a ProjectModel object and shows a dialog box.
+	 * 
+	 * @author Logan Stafford
 	 */
 	private void createProject() {
 		ProjectModel newProject = new ProjectModel(myTextTitle.getText(), 
@@ -412,6 +435,8 @@ public class SubmitPanel extends JPanel {
 	
 	/**
 	 * Formats the input tag String into a list of String.
+	 * 
+	 * @author Peter Bae
 	 * 
 	 * @param theInput The raw String input.
 	 * @return List of tags as Strings.

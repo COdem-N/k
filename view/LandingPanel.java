@@ -22,7 +22,8 @@ import javax.swing.SwingConstants;
 import model.ApplicationModel;
 
 /**
- * @author Carter Odem, edited by Logan Stafford
+ * @author Carter Odem
+ * @author Logan Stafford (comments and editing)
  * 
  * The landing page for the application from here you can either search a tag or click on one
  *  of the most popular tags
@@ -81,6 +82,8 @@ public class LandingPanel extends JPanel {
     /**
      * The LandingPanel() constructor. This just creates a LandingPanel and sets
      * it's layout and size.
+     * 
+     * @author Logan Stafford
      */
 	public LandingPanel() {
 		super();
@@ -94,6 +97,8 @@ public class LandingPanel extends JPanel {
 
     /**
      * The passIn() method. This is used for switching between panels in the program.
+     * 
+     * @author Carter Odem
      */
 	public void passIn(JFrame theFrame, ApplicationModel theApplicationModel, CategoryPanel theCategoryPanel) {
 		myApplicationModel = theApplicationModel;
@@ -102,7 +107,9 @@ public class LandingPanel extends JPanel {
 	}
 
     /**
+     * The moveToCategory() method. THis is used to switch back to the CategoryPanel.
      * 
+     * @author Carter Odem
      */
 	public void moveToCategory() {
 		this.setVisible(false);
@@ -115,7 +122,9 @@ public class LandingPanel extends JPanel {
 	 * The setup() method, used to initialize all the components and 
 	 * add them to the LandingPanel.
 	 * 
-	 * @author Carter Odem, Edited by: Peter Bae, Logan Stafford
+	 * @author Carter Odem
+	 * @author Peter Bae (editing) 
+	 * @author Logan Stafford (editing)
 	 */
 	public void setup() {
 		for (int i = 0; i < 8; i++) {
@@ -212,6 +221,8 @@ public class LandingPanel extends JPanel {
 	
 	/**
 	 * Resets the search bar.
+	 * 
+	 * @author Carter Odem
 	 */
 	private void reset() {
 		mySearchBar.setText("");

@@ -7,7 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -24,7 +23,9 @@ import model.ProjectModel;
 /**
  * Category Panel class. Displays all of the projects with a given tag. Allows users to search for a specific tag, as well as submit new projects.
  * 
- * @author Alex Merk, Peter Bae, edited by Logan Stafford
+ * @author Alex Merk
+ * @author Peter Bae
+ * @author Logan Stafford (editing)
  */
 @SuppressWarnings("serial")
 public class CategoryPanel extends JPanel {
@@ -105,7 +106,7 @@ public class CategoryPanel extends JPanel {
     /**
      * Default constructor.
      * 
-     * @author Peter Bae.
+     * @author Peter Bae
      */
 	public CategoryPanel() {
 			super();
@@ -119,7 +120,7 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Adds the visual components of the panel.
 	 * 
-	 * @author Alex Merk.
+	 * @author Alex Merk
 	 */
 	protected void setup() {
 		this.setLayout(new BorderLayout());
@@ -131,7 +132,7 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Constructs the scroll window.
 	 * 
-	 * @author Peter Bae.
+	 * @author Peter Bae
 	 */
 	private void buildSubPanel() {
 		mySubmissionsPanel = new JPanel();
@@ -141,7 +142,7 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Constructs the search menu for the window.
 	 * 
-	 * @author Alex Merk.
+	 * @author Alex Merk
 	 */
 	private void buildSearchMenu() {
 		final JPanel mySearchPanel = new JPanel(new BorderLayout());
@@ -155,7 +156,7 @@ public class CategoryPanel extends JPanel {
     /**
      * Constructs the button for submitting a new project.
      * 
-     * @author Alex Merk.
+     * @author Alex Merk
      */
 	private JButton buildSubmitButton() {
 		final JButton mySubmitButton = new JButton("Submit A New Project...");
@@ -168,7 +169,7 @@ public class CategoryPanel extends JPanel {
     /**
      * Constructs the search bar to search for any tag.
      * 
-     * @author Alex Merk.
+     * @author Alex Merk
      */
 	private JTextField buildSearchBar() {
 		mySearchBar = new JTextField("Enter tag(s) to search for here..."); 
@@ -178,7 +179,7 @@ public class CategoryPanel extends JPanel {
 	/**
      * Constructs the search button to search for all projects of a given tag.
      * 
-     * @author Alex Merk.
+     * @author Alex Merk
      */
 	private JButton buildSearchButton() {
 		final JButton mySearchButton = new JButton("Search");
@@ -203,7 +204,7 @@ public class CategoryPanel extends JPanel {
     /**
      * Constructs the back button to shift view to the landing panel.
      * 
-     * @author Alex Merk.
+     * @author Alex Merk
      */
 	private JButton buildBackButton() {
 		final JButton myBackButton = new JButton("Back");
@@ -217,7 +218,8 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Populates the panel with projects with the passed in tag. 
 	 * 
-	 * @author Alex Merk, Peter Bae
+	 * @author Alex Merk
+	 * @author Peter Bae
 	 */
 	private void buildScrollMenu() {
 		if (myApplicationModel != null) {
@@ -252,7 +254,8 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Switches screen to the Project Panel.
 	 * 
-	 * @author Alex Merk, Peter Bae.
+	 * @author Alex Merk
+	 * @author Peter Bae
 	 */
 	private void moveToProject() {
 		this.setVisible(false);
@@ -264,7 +267,8 @@ public class CategoryPanel extends JPanel {
 	/**
      * Changes the view to the landing panel.
      * 
-     * @author Alex Merk, Peter Bae.
+     * @author Alex Merk
+     * @author Peter Bae
      */
 	private void moveToLanding() {
 		this.setVisible(false);
@@ -278,7 +282,7 @@ public class CategoryPanel extends JPanel {
 	/**
 	 * Changes the view to the submit panel.
 	 * 
-	 * @author Alex Merk.
+	 * @author Alex Merk
 	 */
 	private void moveToSubmit() {
 		this.setVisible(false);
@@ -301,7 +305,8 @@ public class CategoryPanel extends JPanel {
 	 * Receives a tag from the LandingPanel and updates the shown projects.
 	 * @param theTag is the string received from the LandingPanel.
 	 * 
-	 * @author Alex Merk, Edited by: Peter Bae.
+	 * @author Alex Merk 
+	 * @author Peter Bae (editing)
 	 */
 	protected void setTag(final String theTag) {
 		myFrame.setTitle(theTag.toUpperCase());

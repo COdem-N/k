@@ -6,7 +6,8 @@ import java.util.List;
 /**
  * Model for the Project Object.
  * 
- * @author Peter Bae, edited by Logan Stafford
+ * @author Peter Bae
+ * @author Logan Stafford (editing)
  * 
  * @version 1.0
  */
@@ -69,6 +70,8 @@ public class ProjectModel implements Serializable {
 	/**
 	 * Initializes the ProjectModel object.
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @param theName The name of the project.
 	 * @param theImageLink The image link of the project.
 	 * @param theMaterials The material requirements of the project.
@@ -98,6 +101,8 @@ public class ProjectModel implements Serializable {
 	/**
 	 * Edits the runningID. 
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @param theRunningID The desired runningID value.
 	 */
 	public static void setRunningID(int theRunningID) {
@@ -106,6 +111,8 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Gets the total amount of projects.
+	 * 
+	 * @author Peter Bae
 	 * 
 	 * @return the total amount of projects.
 	 */
@@ -116,6 +123,8 @@ public class ProjectModel implements Serializable {
 	/**
 	 * Returns the unique ID of the project.
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @return The unique ID of the project.
 	 */
 	public int getID() {
@@ -124,6 +133,8 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the name of the project.
+	 * 
+	 * @author Peter Bae
 	 * 
 	 * @return The name of the project.
 	 */
@@ -134,6 +145,8 @@ public class ProjectModel implements Serializable {
 	/**
 	 * Returns the image link of the project.
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @return The image link of the project.
 	 */	
 	public String getImageLink() {
@@ -142,6 +155,8 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the required materials of the project.
+	 * 
+	 * @author Peter Bae
 	 * 
 	 * @return The required materials of the project.
 	 */
@@ -152,6 +167,8 @@ public class ProjectModel implements Serializable {
 	/**
 	 * Returns the difficulty of the project.
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @return The difficulty of the project.
 	 */
 	public int getDifficulty() {
@@ -160,6 +177,8 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the cost of the project.
+	 * 
+	 * @author Peter Bae
 	 * 
 	 * @return The cost of the project.
 	 */
@@ -170,6 +189,8 @@ public class ProjectModel implements Serializable {
 	/**
 	 * Returns the directions of the project.
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @return The directions of the project.
 	 */
 	public String getBody() {
@@ -179,6 +200,8 @@ public class ProjectModel implements Serializable {
 	/**
 	 * Returns the list of tags that describe the project.
 	 * 
+	 * @author Peter Bae
+	 * 
 	 * @return The list of tags that describe the project.
 	 */
 	public List<String> getTags() {
@@ -187,6 +210,8 @@ public class ProjectModel implements Serializable {
 	
 	/**
 	 * Returns the string representation of the project (for debugging purposes).
+	 * 
+	 * @author Peter Bae
 	 * 
 	 * @return The string representation of the project.
 	 */
