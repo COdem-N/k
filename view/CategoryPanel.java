@@ -40,7 +40,7 @@ public class CategoryPanel extends JPanel {
     /**
      * A Color object to be used as the background color of the Category panel.
      */
-    private static final Color CATEGORY_PANEL_BG_COLOR = new Color(60, 141, 13);
+    private static final Color CATEGORY_PANEL_BG_COLOR = new Color(0, 0, 75);
     
     /**
      * Holds the currently submitted projects.
@@ -157,7 +157,7 @@ public class CategoryPanel extends JPanel {
      * @author Alex Merk.
      */
 	private JButton buildSubmitButton() {
-		final JButton mySubmitButton = new JButton("Submit new project");
+		final JButton mySubmitButton = new JButton("Submit A New Project...");
 		mySubmitButton.addActionListener((theEvent) -> {
 			moveToSubmit();
 		});
@@ -170,7 +170,7 @@ public class CategoryPanel extends JPanel {
      * @author Alex Merk.
      */
 	private JTextField buildSearchBar() {
-		mySearchBar = new JTextField("Enter tag to search for."); 
+		mySearchBar = new JTextField("Enter tag(s) to search for here..."); 
 		return mySearchBar;
 	}
 	

@@ -41,7 +41,7 @@ public class ProjectPanel extends JPanel {
     /**
      * A Color object to be used as the background color of the Project panel.
      */
-    private static final Color PROJECT_PANEL_BG_COLOR = new Color(60, 141, 13);
+    private static final Color PROJECT_PANEL_BG_COLOR = new Color(0, 0, 75);
     
     /**
      * The Category panel of the program.
@@ -155,6 +155,15 @@ public class ProjectPanel extends JPanel {
         myMaterials = new JLabel("Materials:");
         myDirections = new JLabel("Directions:");
         
+        /* Setting the text color to white so as to be visible against the navy background. */
+        myHeading.setForeground(Color.WHITE);
+        myName.setForeground(Color.WHITE);
+        myDifficulty.setForeground(Color.WHITE);
+        myCost.setForeground(Color.WHITE);
+        myTags.setForeground(Color.WHITE);
+        myMaterials.setForeground(Color.WHITE);
+        myDirections.setForeground(Color.WHITE);
+        
         try {
     		myImageIcon = ImageIO.read(new File("view/desk.png"));
     		myImageIcon = getScaledImage(myImageIcon, 250, 250);
@@ -170,6 +179,14 @@ public class ProjectPanel extends JPanel {
         myMaterialsResult = new JLabel("Wood, Nails, Saw, Hammer ");
         myDirectionsResult = new JLabel("Directions will be displayed here");	        
         myBackButton = new JButton("Back");
+        
+        /* Setting the text color to white so as to be visible against the navy background. */
+        myNameResult.setForeground(Color.WHITE);
+        myDifficultyResult.setForeground(Color.WHITE);
+        myCostResult.setForeground(Color.WHITE);
+        myTagsResult.setForeground(Color.WHITE);
+        myMaterialsResult.setForeground(Color.WHITE);
+        myDirectionsResult.setForeground(Color.WHITE);               
         
         /* Setting some properties of the panel. */	 
         this.setLayout(new GridBagLayout());

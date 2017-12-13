@@ -42,17 +42,17 @@ public class LandingPanel extends JPanel {
 	/**
 	 * A Color object to be used as the background color of the Landing panel.
 	 */
-	private static final Color LANDING_PANEL_BG_COLOR = new Color(60, 141, 13);
+	private static final Color LANDING_PANEL_BG_COLOR = new Color(0, 0, 75);
 
     /**
      * A JTextField object used for the Search bar.
      */
-	private JTextField mySearchBar = new JTextField();
+	private JTextField mySearchBar = new JTextField("Enter tag(s) to search for here...");
 
     /**
      * A JLabel object used to label the Search bar.
      */
-	private JLabel mySearchLabel = new JLabel("Search");
+	private JLabel mySearchLabel = new JLabel("Search for a Project! Or, choose from common tags below.");
 
     /**
      * An array of JButton objects used to represent each category of projects.
@@ -60,19 +60,9 @@ public class LandingPanel extends JPanel {
 	private JButton[] myProjectButtons = new JButton[8];
 	
     /**
-     * A JButton object for importing projects to the application.
-     */
-	private JButton myImportButton = new JButton("Import");
-	
-    /**
-     * A JButton object for saving all the projects to a file.
-     */
-	private JButton myExportButton = new JButton("Export");
-	
-    /**
      * The JFrame of the program.
      */
-	JFrame myFrame;
+	private JFrame myFrame;
 
 	/**
 	 * The ApplicationModel (back end) of the program.
@@ -151,14 +141,14 @@ public class LandingPanel extends JPanel {
 		c.insets = new Insets(5, 0, 20, 0);
 		mySearchBar.addActionListener(action);
 		mySearchBar.setPreferredSize(new Dimension(600, 25));
+		mySearchLabel.setForeground(Color.WHITE);
 		
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 4;
 		this.add(mySearchLabel, c);
 		
-		c.gridy = 1;
-		
+		c.gridy = 1;		
 		this.add(mySearchBar, c);
 		
 		List<String> tags = myApplicationModel.getTags();			
@@ -218,11 +208,6 @@ public class LandingPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 4;
 		c.gridwidth = 2;
-
-		/* Adding the Import/Export buttons to the panel. */
-		this.add(myImportButton, c);
-		c.gridx = 2;
-		this.add(myExportButton, c);
 	}
 	
 	/**

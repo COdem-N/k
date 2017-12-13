@@ -50,7 +50,7 @@ public class SubmitPanel extends JPanel {
     /**
      * A Color object to be used as the background color of the panel.
      */
-    private static final Color SUBMIT_PANEL_BG_COLOR = new Color(200, 200, 255);
+    private static final Color SUBMIT_PANEL_BG_COLOR = new Color(0, 0, 75);
     
     /**
      * An integer object to be used as a static slider value (minimum value).
@@ -226,6 +226,13 @@ public class SubmitPanel extends JPanel {
         constraints.gridy = 6;
         this.add(myLabelTags, constraints);
         
+        myLabelTitle.setForeground(Color.WHITE);
+        myLabelDiff.setForeground(Color.WHITE);
+        myLabelCost.setForeground(Color.WHITE);
+        myLabelMaterials.setForeground(Color.WHITE);
+        myLabelDirections.setForeground(Color.WHITE);
+        myLabelTags.setForeground(Color.WHITE);
+        
         /* Enabling line wrap on all the text fields. */
         myTextMaterials.setLineWrap(true);
         myTextDirections.setLineWrap(true);
@@ -260,11 +267,11 @@ public class SubmitPanel extends JPanel {
         this.add(mySubmitButton, constraints);
          
         /* Setting up a basic border for the panel. */
-        final TitledBorder border = new TitledBorder(new LineBorder(Color.BLACK),
+        final TitledBorder border = new TitledBorder(new LineBorder(Color.WHITE),
                 "Submit a New Project",
                 TitledBorder.CENTER,
                 TitledBorder.BELOW_TOP);
-		border.setTitleColor(Color.BLACK);
+		border.setTitleColor(Color.WHITE);
 		this.setBorder(border);
 	}
 	
