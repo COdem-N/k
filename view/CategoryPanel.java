@@ -47,7 +47,7 @@ public class CategoryPanel extends JPanel {
     /**
      * Holds the currently submitted projects.
      */
-    private ApplicationModel myApplicationModel;
+    public ApplicationModel myApplicationModel;
     
     /**
      * A LandingPanel object used for display purposes (used to display the Landing Panel).
@@ -77,7 +77,7 @@ public class CategoryPanel extends JPanel {
     /**
      * Saves the tag sent by LandingPanel that the user wishes to view.
      */
-    private String myTag;
+    public String myTag;
     
     /**
      * List of submitted projects whose tag list contains myTag.
@@ -221,7 +221,7 @@ public class CategoryPanel extends JPanel {
 	 * @author Alex Merk
 	 * @author Peter Bae
 	 */
-	private void buildScrollMenu() {
+	public void buildScrollMenu() {
 		if (myApplicationModel != null) {
 			mySubmissionScroller = new JScrollPane(mySubmissionsPanel);
 			mySubmissionScroller.setPreferredSize(new Dimension(600,400));
@@ -257,7 +257,7 @@ public class CategoryPanel extends JPanel {
 	 * @author Alex Merk
 	 * @author Peter Bae
 	 */
-	private void moveToProject() {
+	public void moveToProject() {
 		this.setVisible(false);
 		myFrame.remove(this);
 		myFrame.add(myProjectPanel);
@@ -270,7 +270,7 @@ public class CategoryPanel extends JPanel {
      * @author Alex Merk
      * @author Peter Bae
      */
-	private void moveToLanding() {
+	public void moveToLanding() {
 		this.setVisible(false);
 		myFrame.remove(this);
 		myFrame.setTitle("Special K - DIY Project Manager");
@@ -284,7 +284,7 @@ public class CategoryPanel extends JPanel {
 	 * 
 	 * @author Alex Merk
 	 */
-	private void moveToSubmit() {
+	public void moveToSubmit() {
 		this.setVisible(false);
 		myFrame.remove(this);
 		myFrame.add(mySubmitPanel);
@@ -308,7 +308,7 @@ public class CategoryPanel extends JPanel {
 	 * @author Alex Merk 
 	 * @author Peter Bae (editing)
 	 */
-	protected void setTag(final String theTag) {
+	public void setTag(final String theTag) {
 		myFrame.setTitle(theTag.toUpperCase());
 		myTag = theTag;
 		myProjects = myApplicationModel.getProjects(myTag);

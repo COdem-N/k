@@ -61,7 +61,7 @@ public class ProjectPanel extends JPanel {
     /**
      * A Jlabel object used for the name of a project.
      */
-    private JLabel myName;
+    public JLabel myName;
     
     /**
      * A Jlabel object used for the difficulty of a project.
