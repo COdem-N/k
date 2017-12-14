@@ -217,6 +217,7 @@ public class LandingPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 4;
 		c.gridwidth = 2;
+	
 	}
 	
 	/**

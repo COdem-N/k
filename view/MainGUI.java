@@ -19,6 +19,7 @@ import model.ProjectModel;
  * 
  * @author Peter Bae
  * @author Logan Stafford (editing)
+ * @author Carter Odem (editing)
  * 
  * @version 1.0
  */
@@ -142,6 +143,8 @@ public class MainGUI implements WindowListener {
 	 * @throws IOException If the file path is not valid.
 	 * @throws ClassNotFoundException Thrown if type casts are wrong.
 	 */
+
+
 	private void load() throws IOException, ClassNotFoundException {
 		FileInputStream fis =  new FileInputStream("saveFile.ser");
 		ObjectInputStream ois = new ObjectInputStream(fis);
