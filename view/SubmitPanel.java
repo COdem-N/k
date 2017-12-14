@@ -174,12 +174,27 @@ public class SubmitPanel extends JPanel {
 	public SubmitPanel() {
 		/* Constructing the panel with a GridBag layout. */
 		super(new GridBagLayout());
+		setComponentsNames();
 		
         /* Setting some properties of the panel. */
         setPreferredSize(SUBMIT_PANEL_SIZE);
         setBackground(SUBMIT_PANEL_BG_COLOR);
 	}
 	
+	/**
+	 * This is a simple naming method that helps in JUnit testing 
+	 * for the SubmitPanel class.
+	 * 
+	 * @author Ichiro Suzuki (JavaWorld.com)
+	 * @author Logan Stafford (slight editing)
+	 */
+	private void setComponentsNames() {
+		myTextTitle.setName("title");
+		myTextMaterials.setName("materials");
+	    myTextDirections.setName("directions");
+	    myTextTags.setName("tags");
+	}
+
 	/**
 	 * The passIn method for the SubmitPanel. 
 	 * This method allows for switching of panels.
@@ -365,7 +380,7 @@ public class SubmitPanel extends JPanel {
 	 * 
 	 * @author Peter bae
 	 */
-	private void move() {
+	public void move() {
 		this.setVisible(false);
 		myFrame.remove(this);
 		myCategoryPanel.setVisible(true);

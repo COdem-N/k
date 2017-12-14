@@ -1,10 +1,9 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import javax.swing.JFrame;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import view.CategoryPanel;
@@ -13,15 +12,11 @@ import view.MainGUI;
 
 public class LandingPanelTest {
 
-
 	@Test
 	public void testLandingPanel() {
-		final JFrame frame = new JFrame("");
-
 		LandingPanel landPanel = new LandingPanel();
 
 		assertNotNull(landPanel);
-
 	}
 
 	@Test
